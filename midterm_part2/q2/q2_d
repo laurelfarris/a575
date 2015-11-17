@@ -1,0 +1,6 @@
+#/bin/tcsh
+
+# Magic!
+foreach file ($*)
+  mv $file $file.old
+end

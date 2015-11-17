@@ -1,0 +1,15 @@
+#/bin/tcsh
+
+foreach x (*.txt)
+  mv $x $x.old
+end
+
+#for FILE in /acrux/laurel07/a575/myrepo/midterm_part2/q2/*.txt
+#do 
+#  mv FILE.txt FILE.txt.old
+#done
+
+foreach file(*.txt)
+  set root = 'basename $file .txt'
+  mv $file $root.dat
+end

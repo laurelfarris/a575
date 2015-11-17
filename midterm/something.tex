@@ -1,0 +1,49 @@
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{natbib}
+\bibliographystyle{plain}
+\begin{document}
+
+\section{Introduction}
+Here is my introduction.
+According to \cite{sun} a bunch of stuff happened.
+
+\section{Puppies}
+See figure \ref{puppy} for a picture of a puppy.
+
+\begin{figure}[h]
+  \centering
+  \includegraphics{puppies.pdf}
+  \caption{Awwww}
+  \label{puppy}
+\end{figure}
+
+
+\section{Down to Business}
+Here is what we need to do:
+
+\begin{enumerate}
+  \item{Steal underwear}
+  \item{...}
+  \item{Profit}
+\end{enumerate}
+
+
+\begin{table}[h]
+\caption{Values for polytropic index $n$ = 4.5}
+\centering
+\begin{tabular}{ c c c c c c c c c  }
+ \hline\hline
+$n$ & $\xi_1$ & $\rho_c/\rho$ & $N_{n}$ & $W_n$ & $\Theta_n$ 
+& $\rho_c[g\,cm^{-3}]$ & $P_c[dyne\,cm^{-2}]$ & $T_c[K]$ \\
+\hline
+4.5 & 31.841 & 6187.500 & 0.658 & 4917.415 & 3.329 & 8718.704 &
+5.535e19 & 4.742e7 \\
+\hline
+\end{tabular}\\
+\label{table:nonlin}
+\end{table}
+
+\bibliography{stuff}
+\end{document}

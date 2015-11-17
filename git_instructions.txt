@@ -1,0 +1,220 @@
+## My Adventures with git... commands, the errors they came with, what was
+#   wrong, and some hopefully helpful tips.  
+##   
+## This is a lovely website: git-scm.com/docs/
+#    ... particularly the 'GitHub Cheat Sheet'
+
+
+
+###
+### Basic setup of a repo... perhaps for ASTR 575 homework.
+###
+
+# First, on github.com/username
+  create a repository, e.g. "mine", make it public, 
+   and yes you want the README file.
+
+# Everything else from terminal:
+ > git clone http://github.com/username/mine.git
+# This will create a directory with the same name as that repository
+ > cd mine
+# Inside 'mine', create whatever file you want to 'push' to your github page, 
+#   e.g. 'hw_1.txt'
+> git add hw_1.txt    ## This will add hw_1.txt to the 'staging area.'
+> git commit -m "Put commit message here"
+> git push -u origin master
+# This should put the file on your github page. 
+# If you get an error message here, try
+> git pull http://github.com/username/mine.git
+#   or just
+> git pull origin master #(since the cloned url should already be saved 
+                         #  as a remote called origin)
+# Then push again. 
+
+# To get the ThinkPython_2.ipynb file from Jon's repository...
+> git pull https://github.com/holtzmanjon/a575.git
+#   or set this as another remote:
+> git remote add nameofremote https://github.com/holtzmanjon/a575.git
+> git pull nameofremote 
+
+
+
+
+###
+### Branches
+###
+
+> git branch  # List the current branches. One ('master') by default. There will
+              #   be an asterisk ('*') next to the one you are currently using
+> git branch junk  # Create a new branch called 'junk'. Will get an error if you 
+                   # enter the name of a branch that already exists.
+> git checkout junk  # Change to junk branch. 
+> git checkout master # Back to master branch
+> git branch -a  # See what's going on with your branches...
+
+
+
+###
+### Initiating a repository in your current directory 
+###
+
+> mkdir test
+> cd test
+> git init  #Current directory (/acrux/laurel07/test) is now a repository...?
+            # At least you can run git command (e.g. git status) and it will
+            # know what you're talking about.
+> git branch   # There aren't any yet! Not even master.
+
+
+
+###
+### Remotes
+###
+
+> git remote -v  #Useful command that lists the remotes you currently have
+                 #  along with their names (origin, upstream, etc.)
+                 #Nothing here yet since I didn't clone or add a remote
+> git remote add origin https://github.com/laurelfarris/a575hw.git
+> git remote -v  
+	origin	https://github.com/holtzmanjon/a575.git (fetch)
+	origin	https://github.com/holtzmanjon/a575.git (push)
+> git remote add origin https://github.com/holtzmanjon/a575.git
+     fatal: remote origin already exists.
+    #This did not work because there is already a remote called origin.
+    #However, I can still add this remote under a different name:
+> git remote add upstream https://gitblubhub.com/holtzmannjon/aa575.git
+> git remote -v  
+	origin	https://github.com/holtzmanjon/a575.git (fetch)
+	origin	https://github.com/holtzmanjon/a575.git (push)
+	upstream	https://gitblubhub.com/holtzmannjon/aa575.git (fetch)
+	upstream	https://gitblubhub.com/holtzmannjon/aa575.git (push)
+   # but... SO MANY TYPOS! OH NO! 
+> git remote set-url upstream https://github.com/holtzmanjon/a575.git
+    # 'add' ADDS a remote
+    # 'set-url' CHANGES an EXISTING remote;
+> git remote -v  
+	origin	https://github.com/holtzmanjon/a575.git (fetch)
+	origin	https://github.com/holtzmanjon/a575.git (push)
+	upstream	https://github.com/holtzmanjon/a575.git (fetch)
+	upstream	https://github.com/holtzmanjon/a575.git (push)
+
+
+
+###
+### Creating, editing, and deleting files locally... how this affects your
+###      repository remotely
+
+> vi test.txt
+    *edit edit edit*
+> git status 
+    ... Untracked files: ... test.txt
+> git add test.txt  # Add test.txt to the staging area
+# NOTE: If you delete a file locally, it still needs to be removed from 
+# your remote repository. '> git add' literally adds things; it doesn't take them
+# away. " use 'git add/rm <file>...' to update what will be committed. "
+> rm unwanted.txt
+> git rm unwanted.txt
+> git status  
+    ... Changes to be committed:   new file: test.txt
+> git commit -m "testing" # Commit your changes!
+> git status 
+    ... nothing to commit (working directory clean)
+# From terminal messages:
+   (use "git add <file>..." to update what will be committed)
+   (use "git checkout -- <file>..." to discard changes in working directory) #??
+   no changes added to commit (use "git add" and/or "git commit -a")
+# What does "git commit -a" do???
+
+
+###
+### Getting stuff from remote repositories
+###
+
+> git clone https://github.com/username/repositoryname.git
+                         # clone (~copy) that repo in a newly created directory.
+> git branch             # No branches here
+> cd repositoryname
+> git branch
+   * master   
+                         # clone creates a local branch called 'master'
+                         #    (based on the remote's active branch) 
+                         #  Also created a remote called 'origin' of the url
+                         #     that was cloned
+> git pull origin master # Pulls everything from the origin remote under
+                         #  the master branch, and puts it in your current
+                         #  directory
+# 'git pull' does a 'git fetch' and 'git merge' all at once.
+     # e.g. > git fetch remoteName
+
+ # for funsies
+   > git checkout junk	 # Switched to junk branch... all the stuff I just
+                         #  pulled is gone!
+   > git branch
+       * junk
+         master    
+   > git checkout master    # And it's back!
+   > git branch
+         junk
+       * master    
+
+
+# So what's the difference between git clone and git pull?
+#   -clone creates a directory with the same name as the repository you cloned.
+#   -using pull you can put all the files from a bunch of different
+#   repositories in the same directory... you don't have to have a separate 
+#   working directory on your own machine for every single repository you want
+#   to pull from (which is what I was starting to believe...)
+#   Now I want to know if I can pull only specific files from a repo instead
+#   of all of them...???
+
+###
+### Adding stuff to remote repositories
+###
+
+> git push -u origin master
+    # the remote name ('origin' here) is optional. Origin is the default
+    # -u is an option that saves your parameters... should be able to just do
+    #   >git push   ;;from this point on.
+
+
+# I'm guessing there is some sort of permissions issue happening here... but 
+# not sure how it works
+
+> git push # 403 ERROR!!!!!!!!!!!!!!
+> git push -u origin master # 403 ERROR AGAIN!!!!!!!!!!!!!!!!!!(Same one)
+> 
+error: The requested URL returned error: 403 Forbidden while accessing http://...
+
+# Change the remote that you're trying to push to (2 ways):
+#1:
+> vi .git/config 
+       #Change the url, e.g. https://username@github.com/username/repo.git
+#or 2:
+> git remote set-url origin https://username@github.com/username/repo.git
+
+# You'll be asked for a password when pushing; it will be the same as 
+# the one you use to log into github.
+
+#########??????????############????????????################??????????
+
+> git checkout junk
+> rm *
+> git checkout master
+# Everything is gone from both branches!
+> git checkout junk
+# Every time I switch back and forth, all the files I deleted are listed,
+# with a capital 'D' in front... how to stop this?? 
+> git rm *
+> git commit -m "Deleting stuff"
+> git checkout master
+> git rm *
+> git commit -m "Deleting stuff"
+# None of this did anything...
+ 
+
+
+
+
+
+
+

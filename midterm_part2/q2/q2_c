@@ -1,0 +1,8 @@
+#/bin/tcsh
+
+ls *.txt
+foreach x (*.txt)
+	mv $x $x:r.dat
+end
+
+

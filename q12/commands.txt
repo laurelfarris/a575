@@ -1,0 +1,4 @@
+ln -s /home/apogee/speclib/linelists/linelist.20150714 lines
+awk '$1!="#"' lines | wc -l
+awk 'NR%100==0 ||$1=="#"' lines > modified.txt
+

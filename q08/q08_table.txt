@@ -1,0 +1,10 @@
+ 
+MACHINE             SPEED         MEMORYSWAP_SPACE(Gby)     DISK_SPACE
+ 
+mac               2.8 GHz             8G              ?           112G
+acrux                   ?          5.42G          5.57G           9.7G
+astronomy        2612.081          16.4G             0G              ?
+hyades            800.000            32G          65.5G           8.4T
+praesepe          800.000           132G           262G           2.9T
+virgo            1400.000            64G            131            12T
+ 

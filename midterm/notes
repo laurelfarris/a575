@@ -1,0 +1,17 @@
+> git branch  # List the current branches. One ('master') by default.
+There will be an asterisk ('*') next to the one you are currently using
+> git branch junk  # Create a new branch called 'junk'.
+Will get an error if you enter the name of a branch that already exists.
+> git checkout junk  # Change to junk branch. 
+> git checkout master # Back to master branch
+> git branch -a  # See what's going on with your branches...
+
+
+Bit: single binary unit of information (1/0)
+Byte: 8 bits
+
+3. Working in a Unix Environment
+
+> find [path] [conditions]
+
+

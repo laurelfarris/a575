@@ -1,0 +1,21 @@
+204064	/acrux/laurel07/a565/unit1/q01/LOGS
+76292	/acrux/laurel07/a565/unit1/cp01/LOGS1
+17036	/acrux/laurel07/a565/unit1/q01/photos
+12576	/acrux/laurel07/a565/unit1/cp01/LOGS2
+10180	/acrux/laurel07/a565/unit1/cp01/photos
+8608	/acrux/laurel07/a565/unit1/cp01
+7820	/acrux/laurel07/a565/unit1/q01
+7704	/acrux/laurel07/a565/unit1/q01/star
+7704	/acrux/laurel07/a565/unit1/cp01/star
+6096	/acrux/laurel07/a565/unit1/cp01/LOGS2/profile1.data
+ 
+72810508	/acrux-data/abdullah/MDark
+5527352	/acrux-data/abdullah/MDark/CatshortV.0088.00.DAT
+5527352	/acrux-data/abdullah/MDark/CatshortV.0015.00.DAT
+5527348	/acrux-data/abdullah/MDark/CatshortV.0088.03.DAT
+5527348	/acrux-data/abdullah/MDark/CatshortV.0088.02.DAT
+5527348	/acrux-data/abdullah/MDark/CatshortV.0088.01.DAT
+5527348	/acrux-data/abdullah/MDark/CatshortV.0015.02.DAT
+5527348	/acrux-data/abdullah/MDark/CatshortV.0015.01.DAT
+5342788	/acrux-data/abdullah/MDark/CatshortV.0015.03.DAT
+5124608	/acrux-data/abdullah/MDark/CatshortV.0088.04.DAT

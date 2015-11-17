@@ -1,0 +1,5 @@
+ls -ld /home/hyades/[bdfhjlnprtvxz]* | sort -rn > out1.txt
+du -aS /home/hyades/ | sort -rn | head > out2.txt
+du -aS /acrux/ | sort -rn | head > out3.txt
+echo ' ' >> out3.txt
+du -aS /acrux-data/ | sort -rn | head >> out3.txt

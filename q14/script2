@@ -1,0 +1,9 @@
+This is the same as script1, only written to run on all public machines, not just one.
+The specific machine will be specified on the command line, so either prompting
+   user for a machine, or command line simply involves typing in the name of the
+   machine along with the comamnd that actually runs the program.
+Run this, using ssh keys to avoid putting in passwords every time.
+
+
+Add a wrapper around your LaTeX table to generate a short document,
+and a wrapper around your HTML table to generate a web page.

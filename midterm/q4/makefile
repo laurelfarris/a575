@@ -1,0 +1,2 @@
+paper: 
+	pdflatex q4

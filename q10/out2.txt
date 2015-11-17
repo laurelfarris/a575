@@ -1,0 +1,10 @@
+1659779800	/home/hyades/vigeesh/jobcobold/d3_sunmag_resize
+963235384	/home/hyades/vigeesh/jobcobold/d3_sun_resize
+318768500	/home/hyades/aklypin/TMP/RUN1024_11
+246784132	/home/hyades/st/evolution/D9o3
+233026976	/home/hyades/karraki/other/zipfiles
+233026968	/home/hyades/karraki/other/zipfiles/2015-05-25-hydrodata.tar.gz
+223118568	/home/hyades/lost+found
+205030432	/home/hyades/aklypin/bigMD29
+197935744	/home/hyades/mtpatter/kpnojan2012/20120119
+195728748	/home/hyades/mtpatter/kpnomarch2012/mosaics

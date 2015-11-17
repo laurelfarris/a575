@@ -1,0 +1,131 @@
+<<<<<<< HEAD
+#!/bin/csh
+
+# Shell script...that does this:
+
+# 1. Determine system resources
+
+# 2. output --> latex table
+
+# 3. output --> html table
+
+
+#-------------------------------------------------------------------------------#
+# argument gives output type
+set output = $1
+
+# get system infor from hostname, /proc/cpuinfo, and /proc/meminfo
+set host = `hostname -s`
+set nproc=`grep processor /proc/cpuinfo | wc -l`
+set proc=`cat /proc/cpuinfo | grep "model name" | awk -F: '{print $2}' | head -1`
+set speed=`cat /proc/cpuinfo | grep MHz | awk -F: '{print $2}' | head -1`
+set mips=`cat /proc/cpuinfo | grep "bogomips" | awk -F: 'NR==1 {print $2}'`
+set mem=`grep MemTotal /proc/meminfo | awk -F: '{print $2}'`
+
+# disks have a little special handling since there can be multiple disks on a machine
+# only take local disks by selecting ones with dev in the filesystem, ignore /dev/sshm and
+# /boot
+
+if ( $output == "html" ) then
+  # To handle multiple disks for HTML, we'll put the disks in a mini HTML table
+  set disk=`df -h | grep dev | grep -v shm | grep -v boot | awk '{printf("<tr><td>%s<td>%s\n",$6, $2)}'`
+
+  # output a row of an HTML table
+  ## Makefile sends the output to 'resources.tex' !!
+  echo "<TR>"
+  echo "<TD>" $host
+  echo "<TD><center>" $nproc "</center>"
+  echo "<TD>" $proc
+  echo "<TD>" $speed
+  echo "<TD>" $mips
+  echo "<TD>" $mem
+  echo "<TD><table border=1>" $disk
+  echo "</table>"
+else
+
+  # To handle multiple disks for LaTeX, 
+  # we'll put the first disk in the row with the rest of the
+  # information, but subsequent disks into their own rows, with empty leading columns
+  set disk1=`df -h | grep dev | grep -v shm | grep -v boot | head -1 | awk '{printf("%s %s \n",$6, $2)}'`
+  set disks=`df -h | grep dev | grep -v shm | grep -v boot | tail -n +2 | awk '{printf("&&&&&&%s %s \\\\\\\\ \n",$6, $2)}'`
+
+  # output into LaTeX table row
+  # note that disks have to be handled specially for more than one, so that
+  # multiple disks are put on separate table lines
+  ## Makefile sends the output to 'resources.tex' !!
+  echo  "$host & $nproc & $proc & $speed & $mips & $mem & $disk1\\\\"
+  echo "$disks"
+endif
+    
+=======
+#!/bin/tcsh
+
+# 1. Determine system resources on a given machine
+# 		* number of CPUs
+# 		* architecture
+# 		* speed
+# 		* amount of memory
+# 		* swap space
+# 		* disk space
+# using commands and output processing (e.g., awk) 
+# Set these as variables to make output easier!
+
+
+#hostname
+hostname
+
+#number of CPUs
+grep processor /proc/cpuinfo | wc -l
+#set machine="grep processor /proc/cpuinfo | wc -l"
+
+#architecture
+#  -F: uses ':' as a delimiter, so "model name" is only 2 columns
+grep "model name" /proc/cpuinfo | awk -F: '{print $2}' | head -1
+#set arch="grep 'model name' /proc/cpuinfo | awk -F: '{print $2}' | head -1"
+
+# speed
+cat /proc/cpuinfo | grep MHz | awk -F: '{print $2}' | head -1
+#set speed="cat /proc/cpuinfo | grep MHz | awk -F: '{print $2}' | head -1"
+
+# amount of memory
+grep MemTotal /proc/meminfo | awk -F: '{print $2}'
+#set mem="grep MemTotal /proc/meminfo | awk -F: '{print $2}'"
+
+# swap space
+grep SwapTotal /proc/meminfo | awk -F: '{print $2}'
+#swap="grep SwapTotal /proc/meminfo | awk -F: '{print $2}'"
+
+# diskspace
+df -h --total / | grep total | awk '{print $2}'
+#set disk="df -h --total / | grep total | awk '{print $2}'"
+
+
+# 2. produce output into a LaTeX table 
+
+
+# 3. produce output into an HTML table. 
+htmlfile = 'resources.html'
+grep "<HTML><BODY>" > htmlfile
+grep "<table border=2>" >> htmlfile
+grep "<TR>" >> htmlfile
+grep "<TD>Machine<TD>Speed<TD>Memory<TD>Swap Space<TD>Disk Space" >> htmlfile
+grep "<TR>" >> htmlfile
+grep "<TD>arch<TD>speed" >> htmlfile
+
+
+
+# 4. Write another script that will execute this on multiple machines,
+#	 as specified on the command line
+
+
+
+# 5. run this script on the public machines, 
+#	using SSH kyes to avoid having to enter passwords. 
+
+
+
+
+# 6. Add a wrapper around your LaTeX table to generate a short document,
+#    and a wrapper around your HTML table to generate a web page.
+
+>>>>>>> 5fa8bc6c7f997ef531bc0935cb4f6fec87e747f8
