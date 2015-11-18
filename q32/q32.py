@@ -6,13 +6,13 @@ import math
 pixels = 8192
 sigma = 5
 
-# Create delta function(s): f(x)
+# Create delta function: f(x)
 f = np.zeros(pixels)
 for i in range(0,pixels,10):
     f[i] = 1
 
 # Create gaussian: h(x)
-#h = (math.sqrt(2.*math.pi*sigma**2) * 
+#h = (math.sqrt(2.*math.pi*sigma**2) *
  #   math.exp( (-(x-a)**2)/(2.*sigma**2)))
 h = np.zeros(sigma)
 # ...?
@@ -23,19 +23,16 @@ h = np.zeros(sigma)
 total = 0
 for i in range(0,pixels):
     for j in range(0,pixels):
-        total = total + f[i] * h[i-j] 
-    
+        total = total + f[i] * h[i-j]
+
 ## Do the convolution in Fourier space by:
 
 #taking the FT of f and h:
-FT_f = np.fft.fft(f) 
+FT_f = np.fft.fft(f)
 FT_h = np.fft.fft(h)
 
 # multiplying them, and FT-ing them back:
 FT_g = np.fft.fft(FT_f * FT_h)
-
-# ... should be the same result either way? Maybe without FT-ing them
-# back...
 
 # Plot the convolution and the final result:
 fig = plt.figure()
