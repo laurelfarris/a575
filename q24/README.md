@@ -28,3 +28,7 @@ that, finished except for the event handler.
 Need to read in proper isochrone file, but rewrote everything using axes
 objects instead of plt.
 
+11/17/15
+Spend several hours on this. Cannot figure out how to manage multiple
+files. Latest issue: cannot do the color array the way it's set up now
+becaue it is not the same length as the arrays being plotted.
