@@ -2,6 +2,8 @@ import matplotlib.pyplot as plt
 import numpy as np
 import math
 
+# This changed!!!
+
 # Numbers given for problem
 pixels = 8192
 sigma = 5
