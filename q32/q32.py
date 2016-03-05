@@ -1,6 +1,7 @@
 import matplotlib.pyplot as plt
 import numpy as np
 import math
+import pdb
 
 # This changed!!!
 
@@ -12,10 +13,14 @@ sigma = 5
 f = np.zeros(pixels)
 for i in range(0,pixels,10):
     f[i] = 1
+plt.plot(pixels, f)
+plt.xlim(xmin=0,xmax=50)
+plt.show()
+pdb.set_trace()
 
 # Create gaussian: h(x)
-#h = (math.sqrt(2.*math.pi*sigma**2) *
- #   math.exp( (-(x-a)**2)/(2.*sigma**2)))
+h = (math.sqrt(2.*math.pi*sigma**2) *
+    math.exp( (-(x-a)**2)/(2.*sigma**2)))
 h = np.zeros(sigma)
 # ...?
 
@@ -24,7 +29,7 @@ h = np.zeros(sigma)
 
 total = 0
 for i in range(0,pixels):
-    for j in range(0,pixels):
+    for j in range(0,sigma):
         total = total + f[i] * h[i-j]
 
 ## Do the convolution in Fourier space by:
