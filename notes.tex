@@ -28,8 +28,9 @@
 \subsection{Writing a Program}
 Simple suggestions:
 \begin{enumerate}
-    \item Make sure you fully understand the question/problem before starting
-        to write the code. Outline the methodology you will use in words, diagrams,
+    \item Make sure you fully understand the question/problem before
+        starting to write the code. Outline the methodology you will
+        use in words, diagrams,
         or figures, before getting caught up in the syntax of coding.
     \item Generate the code in pieces. Consider writing out all the comments
         before the actual coding. Include some debugging statements, considering
@@ -184,7 +185,7 @@ intfunc(x)} $\#$ returns interpolated value(s) at x  \\
 \subsection{Fourier analysis basics and sinc interpolation}
 (see NR chapter 12)
 
-In Fourier analysis, consider a function in two representations: values in
+Consider a function in two representations: values in
 ``physical'' space (e.g., time or location) vs. values in ``frequency'' space
 (e.g., temporal frequency or wavenumber). The two are related by Fourier
 transforms:
@@ -208,7 +209,6 @@ generally, this is done for data sets that are padded to a length of a power
 of 2. However, the FFT algorithm requires equally spaced data points. For
 unequally spaced points, the full discrete Fourier transform is required.
 
-\noindent
 \texttt{numpy.fft, scipy.fftpack \\
 >>> import matplotlib.pyplot as plt \\
 >>> import numpy as np \\
@@ -242,7 +242,7 @@ points (or at least those that contribute to the convolution in the Fourier
 domain, because of the \emph{convolution theorem}, which states the covolving
 two functions in physical space is eequivalent to multiplying the transforms
 of the functions in Fourier space. Multiplication of two functions is faster
-than convolution). \\
+than convolution).
 
 \texttt{numpy.convolve}
 
