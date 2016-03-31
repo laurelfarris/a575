@@ -1,11 +1,19 @@
 \documentclass[12pt]{article}
 \usepackage[margin=1in]{geometry}
-%\usepackage{graphicx}
+\usepackage{graphicx}
 %\usepackage{enumerate}
 %\usepackage{enumitem}
 \usepackage{amsmath}
 \usepackage{mathcomp}
 \usepackage{color}
+\usepackage{mdwlist}
+\usepackage{hyperref}
+
+\hypersetup{
+    colorlinks=true,
+    urlcolor=blue,
+}
+\urlstyle{same}
 
 \definecolor{hl}{RGB}{250,188,164}
 
@@ -110,7 +118,7 @@ Used for counting statistics.
     P(x,\mu) = \frac{\mu^xe^{-\mu}}{x!}
 \end{equation*}
 
-In class: simulate some data, e.g. a linear relation (x=1,10, y=x) with a
+In class: simulate some data, e.g.\ a linear relation (x=1,10, y=x) with a
 Gaussian (mean=0, sigma=varius) scatter, and plot it. Alternate: CMD from
 isochrones with Poisson scatter in colors and magnitudes. \\
 
@@ -123,7 +131,7 @@ Gaussian deviates, and Poisson deviates.}}}
 
 \textbf{Interpolation} can be used if you have a tabulated or measured set of
 data, and want to estimate the values at intermediate locations in your data
-set, e.g. inverting a function, resampling data, etc.
+set, e.g.\ inverting a function, resampling data, etc.
 \begin{itemize}
     \item Linear interpolation: value $f(x)$ at some intermediate location,
         $x$, between two points, $x_i$ and $x_{i+1}$:
@@ -145,10 +153,8 @@ set, e.g. inverting a function, resampling data, etc.
         The coefficients are determined such that the polynomial fit goes exactly
         through the tabulated data points.
 \end{itemize}
-        Be aware that higher order is not necessarily better, e.g.:
-        \begin{equation*}
-            f(x) = \frac{1}{(1+25x^2)}
-        \end{equation*}
+Be aware that higher order is not necessarily better, e.g.:
+$$ f(x) = \frac{1}{(1+25x^2)} $$
 There are also issues with even orders because this leads to using more tabulated
 points on one side of the desired value than the other (since even order means odd
 number of data points). At high order, the polynomial can go wildly off, especially
@@ -182,19 +188,47 @@ be called to interpolate to desired position(s): \\
 intfunc = interpolate.interp1d(xdata,ydata,kind=`linear'|`slinear'|`quadratic'|`cubic') \\
 intfunc(x)} $\#$ returns interpolated value(s) at x  \\
 
+Exercise:
+\begin{enumerate}
+    \item Define some function, $f(x)$\\
+        \texttt{def f(x):}\\
+            $\ldots$
+    \item For some given domain, plot your function at high sampling, e.g.:
+
+        \texttt{\# get a high sampled array of independent variable\\
+        x=numpy.linspace(xmin,xmax,1000)\\
+        \# plot the relation as a smooth line\\
+        plt.plot(x,f(c))}
+    \item For some given domain, sample your function with $N$ points
+        (evenly spaced, or maybe random), e.g.:
+
+        \texttt{numpy.linspace(xmin,xmax,npts) \# provides npts xdata
+        points in your your domain\\
+        plt.plot(xdata,func(data),'o') \# plot data points as points}
+    \item Determine the interpolating polynomial for linear and cubic
+        spline, and overplot the interpolated function.
+
+        \texttt{from scipy import interpolate\\
+        \# get the interpolating function (you need to choose which type)\\
+        intfunc = interpolate.interp1d(xdata,func(xdata),
+        kind='linear'|'slinear'|'quadratic'|'cubic'|order)\\
+        \# plot interpolated data at high sampling\\
+        plt.plot(x,intfunc(x))}
+\end{enumerate}
+
 \subsection{Fourier analysis basics and sinc interpolation}
 (see NR chapter 12)
 
 Consider a function in two representations: values in
-``physical'' space (e.g., time or location) vs. values in ``frequency'' space
+``physical'' space (e.g., time or location) vs.\ values in ``frequency'' space
 (e.g., temporal frequency or wavenumber). The two are related by Fourier
 transforms:
 \begin{align*}
     H(f) = \int \! h(x)e^{-2 \pi i f x} \ \textrm{d}x \\
     h(x) = \int \! H(f)e^{-2 \pi i f x} \ \textrm{d}f
 \end{align*}
-note that different implementations use different sign conventions, and
-sometimes angular frequency ($\omega = 2\pi f$) is used.
+note that different implementations use different sign conventions,
+for example: \emph{angular} frequency ($\omega = 2\pi f$).
 
 The physical interpretation is that a function can be decomposed into the sum
 of a series of sine waves, with different amplitudes and phases at each
@@ -226,36 +260,102 @@ plt.plot(np.fft.fftfreq(8192,100./8192), np.abs(f))}
 Two particular operations involving pairs of functions are of general interest:
 convolution and cross-correlation.
 
-\begin{itemize}
-
+\begin{itemize*}
     \item Convolution
-\begin{equation*}
-    g(x) * h(x) = \int g(x')h(x - x') \mathrm{d}x'
-\end{equation*}
+        $$ g(x) * h(x) = \int g(x')h(x-x') \mathrm{d}x' $$
+        Usually, convolution is seen in the context of \emph{smoothing}, where $h(x)$ is
+        a normalized function (with a sum of unity), centered on zero; convolution is
+        the process of running this function across an input function to produce a
+        smoothed version. Note that the process of convolution is computationally
+        expensive; at each point in a data series, you have to loop over all of the
+        points (or at least those that contribute to the convolution in the Fourier
+        domain, because of the \emph{convolution theorem}, which states the covolving
+        two functions in physical space is eequivalent to multiplying the transforms
+        of the functions in Fourier space. Multiplication of two functions is faster
+        than convolution).
 
-Usually, convolution is seen in the context of \emph{smoothing}, where $h(x)$ is
-a normalized function (with a sum of unity), centered on zero; convolution is
-the process of running this function across an input function to produce a
-smoothed version. Note that the process of convolution is computationally
-expensive; at each point in a data series, you have to loop over all of the
-points (or at least those that contribute to the convolution in the Fourier
-domain, because of the \emph{convolution theorem}, which states the covolving
-two functions in physical space is eequivalent to multiplying the transforms
-of the functions in Fourier space. Multiplication of two functions is faster
-than convolution).
+        \texttt{numpy.convolve}
 
-\texttt{numpy.convolve}
+    \item Cross-correlation
+        $$ g(x) \star h(x) = \int g(x')h(x+x') \mathrm{d}x' $$
+        Cross-correlation is the same as convolution if $h$ is a symmetric function,
+        but is usually used quite differently. It is generally considered a function of
+        the \emph{lag, x}. Multiply two functions, calculate the sum, then shift one
+        of the functions and do it again. The sums are a function of the shift. For
+        two similar functions, the cross-correlation will be a maximum when the two
+        functions ``line up'', so this is useful for determining shifts between two
+        functions (e.g., spatial shifts of images, or spectral shifts from velocity).
+\end{itemize*}
 
-\item Cross-correlation
-        $$ g(x) \star h(x) = \int g(x')h(x + x') \mathrm{d}x' $$
-Cross-correlation is the same as convolution if $h$ is a symmetric function,
-but is usually used quite differently. It is generally considered a function of
-the \emph{lag, x}. Multiply two functions, calculate the sum, then shift one
-of the functions and do it again. The sums are a function of the shift. For
-two similar functions, the cross-correlation will be a maximum when the two
-functions ``line up'', so this is sueful for determining shifts between two
-functions (e.g., spatial shifts of images, or spectral shifts from velocity).
-\end{itemize}
+Back to interpolation$\ldots$ See Bracewell chapter 10 for sinc interpolation and
+the sampling theorem.
+
+When we sample a function at finite locations, we are multiplying by a
+sampling function, which is just a discrete set of impulses spaced by
+$\Delta x$. In the Fourier domain, this is convolving by the Fourier
+transform of the sampling function, which is a discrete set of
+frequencies spaced by $1/\Delta x$.
+
+An important and useful result for interpolation is called the
+\emph{sampling theorem} which arises in the case of a
+\emph{band-limited} function,
+i.e. a function that has no power above some critical frequency
+known as the \emph{Nyquist frequency}.
+In this case, if the function is sampled at sufficient frequency,
+(twice the Nyquist frequency), then it is possible to
+recover the entire function. Figure 10.3 from Bracewell shows the idea
+graphically.
+
+What to do:
+\begin{enumerate*}
+    \item Fourier transform the sampled function.
+    \item Multiply by a box function.
+    \item Fourier transform back.
+\end{enumerate*}
+Alternatively, convolve
+the sampled function with the Fourier transform of a box function,
+which is the sinc function:
+$$ \textrm{sinc}(x) = \frac{\sin(x)}{x} $$
+This leads to \emph{sinc interpolation}, which is the ideal interpolation in the
+case of a band-limited function.
+
+\textbf{\emph{Interpolation and Uncertainties}}
+
+Generally all interpolation schemes can be considered as a sum of data
+values multiplied by a set of interpolation coefficients at each
+point:
+$$ y(x) = \sum_{i=0}^{n} y_{i}P_{i}(x) $$
+So far, we have been considering interpolation in perfect data.
+If there are uncertainties on the data points, there will be
+uncertainties in the interpolated values.
+These can be derived by error propagation, if the errors on the
+individual data points are uncorrelated:
+$$ \sigma(y(x))^2 = \sum\sigma(y(x_{i}))^{2}P_{i}(x)^{2} $$
+However, the interpolated errors are now correlated, so using them
+properly requires you to use the \emph{full covariance matrix}.
+$$ = \sigma_{u}^{2}\left(\frac{\partial{x}}{\partial{u}}\right)^{2} +
+\sigma_{v}^{2}\left(\frac{\partial{x}}{\partial{v}}\right)^{2} +
+2\sigma_{uv}^{2}\frac{\partial{x}}{\partial{u}}\frac{\partial{x}}{\partial{v}} $$
+$$ \sigma_{uv}^{2} = \lim_{n\rightarrow\infty}\frac{1}{N}
+\sum(u_{i}-<u>)(v_{i}-<v>)$$
+In the presence of noise (uncertainties), it is often advantageous to
+\emph{model} the data by fitting an underlying function to a tabulated set of
+data points with some merit function criteria for determing what
+function provides the best fit. The fit can then be used to predict
+values at arbitrary location.
+
+Beware of mixing and matching interpolation and fitting: doing fits on
+data sets with uncorrelated errors is substantially easier than doing
+them on data sets with correlated errors.
+
+\subsection{Differentiation and integration}
+Integration: simple rules, extended rules, reaching a desired accuracy.
+
+Monte Carlo integration
+
+\subsection{Differential equations}
+Runge-Kutta, boundary value problems.
+
 
 \newpage
 \section{Fitting}
@@ -290,7 +390,8 @@ frequentism.
         underlying model, and as such, gives the best parameters, along
         with some estimate of their uncertainty.
     \item \textbf{Bayesian} \\
-        \textbf{$P(M|D)$} -- \emph{probability of a model given a data set}.
+        \textbf{$P(M|D)$} -- \emph{probability that a model is correct
+        given a data set}.
         It allows for the possibility that external information may prefer
         one model over another, and this is incorporated into the analysis
         as a \emph{prior}. It considers the probability of different models,
@@ -305,22 +406,16 @@ recently, but the Bayesian paradigm has become increasingly widespread. In
 many cases they can give the same result, but with somewhat different
 interpretation. In some cases, results can differ. The basic underpinning of
 Bayesian analysis comes from \textbf{Bayes theorem} of probabilites:
-\begin{equation*}
-    P(A|B) = \frac{P(B|A)P(A)}{P(B)}
-\end{equation*}
-where $P(A|B)$ is the conditional probability, i.e. the probability of $A$ given
+    $$ P(A|B) = \frac{P(B|A)P(A)}{P(B)} $$
+where $P(A|B)$ is the conditional probability, i.e.\ the probability of $A$ given
 that $B$ has occurred. Imagine there is some joint probability distribution
 function of two variables, $p(x,y)$ (see ML 3.2; this could be a distribution
 of stars as a function of effective temperature and luminosity). Think about
 slices in each direction to get to the probability at a given point, and we
 have:
-\begin{equation*}
-    p(x,y) = p(x|y)p(y) = p(y|x)p(x)
-\end{equation*}
+    $$ p(x,y) = p(x|y)p(y) = p(y|x)p(x) $$
 which gives:
-\begin{equation*}
-    p(x|y) = \frac{p(y|x)p(x)}{p(y)}
-\end{equation*}
+    $$ p(x|y) = \frac{p(y|x)p(x)}{p(y)} $$
 which is Bayes theorem. Bayes theorem also relates the conditional probability
 distribution to the \emph{marginal} probability distribution:
 \begin{align*}
@@ -328,16 +423,19 @@ distribution to the \emph{marginal} probability distribution:
     p(y) &= \int \! p(y|x)p(x) \ \mathrm{d}y \\
     p(x|y) &= \frac{p(y|x)p(x)}{\int \! p(y|x)p(x) \ \mathrm{d}x}
 \end{align*}
+
+This is all fairly standard statistics, but the Bayesian paradigm extends
+this to the idea that the quantity $A$ or $B$ can also represent a hypothesis,
+or model, i.e.\ the relative probability of different models.
+
 In the context of Bayesian analysis, we can talk about the probability of models,
 and we have:
-\begin{equation*}
-    P(M|D) = \frac{P(D|M)P(M)}{P(D)}
-\end{equation*}
+    $$ P(M|D) = \frac{P(D|M)P(M)}{P(D)} $$
 In this case, P(D) is a normalization constant, P(M) is the prior on the model
 (which, in the absense of any additional information, is equivalent for all
 models: a \emph{noninformative prior}. A noninformative prior can itself be
 a prior; a uniform prior is not necessarily invarient to a change in
-variables, e.g. uniform in the logarithm of a variable is not uniform in the
+variables, e.g.\ uniform in the logarithm of a variable is not uniform in the
 variable). In the noninformative case, the Bayesian result is the same as the
 frequentist maximum likelihood. However, in the Bayesian analysis we'd want
 to calculate the full probability distribution function for the model parameter,
@@ -346,48 +444,47 @@ $\mu$.
 In practice, frequentist analysis yields parameters and their uncertainties,
 while Bayesian analysis yields probability distribution functions of parameters.
 The latter is often more comutationally intensive to calculate. Bayesian analysis
-includes explicit priors. \\
+includes explicit priors.
+
+For some more detailed discussion, see
+\url{http://arxiv.org/abs/1411.5018}
 
 \colorbox{hl}{\parbox{0.9\textwidth}
 {\emph{Understand the basic conceptual differences between a frequentist
         and a Bayesian analysis. Know Bayes' theorem. Understand the practical
        differences.}}}
 
-Starting with a frequentist analysis (which provides a component of the
+Starting with a frequentist analysis (which often provides a component of the
 Bayesian analysis): Given a set of data and some model (with parameters),
 consider the probability that the data will be observed if the model is correct,
 and then choose the set of parameters that maximizes this probability.
+
 For example, when fitting a straight line through the data, the best fit is
-determined by the method of \emph{least squares}. All points have homeoschedastic
-(equal)
-uncertainties, $\sigma$, that are distributed according to a Gaussian. We want
+determined by the method of \emph{least squares}.
+Consider that observed data points have some measurement uncertainty,
+$\sigma$. For now, all points have homeoschedastic (equal) uncertainties.
+They are distributed according to a Gaussian. We want
 to know what the probability is of observing a given data value from a known
 Gaussian distribution, and the probability of observing a series of two
 independently drawn data values.
 
 The probability of observing a series of data points is, given some model
 $y(x_i|a_j)$:
-\begin{align*}
-    P(D|M) \propto \prod^{N-1}_{i=0}\mathrm{exp}
-    \Bigg[\frac{-0.5(y_i-y(x_i|a_j))^2}
-    {\sigma^2}\Bigg]\Delta y
-\end{align*}
+$$    P(D|M) \propto \prod^{N-1}_{i=0}\exp
+    \left[\frac{-0.5(y_i-y(x_i|a_j))^2}
+    {\sigma^2}\right]\Delta y $$
 where $a_j$ is the $jth$ parameter of the model, and $\Delta y$ is some small
 range in y.
 
 Maximizing the probability is the same thing as mazimizing the logarithm of
 the probability, which is the same thing as maximizing the negative of the
-logarithm, i.e. minimize:
-\begin{align*}
-    -\mathrm{log} P(D|M) = \sum^{N-1}_{i=0}\Bigg[\frac
-        {0.5(y_i-y(x_i))^2}{\sigma^2}\Bigg]
-        -N\mathrm{log}(\Delta y) + const
-\end{align*}
+logarithm, i.e.\ minimize:
+    $$ -\log P(D|M) = \sum^{N-1}_{i=0}\left[\frac
+        {0.5(y_i-y(x_i))^2}{\sigma^2}\right]
+        -N\log(\Delta y) + const $$
 If $\sigma$ is the same for all points, then this is equivalent to minimizing
-\begin{align*}
-    \sum^{N-1}_{i=1]}(y_i-y(x_i|a_j))^2
-\end{align*}
-i.e., least squares. \\
+    $$ \sum^{N-1}_{i=1]}(y_i-y(x_i|a_j))^2 $$
+i.e., least squares.
 
 \colorbox{hl}{\parbox{0.9\textwidth}
 {\emph{Understand how least squares minimization can be derived from a maximum
@@ -396,12 +493,12 @@ i.e., least squares. \\
 
 Consider a simple application, multiple measurements of some quantity, so the
 model is $y(x_i) = \mu$ where we want to determine the most probable value of
-the quantity, i.e. $\mu$.
+the quantity, i.e.\ $\mu$.
 
 Minimizing gives:
 \begin{align*}
-    \frac{\mathrm{-d(log}P(D|M))}{\mathrm{d}\mu} &= 2\sum^{N-1}_{i=0}
-    (y_i - \mu) = 0 \\
+    \frac{\mathrm{d}(-\log P(D|M))}{\mathrm{d}\mu}
+    &= 2\sum^{N-1}_{i=0}(y_i-\mu) = 0 \\
     \mu &= \sum \frac{y_i}{N}
 \end{align*}
 
@@ -412,11 +509,14 @@ which is a familiar result. To calculate the uncertainty on the
     + \sigma_{y_1}^2
     \left( \frac{\partial{\mu}}{\partial{y}_1}\right)^2
     + \ldots $$
-    $$ $$
-    $$ $$
-\par For \emph{heterodastic} (unequal) uncertainties on the data points:
-    $$  $$
-\par Here, we are minimizing a quantity called \textcolor{red}
+    $$ \sigma_{\mu}^{2} = \sum\frac{\sigma^{2}}{N^{2}} = \frac{\sigma^{2}}{N}$$
+    $$ \sigma_{\mu} = \frac{\sigma}{\sqrt{N}} $$
+
+For \emph{heterodastic} (unequal) uncertainties on the data points:
+$$ -\log P(D|M) = \sum_{i=0}^{N-1}\left[
+\frac{(y_i-y(x_i))^{2}}{\sigma_{i}^{2}}\right] + const $$
+
+Here, we are minimizing a quantity called \textcolor{red}
 {$\chi^2$}. An important thing about $\chi^2$ is that the probability
 of a given value of $\chi^2$ given $N$ data points and $M$ parameters
 can be calculated \emph{analytically}. This is called the
@@ -425,11 +525,11 @@ see, e.g.\ \texttt{scipy.stats.chi2}, e.g.\ \texttt{cumulative
 density function (cdf)}, which you want to be in some range, e.g.\
 0.05 \- 0.95.
 
+A way to qualitatively judge the quality of a fit is by the
 \emph{reduced} $\chi^2$, aka.\ $\chi^2$ per degree of freedom:
-a way to \emph{qualitatively} judge the quality of a fit:
     $$  \chi_{\nu}^2 = \frac{\chi^2}{N-M} = \frac{\chi^2}{\nu}    $$
 which is expected to have a value near unity.
-The \emph{probability} of $\chi^2$ should be calculated since the
+However, the \emph{probability} of $\chi^2$ is what should be calculated since the
 spread in $\chi_{\nu}^2$ depends on $\nu$ (the standard deviation
 is $\sqrt{2\nu}$).
 
@@ -439,7 +539,9 @@ a normal (Gaussian) distribution.}
 
 $\chi^2$ can be used as a method for checking uncertainties, or even
 determining them (at the expense of being able to say whether your
-model is a good representation of the data). See ML 4.1.
+model is a good representation of the data).
+See \href{http://astronomy.nmsu.edu/holtz/a575/images/ML4.1.png}
+{ML 4.1}.
 
 \colorbox{hl}{\parbox{0.9\textwidth}
 {\emph{Know specifically what $\chi^2$ is and how to use it.
@@ -448,16 +550,55 @@ of freedom.
 }}}
 
 For our simple model of measuring a \emph{single quantity}, we have:
-(insert equations) i.e., a weighted mean. Again, you can use error
-propagation to get (work not shown): (more equaitons).
-
+$$ \frac{\mathrm{d}(-\log P(D|M))}{\mathrm{d}\mu} =
+2\sum\frac{(y_{i}-\mu)}{\sigma_i^2} = 0 $$
+$$ \sum\frac{y_i}{\sigma_i^2} - \mu\sum\frac{1}{\sigma_i^2} = 0 $$
+$$ \mu = \frac{\sum\frac{y_i}{\sigma_i^2}}{\sum\frac{1}{\sigma_i^2}}$$
+i.e., a weighted mean. Again, you can use error
+propagation to get (work not shown):
+$$ \sigma_{\mu} = \left(\sum\frac{1}{\sigma_i^2}\right)^{-1/2}  $$
 A more complicated example: fitting a straight line to a set of data.
 Here, the model is
 $$ y(x_i) = a + bx_i $$
 and $\chi^2$ is:
-$$ \chi^2 = \ldots$$
+$$ \chi^2 = \sum_{i=0}^{N}\left[\frac{(y_i-a-bx_i)^2}{\sigma_i^2}\right]  $$
+Again, we want to minimize $\chi^2$, so we take the derivatives with respect
+to each of the parameters and set them to zero:
+$$ $$
+$$ $$
+Separating out the sums, we have:
+$$ $$
+$$ $$
+or
+$$ $$
+$$ $$
+where the various $S$ are a shorthand for the sums:
+$$ $$
+$$ $$
+$$ $$
+$$ $$
+$$ $$
+which is a set of two equations with two unknowns. Solving, you get:
+$$ $$
+$$ $$
 
+\colorbox{hl}{\parbox{0.9\textwidth}
+{\emph{Know how to derive the least squares solution for a fit to a straight line.}}}
 
+We also want the uncertainties in the parameters.
+Again, use propagation of errors to get (work not shown):
+$$ \sigma_a^2 = \frac{S_{xx}}{SS_{xx}-S_x^2}   $$
+$$ \sigma_b^2 = \frac{S}{SS_{xx}-S_x^2}   $$
+Finally, we will want to calculate the probability of getting
+$ \chi^{2}_{}$ for our fit,
+in an effort to understand
+\begin{enumerate*}
+    \item if our uncertainties are not properly calculated and normally distributed
+    \item if our model is a poor model
+\end{enumerate*}
+
+Let's do it. Simulate a data set, fit a line, and output parameters, parameter
+uncertainties, $\chi^2$, and probability of $\chi^2$.
 
 
 \subsection{General linear fits}
