@@ -61,11 +61,14 @@ record whichever seed they use in case repeatability is desired.
 
 Lowest level rnadom number generators give \emph{uniform deviates}, i.e., equal
 probability of results in some range (usually 0 to 1 for floats).
-Python stuff: \\
-\texttt{>>> random.random \\
->>> random.seed \\
->>> numpy.random.random \\
->>> numby.random.seed} \\
+Python stuff:
+
+\begin{verbatim}
+>>> random.random
+>>> random.seed
+>>> numpy.random.random
+>>> numby.random.seed
+\end{verbatim}
 
 To generate random numbers for some other distribution, e.g. Gaussian, Poisson,
 luminosity funciton, mass function, etc. use the \textbf{Transformation Method}:
@@ -512,7 +515,7 @@ which is a familiar result. To calculate the uncertainty on the
     $$ \sigma_{\mu}^{2} = \sum\frac{\sigma^{2}}{N^{2}} = \frac{\sigma^{2}}{N}$$
     $$ \sigma_{\mu} = \frac{\sigma}{\sqrt{N}} $$
 
-For \emph{heterodastic} (unequal) uncertainties on the data points:
+For \emph{heteroschedastic} (unequal) uncertainties on the data points:
 $$ -\log P(D|M) = \sum_{i=0}^{N-1}\left[
 \frac{(y_i-y(x_i))^{2}}{\sigma_{i}^{2}}\right] + const $$
 
@@ -564,23 +567,27 @@ and $\chi^2$ is:
 $$ \chi^2 = \sum_{i=0}^{N}\left[\frac{(y_i-a-bx_i)^2}{\sigma_i^2}\right]  $$
 Again, we want to minimize $\chi^2$, so we take the derivatives with respect
 to each of the parameters and set them to zero:
-$$ $$
-$$ $$
+$$ \frac{\partial\chi^2}{\partial{a}} = 0 = -2\sum\frac{(y_i-a-bx_i)}{\sigma_i^2} $$
+$$ \frac{\partial\chi^2}{\partial{b}} = 0 = -2\sum\frac{x_i(y_i-a-bx_i)}{\sigma_i^2} $$
 Separating out the sums, we have:
-$$ $$
-$$ $$
+$$ \sum\frac{y_i}{\sigma_i^2} -
+a\sum\frac{1}{\sigma_i^2} -
+b\sum\frac{x_i}{\sigma_i^2} = 0 $$
+$$ \sum\frac{x_iy_i}{\sigma_i^2} -
+a\sum\frac{x_i}{\sigma_i^2} -
+b\sum\frac{x_i^2}{\sigma_i^2} = 0 $$
 or
-$$ $$
-$$ $$
+$$ aS + bS_{x} = S_{y} $$
+$$ aS_{x} + bS_{xx} = S_{xy} $$
 where the various $S$ are a shorthand for the sums:
-$$ $$
-$$ $$
-$$ $$
-$$ $$
-$$ $$
+$$ S = \sum\frac{1}{\sigma_i^2}  $$
+$$ S_{x} = \sum\frac{x_i}{\sigma_i^2}  $$
+$$ S_{xy} = \sum\frac{x_iy_i}{\sigma_i^2}  $$
+$$ S_{xx} = \sum\frac{x_iy_i}{\sigma_i^2}  $$
+$$ S_{y} = \sum\frac{y_i}{\sigma_i^2}  $$
 which is a set of two equations with two unknowns. Solving, you get:
-$$ $$
-$$ $$
+$$ a = \frac{S_{xx}S_{y} - S_{x}S_{xy}}{SS_{xx} - S_{x}^{2}}  $$
+$$ b = \frac{SS_{xy} - S_{x}S_{y}}{SS_{xx} - S_{x}^{2}}  $$
 
 \colorbox{hl}{\parbox{0.9\textwidth}
 {\emph{Know how to derive the least squares solution for a fit to a straight line.}}}
@@ -614,16 +621,20 @@ in simple form:
 $$ y(x) = \sum_{k=0}^{M-1}a_kX_k(x) $$
 where there are $M$ parameters, $N$ data points, and $N>M$.
 The $\chi^2$ merit function can be written as:
-$$ $$
+$$ \chi^2 = \sum_{i=0}^{N-1} \left[
+    \frac{(y_i - \sum_{k=0}^{M-1} a_{k}X_{k}(x_{i}))^{2}}
+    {\sigma_{i}^{2}} \right] $$
 Minimizing $\chi^2$ leads to the set of $M$ equations:
-$$ $$
+$$ 0 = \sum_{i=1}^{N-1}\frac{1}{\sigma_i^2}
+\left[y_{i} - \sum_{j=0}^{M-1}a_{j}X_{j}(x_{i})\right]X_{k}(x_{i}) $$
 where $k=0,\ldots,M-1$.
 
 Separating the terms and interchanging the order of the sums gives:
-$$ $$
+$$\sum_{i=0}^{N-1}\frac{y_{i}X_{k}(x_{i})}{\sigma_{i}^{2}} =
+\sum_{j=0}^{M-1}\sum_{i=0}^{N-1}\frac{a_{j}X_{j}(x_{i})X_{k}(x_{i})}{\sigma_{i}^{2}}  $$
 Define:
-$$ $$
-$$ $$
+$$ \alpha_{jk} = \sum_{i=0}^{N-1}\frac{X_{j}(x_{i})X_{k}(x_{i})}{\sigma_{i}^{2}}$$
+$$ \beta_{j} = \sum_{i=0}^{N-1}\frac{X_{j}(x_{i})y_{i}}{\sigma_{i}^{2}}$$
 then we have the set of equations:
 $$ \alpha_{jk}\alpha_{j} = \beta_{k} $$
 for $k=0,\ldots,M-1$.
@@ -656,7 +667,7 @@ the same.
 \subsection{Solving linear equations}
 
 This is just a linear algebra problem, and there are well-developed
-techniques (see NR chapter 2). Simply invert the matrix $\alpha$
+techniques (see NR chapter 2). For the most simple case, invert the matrix $\alpha$
 to get
 $$ \alpha_k = \alpha_{jk}^{-1}\beta_k $$
 A simple algorithm for inverting a matrix is called a
@@ -670,10 +681,242 @@ but it is possible to have non-singular problems encounter
 singularity under some conditions depending on how the data are
 sampled. See NR 15.4.2 and chapter 2 (in these notes?).
 
-As an aside,
+As an aside, note that it is possible to solve a linear set of equations
+significantly faster than inverting the matrix through various types of
+matrix decomposition, e.g., LU decomposition and Cholesky decomposition
+(see NR Chapter 2). There may be linear algebra problems that you
+encounter that only require the solution of the equations and not the
+inverse matrix. However, for the least squares problem, we often
+do want the inverse matrix $C = \alpha^{-1}$, because its elements
+have meaning. Propagation of errors gives:
+$$ \sigma^{2}(a_{k}) = C_{jj}  $$
+i.e., the diagonal elements of the inverse matrix. The off-diagonal
+elements give the covariances between the parameters, and the inverse
+matrix, C, is called the \emph{covariance matrix}.
+
+A Python implementation of matrix inversion and linear algebra in general
+can be found in
+\href{http://docs.scipy.org/doc/scipy/reference/tutorial/linalg.html}{scipy.linalg}.
+Here is the summed matrix implementation for a straight line
+(but the functional form only comes in through the derivative function.):
+\begin{verbatim}
+    def deriv(x) :
+        # if x is numpy array, then we can return vectors of derivatives
+        try :
+            return [np.ones(len(x)),x]
+        except :
+            return [1.,x]
+
+    # data points in (x,y)
+    # loop over parameters, sums over data points (y) are done with vector arithmetic
+    for k in np.arange(npar) :
+        beta[k] = np.sum(deriv(x)[k]*y/sigma**2)
+        for j in np.arange(npar) :
+            alpha[k,j] = np.sum(deriv(x)[k]*deriv(x)[j]/sigma**2)
+    c=np.linalg.inv(alpha)
+    print np.dot(c,beta)
+\end{verbatim}
+
+Here is the design matrix approach to the sums:
+
+\begin{verbatim}
+    A = np.vander(x, 2)  # Take a look at the documentation to see what this function does.
+    ATA = np.dot(A.T, A / yerr[:, None]**2)
+    w = np.linalg.solve(ATA, np.dot(A.T, y / yerr**2))
+    V = np.linalg.inv(ATA)
+\end{verbatim}
+
+Linear least squares is also implemented in \texttt{astropy} in the
+\href{http://astropy.readthedocs.org/en/v1.0.6/modeling/index.html}
+{modeling module} using the
+\href{http://astropy.readthedocs.org/en/v1.0.6/api/astropy.modeling.fitting.LinearLSQFitter.html#astropy.modeling.fitting.LinearLSQFitter}
+{LinearLSQFitter} class (which uses \texttt{numpy.linalg});
+\texttt{astropy} has a number of standard models to use,
+or you can provide your own custom model.
+
+\begin{verbatim}
+    from astropy.modeling import models, fitting
+    fit_p = fitting.LinearLSQLSQFitter()
+    p_init = models.Polynomial1D(degree=degree)
+    pfit = fit_p(p_init, x, data)
+\end{verbatim}
+
+Astropy has a number of common models, but you can also define your own
+model using
+\href{http://astronomy.nmsu.edu/holtz/a575/ay575notes/astropy.readthedocs.org/en/v1.0.6/api/astropy.modeling.custom_model.html#astropy.modeling.custom_model}
+{models.custom\_model}, by supplying a function that returns
+values, and a function that returns derivatives with respect to the
+parameters.
+
+\colorbox{hl}{\parbox{0.9\textwidth}
+{\emph{Be able to computationally implement a linear least squares solution
+to a problem.}}}
+
+Note that for problems with large numbers of parameters, the linear algebra
+can become very computationally expensive. In many cases, however, the
+matrix that represents these problems may only be sparsely populated,
+i.e.\ so-called sparse matrices (see Numerical Recipes 2.7, Figure 2.7.1).
+
+Example: spectral extraction
+
+In such cases, there are methods that allow the equations to be solved
+significantly more efficiently.
+
+However, not all fits are linear in the parameters. Which of the
+following are not?
+\begin{itemize*}
+    \item $y = a_{0}x + a_{1}e^{-x}$
+    \item $y = a_{0}(1 + a_{1}x)$
+    \item $y = a_{0}\sin(x - a_{1})$
+    \item $y = a_{0}\sin^{2}x$
+    \item $y = a_{0}e^{(-(x-a_{1})^{2}/a_{2}^{2})}$
+\end{itemize*}
 
 \subsection{Nonlinear fits}
+
+In a linear fit, the $ \chi^{2}_{}$ surface is parabolic in parameter
+space, with a single minimum, and linear least squares can be used to
+determine the location of the minimum. In the non-linear case, however, the
+$ \chi^{2}_{}$ surface can be considerably more complex, and there is a
+(good) possibility that there are multiple minima, so one needs to be
+concerned about finding the global minimum and not just a local minimum.
+Because of the complexity of the surface, the best fit is found by an
+iterative approach.
+
+A conceptually simple approach would be a \emph{grid search}, where one simply
+tries all combinations of parameters and finds the one with the lowest $
+\chi^{2}_{}$. Obviously, this is extremely computationally inefficient,
+especially for problems with more than a few parameters. One is also forced
+to decide on a step size in the grid, although you might imagine a
+successively refined grid as you proceed. But in general, this method is
+not recommended, apart from occaisionally trying it to try to ensure that
+your more efficient solution is not landing in a local minimum.
+
+Better approaches attempt to use the $ \chi^{2}_{}$ values to find the
+minimum more efficiently. They can generally be split into two classes:
+those that use the derivative of the function and those that don't. If you
+can calculate derivatives of $ \chi^{2}_{}$ with respect to your
+parameters, then this provides information about how far you can move in
+parameter space towards the minimum. If you can't calculate derivates, you
+can evaluate $ \chi^{2}_{}$ at several different locations, and use these
+values to try to work your way towards the minimum.
+
+With derivatives, the approach has a fairly close parallel to the linear
+least squares problem. Around the final minimum, the $ \chi^{2}_{}$ surface
+can be approximated as a parabola, and it is possible to correct the
+solution to the minimum solution if one can arrive at a set of parameters
+near to the final minimum. This is acheived via the set of equations:
+$$ \sum_{i=0}^{M-1}\alpha_{kl}\delta a_{1} = \beta_{k} $$
+where
+$$ \beta_{k} = -\frac{1}{2}\frac{\partial\chi^{2}}{\partial a_{k}} =
+\sum_{i=0}^{N-1}\frac{(y_{i}-y(x_{i}|a))}{\sigma_{i}^{2}}
+\frac{\partial(y(x_{i}|a))}{\partial a_{k}} $$
+
+$$ \alpha_{kl} = \frac{1}{2}\frac{\partial^2\chi^2}{\partial a_k\partial a_l} =
+\sum_{i=0}^{N-1}\left[\frac{1}{\sigma_i^2}\frac{\partial y(x_i|a)}{\partial a_k}
+    \frac{\partial y(x_i|a)}{\partial a_l} -
+    (y_i-y(x_i|a))\frac{\partial^2y(x_i|a)}{\partial{a_k}\partial{a_l}} \right] $$
+
+The matrix $\alpha_{kl}$ is known as the \emph{curvature matrix}. In most
+cases, it is advisable to drop the second derivative term in this matrix
+(see NR 15.5.1 for a partial explanation). The standard approach uses:
+
+$$ \alpha_{kl} = \sum_{i=0}^{N-1}\left[\frac{1}{\sigma_i^2}
+\frac{\partial{y}(x_i|a)}{\partial{a_k}}
+\frac{\partial{y}(x_i|a)}{\partial{a_l}} \right] $$
+
+To implement this, you choose a starting guess of parameters, solve
+for the corrections  $\delta a_l$ to be applied to a current set of
+parameters, and iterates until one arrives at a solution that does not
+change significantly.
+
+Far from the solution, this method can be significantly off in
+providing a good correction, and, in fact, can even move parameters
+away from the correct solution. In this case, it may be advisable to
+simply head in the the steepest downhill direction in $ \chi^{2}_{}$
+space, which is known as the method of steepest descent. Note that
+while this sounds like a reasonable thing to do in all cases, it can
+be very inefficient in finding the final solution
+(see, e.g.\ \href{http://astronomy.nmsu.edu/holtz/a575/images/NR10.8.1.png}
+{NR Figure 10.8.1}).
+
+A common algorithm switches between the method of steepest descent and
+the parabolic approximation and is known as the Levenberg-Marquardt
+method. This is done by using a modified curvature matrix:
+
+$$ \sum_{i=0}^{M-1} \alpha_{kl}'\delta{a_1} = \beta_{k} $$
+where
+$$ \alpha_{jj}' = \alpha_{jj}(1+\lambda) $$
+$$ \alpha_{jk}' = \alpha_{jk}\ (\textrm{for}\ j \neq k) $$
+
+When $\lambda$ is large, this gives a \emph{steepest descent} method.
+When $\lambda$ is small, this gives a \emph{parabolic} method.
+This leads to the following recipe:
+\begin{enumerate*}
+    \item Choose a starting guess of parameter vector ($a$) and
+        calculate $\chi^2(a)$.
+    \item Calculate the correction using model $\lambda$,
+        e.g.\ $\lambda$ = 0.001 and evaluate $\chi^2$ at the new point.
+    \item If $\chi^2(a + \delta a) > \chi^2(a)$, increase $\lambda$ and try again.
+    \item If $\chi^2(a + \delta a) < \chi^2(a)$, decrease $\lambda$,
+        update $a$, and start the next step.
+    \item Stop when the convergence criteria are met.
+    \item Invert the curvature matrix to get parameter uncertainties.
+\end{enumerate*}
+
+Two key issues in nonlinear least squares is finding a good starting
+guess and a good convergence criterion. You may want to consider
+multiple starting guesses to verify that you're not converging to a
+local minimum. For convergence, you can look at the amplitude of the
+change in parameters or the amplitude in the change of $ \chi^{2}_{}$.
+
+This method is implemented in \texttt{astropy} in the
+\href{http://astropy.readthedocs.org/en/v1.0.6/modeling/index.html}
+{modeling module} using the
+\href{http://docs.astropy.org/en/stable/api/astropy.modeling.fitting.LevMarLSQFitter.html}
+{LevMarLSQFitter} which is used identically to the linear least squares
+fitter described above.
+
+There are certainly other approaches to non-linear least squares, but
+this provides an introduction.
+
+
 \subsubsection{A nonlinear fitter without derivatives}
+A common minimization method that does not use derivatives is the
+``downhill simple'' or \emph{Nelder-Mead} algorithm.
+For this technique, $\chi^{2}$ is initially evaluated at $M+1$ points
+(where $M$ is the number of parameters).
+This makes an $M$-dimensional figure, called a \emph{simplex}.
+The largest value is found, and a trial evalaution is made at
+a value reflected through the volume of the simplex. If this is
+smaller than the next-highest value of the original simplex, a value
+twice the distance is chosen and tested; if not, then a value half the
+distance is tested, until a better value is found. This point replaces
+the initial point, and the simplex has moved a step; if a better value
+can't be found, the entire simplex is contracted around the best
+point, and the process tries again. The process in then repeated until
+a convergence criterion is met. See
+\href{}
+{NR Figure 10.5.1} and section 10.5.
+The simplex works its way down the $ \chi^{2}_{}$ surface, expanding
+when it can take larger steps, and contracting when it needs to take
+smaller steps. Because of this behavior, it is also known as the
+``amoeba'' algorithm.
+
+\href{http://docs.scipy.org/doc/scipy-0.16.0/reference/generated/scipy.optimize.fmin.html}
+{Python/scipy implementation of Nelder-Mead}
+
+\href{https://docs.scipy.org/doc/scipy-0.16.1/reference/tutorial/optimize.html}
+{Python/scipy summary of optimization routines in general}
+
+\colorbox{hl}{\parbox{0.9\textwidth}
+{\emph{Understand the concepts of how a nonlinear least squares fit is
+performed, and the issues with global vs local minima,
+starting guesses, and convergence criteria. Know how to
+computationally imiplement a nonlinear least squares solution.}}}
+
+
+
 \subsection{Parameter uncertainties and confidence limits}
 Fitting provides us with a set of best-fit parameters, but, because
 of uncertainties and limited number of data points, these will not
@@ -723,21 +966,107 @@ to have taken an unusual (\emph{in}frequent) data set, the true
 parameters may not fall within the confidence levels derived from
 this data set.
 
+\emph{Understand how uncertainties can be estimated from least-squares
+fitting via the covariance matrix, Monte Carlo simulation, and the
+bootstrap method, and how these techniques work}.
+
 \subsection{Bayesian analysis}
+
+Review material above, also see astroML, NR and
+\url{http://arxiv.org/abs/1411.5018}
+
+As discussed above and in additional references, Bayesian analysis has
+several significant differences from the frequentist/likelihood
+approach. First, Bayesian analysis calculates the probability of model
+parameters given data, rather than the probability of data given a
+model.
+
+$$ P(M|D) = \frac{P(D|M)P(M)}{P(D)} $$
+
+Practically, this allows for the possibility of specifying an explicit
+prior on the model parameters. The Bayesian analysis may give the same
+result as the frequentist analysis for some choices of the prior, but
+it makes the prior explicit, rather than hidden.
+
+Second, the Bayesian analysis produces a joint probability
+distribution function of the model parameters. The frequentist
+analysis produces a most probable set of parameters and a set of
+confidence intervals.
+
+The Bayesian analysis is computationally more challenging because you
+actually have to compute the probability for different model
+parameters. This is essentially performing a grid search of the full
+parameter space, which can be computationally intractable for large
+numbers of parameters. Fortunately, computational techniques have been
+developed to search through the full parameter space concentrating
+only on the regions with non-negligible probability; as discussed
+below, Markov Chain Monte Carlo is foremost among such techniques.
+
+
 \subsubsection{The prior}
+Priors in Bayesian analysis reflect external knowledge about
+parameters that exist independent of the data being analyzed. If there
+is no external knowledge, then you want to use a \emph{noninformative} prior.
+Often, this is just a statement that all parameter values are equally
+likely. In many cases, this makes a Bayesian analysis equivalent to a
+frequentist analysis. However, beware that model parameters could be
+expressed with a transformation of variables, and a flat distribution
+in one variable may not be a flat distribution under a variable
+transformation, and could lead to different results. Also, a prior
+that appears to be unbiased may not be so, e.g., consider the fitting
+parameters for a straight line, in particular the
+\href{http://astronomy.nmsu.edu/holtz/a575/images/slope.png}
+{slope}.
+
 \subsubsection{Marginalization}
+
+For many problems, only some of the parameters are of interest, while
+others fall into the category of so-called \emph{nuisance} parameters, which
+may be important for specifying an accurate model (which is
+fundamentally important), even though they may not be of interest for
+the scientific question you are trying to answer. In such cases,
+Bayesian analysis uses the concept of \emph{marginalization}, where one
+integrates over the dimensions of the nuisance parameters to provide
+probability distribution functions of only the parameter(s) of
+interest.
+
+Marginalization is also used to give probability distribution
+functions of individual parameters, i.e.\ without regard to the values
+of other parameters. However, one needs to be aware that parameter
+values may be correlated with each other, and marginalization hides
+such correlations.
+
+Marginalization can also be used to derive the probability
+distribution of some desired quantity given measurements of other
+quantities if there is some relation between the measured and desired
+quantity. An example is in determining ages of stars given a set of
+observations, e.g.\ of spectroscopic parameters and/or apparent
+magnitudes. Here, stellar evolution gives predictions for observed
+quantities as a function of age, mass, and metallicity; in conjunction
+with an initial mass function, you get predictions for number of stars
+for each set of parameters. Given some priors on age, mass, and/or
+metallicity, you could compute the probability distribution of a given
+quantity by marginalizing over all other parameters. Observational
+constraints would modify this probability distribution.
+
+\emph{Understand what marginalization means, and why and when it can
+be used}.
+
+
 \subsubsection{Markov Chain Monte Carlo (MCMC)}
 Calculating marginal probability distributions is basically a big
 integration problem. If the problem has many parameters, the
 multi-dimensional integral can be very intensive to calculate.
 One technique for multi-dimensional integration is
-\emph{Monte Carlo} integration. Choose a (large) number of points
+\textbf{\emph{Monte Carlo}} integration. Choose a (large) number of points
 at random within some specified volume (limits in multiple
 dimensions), sample the value of your function at these points
 and estimate the integral as
-$$  $$
+
+$$ \int \! f\mathrm{d}V = V<f> $$
 where
-$$ $$
+$$ <f> = \frac{1}{N}\sum f(x_i) $$
+
 We could use this to calculate marginal probability distribution
 functions, but it is likely to be very inefficient if the probability
 is small over most of the volume being integrated over. Also, for
@@ -756,7 +1085,9 @@ to its value. This is acheived by setting up a Markov Chain,
 a process where the value of a sampled point depends only on
 the value of the previous point. To get the Markov Chain to sample
 the (unnormalized) PDF, the transistion probability has to satisfy:
+
 $$ \pi(x_1)p(x_2|x_1) = \pi(x_2)p(x_1|x_2)  $$
+
 where $p$ is a transition probability to go from one point to another.
 
 To do the integral, sum the number of points in the chain at the
@@ -770,19 +1101,25 @@ probability distribution $q(x2|x1)$ in steps that are not too large
 or too small. If the candidate step falls at a larger value of the
 probability function, accept it, and start again. If it falls at a
 smaller value, accept it with probability proportional to
-$$ $$
+
+$$ \pi(x_c)q(x_1|x_{2c}) \pi(x_1)q(x_{2c}|x_1)  $$
+
 For a symmetric Gaussian proposal definition, note that the $q$ values
 cancel out.
 
 Note also that you need to choose a starting point. If this is far from
 the maximum of the probability distribution, it may take some time to
 get to the equilibrium distribution. This leads to the requirement of a
-\emph{burn-in} period for $MCMC$ algorithms.
+\emph{burn-in} period for MCMC algorithms.
 
 In practice, you have to be careful about choosing an appropriate
 proposal distribution, and an appropriate burn-in period.
 
-Implementation: see \texttt{emcee} and \texttt{pymc}, among others.
+Implementation: see \href{http://dan.iel.fm/emcee/current/}
+{emcee} and \href{https://pymc-devs.github.io/pymc/}
+{pymc}, among others. Also
+\href{http://jakevdp.github.io/blog/2014/06/14/frequentism-and-bayesianism-4-bayesian-in-python/}
+{this}.
 
 Note that \texttt{emcee} uses an algorithm that is different from
 Metropolis-Hastings, that is designed to function more efficiently
@@ -798,35 +1135,4 @@ the combined chain from all of the walkers is what needs to be used.
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 \end{document}
-
