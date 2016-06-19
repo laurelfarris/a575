@@ -2,25 +2,29 @@
 \BOOKMARK [1][-]{section.2}{Introduction to computing hardware and NMSU/Astronomy computing}{}% 2
 \BOOKMARK [1][-]{section.3}{Working in a Unix environment}{}% 3
 \BOOKMARK [1][-]{section.4}{Presentation/communication}{}% 4
-\BOOKMARK [1][-]{section.5}{Programming}{}% 5
-\BOOKMARK [1][-]{section.6}{Plotting}{}% 6
-\BOOKMARK [1][-]{section.7}{Algorithms}{}% 7
-\BOOKMARK [2][-]{subsection.7.1}{Writing a Program}{section.7}% 8
-\BOOKMARK [2][-]{subsection.7.2}{Speed and scaling}{section.7}% 9
-\BOOKMARK [2][-]{subsection.7.3}{Lists and list matching}{section.7}% 10
-\BOOKMARK [2][-]{subsection.7.4}{Random number generation}{section.7}% 11
-\BOOKMARK [2][-]{subsection.7.5}{Interpolation}{section.7}% 12
-\BOOKMARK [2][-]{subsection.7.6}{Fourier analysis basics and sinc interpolation}{section.7}% 13
-\BOOKMARK [2][-]{subsection.7.7}{Differentiation and integration}{section.7}% 14
-\BOOKMARK [2][-]{subsection.7.8}{Differential equations}{section.7}% 15
-\BOOKMARK [1][-]{section.8}{Fitting}{}% 16
-\BOOKMARK [2][-]{subsection.8.1}{Overview: frequentism vs Bayesian}{section.8}% 17
-\BOOKMARK [2][-]{subsection.8.2}{General linear fits}{section.8}% 18
-\BOOKMARK [2][-]{subsection.8.3}{Solving linear equations}{section.8}% 19
-\BOOKMARK [2][-]{subsection.8.4}{Nonlinear fits}{section.8}% 20
-\BOOKMARK [3][-]{subsubsection.8.4.1}{A nonlinear fitter without derivatives}{subsection.8.4}% 21
-\BOOKMARK [2][-]{subsection.8.5}{Parameter uncertainties and confidence limits}{section.8}% 22
-\BOOKMARK [2][-]{subsection.8.6}{Bayesian analysis}{section.8}% 23
-\BOOKMARK [3][-]{subsubsection.8.6.1}{The prior}{subsection.8.6}% 24
-\BOOKMARK [3][-]{subsubsection.8.6.2}{Marginalization}{subsection.8.6}% 25
-\BOOKMARK [3][-]{subsubsection.8.6.3}{Markov Chain Monte Carlo \(MCMC\)}{subsection.8.6}% 26
+\BOOKMARK [2][-]{subsection.4.1}{Text processing: LaTeX}{section.4}% 5
+\BOOKMARK [3][-]{subsubsection.4.1.1}{Introduction to makefiles}{subsection.4.1}% 6
+\BOOKMARK [2][-]{subsection.4.2}{HTML}{section.4}% 7
+\BOOKMARK [2][-]{subsection.4.3}{Collaboration}{section.4}% 8
+\BOOKMARK [1][-]{section.5}{Programming}{}% 9
+\BOOKMARK [1][-]{section.6}{Plotting}{}% 10
+\BOOKMARK [1][-]{section.7}{Algorithms}{}% 11
+\BOOKMARK [2][-]{subsection.7.1}{Writing a Program}{section.7}% 12
+\BOOKMARK [2][-]{subsection.7.2}{Speed and scaling}{section.7}% 13
+\BOOKMARK [2][-]{subsection.7.3}{Lists and list matching}{section.7}% 14
+\BOOKMARK [2][-]{subsection.7.4}{Random number generation}{section.7}% 15
+\BOOKMARK [2][-]{subsection.7.5}{Interpolation}{section.7}% 16
+\BOOKMARK [2][-]{subsection.7.6}{Fourier analysis basics and sinc interpolation}{section.7}% 17
+\BOOKMARK [2][-]{subsection.7.7}{Differentiation and integration}{section.7}% 18
+\BOOKMARK [2][-]{subsection.7.8}{Differential equations}{section.7}% 19
+\BOOKMARK [1][-]{section.8}{Fitting}{}% 20
+\BOOKMARK [2][-]{subsection.8.1}{Overview: frequentism vs Bayesian}{section.8}% 21
+\BOOKMARK [2][-]{subsection.8.2}{General linear fits}{section.8}% 22
+\BOOKMARK [2][-]{subsection.8.3}{Solving linear equations}{section.8}% 23
+\BOOKMARK [2][-]{subsection.8.4}{Nonlinear fits}{section.8}% 24
+\BOOKMARK [3][-]{subsubsection.8.4.1}{A nonlinear fitter without derivatives}{subsection.8.4}% 25
+\BOOKMARK [2][-]{subsection.8.5}{Parameter uncertainties and confidence limits}{section.8}% 26
+\BOOKMARK [2][-]{subsection.8.6}{Bayesian analysis}{section.8}% 27
+\BOOKMARK [3][-]{subsubsection.8.6.1}{The prior}{subsection.8.6}% 28
+\BOOKMARK [3][-]{subsubsection.8.6.2}{Marginalization}{subsection.8.6}% 29
+\BOOKMARK [3][-]{subsubsection.8.6.3}{Markov Chain Monte Carlo \(MCMC\)}{subsection.8.6}% 30

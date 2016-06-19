@@ -28,11 +28,114 @@
 \section{Course Overview}
 \section{Introduction to computing hardware and NMSU/Astronomy computing}
 \section{Working in a Unix environment}
-\section{Presentation/communication}
-\section{Programming}
-\section{Plotting}
-\section{Algorithms}
 
+% 4. Presentation/communication
+\section{Presentation/communication}
+\subsection{Text processing: LaTeX}
+\subsubsection{Introduction to makefiles}
+\subsection{HTML}
+
+\url{http://www.w3schools.com/tags/}\\
+\url{http://www.w3schools.com/css/}\\
+\url{http://www.ironspider.ca/index.htm}\\
+\url{http://www.advancedhtml.co.uk}\\
+%\url{}
+
+Structure of an HTML document:
+\begin{verbatim}
+<command></command> structure, <HTML><BODY [bgcolor=]>,
+\end{verbatim}
+
+Basic HTML text processing: Like LaTeX, text will appear continuously in a browser
+regardless of how it is entered in the HTML source file, unless there
+are command directives. The width of the text will adapt to the width
+of the browser. Various text directives:
+\begin{verbatim}
+    <Hn> Headings in different font sizes (1 is largest) </Hn>
+    <P> Force a line break with vertical paragraph space
+    <BR> Force a line break without extra vertical space
+    &nbsp; Force small horizonal space
+    <UL>/<OL> Unordered list / ordered (numbered) list
+        (end with </UL> or </OL>)
+            <LI>  individual list element
+\end{verbatim}
+Font commands
+\begin{verbatim}
+    <I> italic </I>
+    <B> bold </B>
+    <FONT [color=]> general font command
+\end{verbatim}
+
+HTML links:
+\begin{verbatim}
+    <A HREF=address> active text </A> : sets up a link
+    <A NAME=label> : sets a lable in a HTML file, can be directly skipped
+        to using address\#label format
+\end{verbatim}
+
+HTML tables:
+\begin{verbatim}
+    <TABLE [BORDER=]>: start a table
+    <TR> : start a new row
+    <TD [COLSPAN=]> : start a new column
+    </TABLE> : end table
+\end{verbatim}
+
+HTML figures:
+\begin{verbatim}
+    <IMG SRC={file} [WIDTH=] [HEIGHT=]>
+\end{verbatim}
+Force size using \verb|WIDTH=| and/or \verb|HEIGHT=|, usually only one of these,
+as this will automatically preserve aspect ratio.
+If at all possible, use file format that most browsers know how to
+display inline: GIF, JPG, PNG
+
+comments in HTML files: \verb|<!-- comment -->|
+
+All of these can be combined, e.g., a table of figure thumbnails with
+links to full size figures:
+\begin{verbatim}
+<TABLE BORDER=2>
+<TR> <TD> <A HREF=fig11.jpg> <IMG SRC=fig11.jpg WIDTH=200> </A>
+<TR> <TD> <A HREF=fig12.jpg> <IMG SRC=fig12.jpg WIDTH=200> </A>
+<TR> <TD> <A HREF=fig21.jpg> <IMG SRC=fig21.jpg WIDTH=200> </A>
+<TR> <TD> <A HREF=fig22.jpg> <IMG SRC=fig22.jpg WIDTH=200> </A>
+</TABLE>
+\end{verbatim}
+
+Frames, CSS, and much much more!
+
+A web server is a network program that runs on a server machine, and
+interprets/delivers web pages as requested. Standard web requests are
+http://{machinename/address}/{file|directory}. One the web server, the
+{file|directory} is interpreted as a relative path to some document
+root directory. If the requested address is a directory, the web
+server will look for a file named index.html in that directory and, if
+it exists, will use the contents of that file; if it doesn't exist, it
+will show the directory listing of the directory.
+
+Web server at NMSU uses /home/httpd/html as the document root, and all
+users have a directory /home/httpd/html/{username}, so web requests to
+http://astronomy.nmsu.edu/{username} will look for files in this
+directory. Note that this directory is located on the disk server, so
+it is not a great location to put large files; if you want to provide
+access to large files, or even whole directories, located on a disk on
+your machine, consider the use of symbolic links.
+
+
+
+\subsection{Collaboration}
+
+
+% 5. Programming
+\section{Programming}
+
+% 6. Plotting
+\section{Plotting}
+
+
+% 7. Algorithms
+\section{Algorithms}
 \subsection{Writing a Program}
 Simple suggestions:
 \begin{enumerate}
