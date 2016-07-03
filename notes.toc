@@ -1,0 +1,106 @@
+\setstretch {0.1}
+\contentsline {section}{\numberline {1}Course Overview}{3}{section.1}
+\contentsline {section}{\numberline {2}Introduction to computing hardware and NMSU/Astronomy computing}{4}{section.2}
+\contentsline {subsection}{\numberline {2.1}Hardware}{4}{subsection.2.1}
+\contentsline {subsection}{\numberline {2.2}Bits, bytes, and whatever}{4}{subsection.2.2}
+\contentsline {subsection}{\numberline {2.3}Computing software}{5}{subsection.2.3}
+\contentsline {subsubsection}{\numberline {2.3.1}Operating systems}{5}{subsubsection.2.3.1}
+\contentsline {subsubsection}{\numberline {2.3.2}Operating system interfaces}{5}{subsubsection.2.3.2}
+\contentsline {subsubsection}{\numberline {2.3.3}Applications}{5}{subsubsection.2.3.3}
+\contentsline {subsection}{\numberline {2.4}Network communication}{6}{subsection.2.4}
+\contentsline {subsection}{\numberline {2.5}NMSU/Astronomy (academic)}{6}{subsection.2.5}
+\contentsline {subsection}{\numberline {2.6}Linux resource usage}{7}{subsection.2.6}
+\contentsline {section}{\numberline {3}Working in a Unix environment}{7}{section.3}
+\contentsline {subsection}{\numberline {3.1}Linux help}{7}{subsection.3.1}
+\contentsline {subsection}{\numberline {3.2}Basics: directories}{7}{subsection.3.2}
+\contentsline {subsection}{\numberline {3.3}Basics: files}{8}{subsection.3.3}
+\contentsline {subsubsection}{\numberline {3.3.1}Displaying files}{8}{subsubsection.3.3.1}
+\contentsline {subsubsection}{\numberline {3.3.2}Creating files}{8}{subsubsection.3.3.2}
+\contentsline {subsubsection}{\numberline {3.3.3}permissions}{8}{subsubsection.3.3.3}
+\contentsline {subsubsection}{\numberline {3.3.4}advanced file types}{9}{subsubsection.3.3.4}
+\contentsline {paragraph}{Links}{9}{section*.2}
+\contentsline {paragraph}{Pipes}{9}{section*.3}
+\contentsline {subsubsection}{\numberline {3.3.5}file types}{9}{subsubsection.3.3.5}
+\contentsline {subsubsection}{\numberline {3.3.6}locating files}{9}{subsubsection.3.3.6}
+\contentsline {paragraph}{\ttfamily find}{9}{section*.4}
+\contentsline {paragraph}{\ttfamily locate}{10}{section*.5}
+\contentsline {subsubsection}{\numberline {3.3.7}Display file contents}{10}{subsubsection.3.3.7}
+\contentsline {subsection}{\numberline {3.4}Unix useful file manipulation tools}{11}{subsection.3.4}
+\contentsline {subsubsection}{\numberline {3.4.1}\texttt {grep}}{11}{subsubsection.3.4.1}
+\contentsline {subsubsection}{\numberline {3.4.2}\texttt {sed}}{11}{subsubsection.3.4.2}
+\contentsline {subsubsection}{\numberline {3.4.3}\texttt {tr}}{11}{subsubsection.3.4.3}
+\contentsline {subsubsection}{\numberline {3.4.4}\texttt {sort}}{11}{subsubsection.3.4.4}
+\contentsline {subsubsection}{\numberline {3.4.5}paste/join}{12}{subsubsection.3.4.5}
+\contentsline {subsubsection}{\numberline {3.4.6}awk}{12}{subsubsection.3.4.6}
+\contentsline {subsubsection}{\numberline {3.4.7}\ttfamily diff}{13}{subsubsection.3.4.7}
+\contentsline {subsubsection}{\numberline {3.4.8}\ttfamily wc}{13}{subsubsection.3.4.8}
+\contentsline {subsection}{\numberline {3.5}Archiving and compression tools}{14}{subsection.3.5}
+\contentsline {subsubsection}{\numberline {3.5.1}tar}{14}{subsubsection.3.5.1}
+\contentsline {subsection}{\numberline {3.6}Unix system information, resources and usage}{14}{subsection.3.6}
+\contentsline {subsection}{\numberline {3.7}Unix job control}{14}{subsection.3.7}
+\contentsline {subsection}{\numberline {3.8}Intermachine communication}{15}{subsection.3.8}
+\contentsline {subsection}{\numberline {3.9}Unix environment}{15}{subsection.3.9}
+\contentsline {subsection}{\numberline {3.10}Editors}{16}{subsection.3.10}
+\contentsline {subsection}{\numberline {3.11}Unix shells and shell scripting}{16}{subsection.3.11}
+\contentsline {subsubsection}{\numberline {3.11.1}Example}{17}{subsubsection.3.11.1}
+\contentsline {subsection}{\numberline {3.12}Remote \& virtual desktops}{17}{subsection.3.12}
+\contentsline {section}{\numberline {4}Presentation/communication}{17}{section.4}
+\contentsline {subsection}{\numberline {4.1}Text processing: LaTeX}{17}{subsection.4.1}
+\contentsline {subsubsection}{\numberline {4.1.1}Introduction to makefiles}{19}{subsubsection.4.1.1}
+\contentsline {subsection}{\numberline {4.2}HTML}{19}{subsection.4.2}
+\contentsline {subsection}{\numberline {4.3}Collaboration}{21}{subsection.4.3}
+\contentsline {section}{\numberline {5}Programming}{22}{section.5}
+\contentsline {subsection}{\numberline {5.1}Overarching concepts}{22}{subsection.5.1}
+\contentsline {subsection}{\numberline {5.2}Philosophy}{22}{subsection.5.2}
+\contentsline {subsection}{\numberline {5.3}Languages}{23}{subsection.5.3}
+\contentsline {subsubsection}{\numberline {5.3.1}Getting started}{23}{subsubsection.5.3.1}
+\contentsline {subsubsection}{\numberline {5.3.2}Getting started with Fortran}{23}{subsubsection.5.3.2}
+\contentsline {subsubsection}{\numberline {5.3.3}Getting started with C}{24}{subsubsection.5.3.3}
+\contentsline {subsubsection}{\numberline {5.3.4}Introduction to makefiles}{24}{subsubsection.5.3.4}
+\contentsline {subsubsection}{\numberline {5.3.5}Getting started with Python}{24}{subsubsection.5.3.5}
+\contentsline {paragraph}{Using command interpreter:}{24}{section*.6}
+\contentsline {paragraph}{Using programs:}{24}{section*.7}
+\contentsline {paragraph}{Environment variables:}{24}{section*.8}
+\contentsline {subsubsection}{\numberline {5.3.6}Getting started with IDL}{25}{subsubsection.5.3.6}
+\contentsline {paragraph}{Using programs:}{25}{section*.9}
+\contentsline {subsubsection}{\numberline {5.3.7}Simple makefile}{25}{subsubsection.5.3.7}
+\contentsline {subsection}{\numberline {5.4}Basic Programming}{25}{subsection.5.4}
+\contentsline {subsubsection}{\numberline {5.4.1}Program construction}{26}{subsubsection.5.4.1}
+\contentsline {subsubsection}{\numberline {5.4.2}Variables}{26}{subsubsection.5.4.2}
+\contentsline {subsubsection}{\numberline {5.4.3}Operators}{26}{subsubsection.5.4.3}
+\contentsline {subsubsection}{\numberline {5.4.4}Control statements}{26}{subsubsection.5.4.4}
+\contentsline {subsubsection}{\numberline {5.4.5}Input and output (I/O)}{26}{subsubsection.5.4.5}
+\contentsline {subsubsection}{\numberline {5.4.6}Program organization: subroutines and functions}{27}{subsubsection.5.4.6}
+\contentsline {subsubsection}{\numberline {5.4.7}Objects and object-oriented programming}{27}{subsubsection.5.4.7}
+\contentsline {subsection}{\numberline {5.5}Error handling and code testing}{28}{subsection.5.5}
+\contentsline {subsection}{\numberline {5.6}Debugging code}{28}{subsection.5.6}
+\contentsline {subsection}{\numberline {5.7}Coding practices}{28}{subsection.5.7}
+\contentsline {subsection}{\numberline {5.8}More advanced coding}{28}{subsection.5.8}
+\contentsline {subsection}{\numberline {5.9}Case study/review}{28}{subsection.5.9}
+\contentsline {section}{\numberline {6}Plotting}{29}{section.6}
+\contentsline {subsection}{\numberline {6.1}Basic Plots}{29}{subsection.6.1}
+\contentsline {subsubsection}{\numberline {6.1.1}Python}{29}{subsubsection.6.1.1}
+\contentsline {subsection}{\numberline {6.2}``Image'' plots}{31}{subsection.6.2}
+\contentsline {subsection}{\numberline {6.3}Other plots}{32}{subsection.6.3}
+\contentsline {subsubsection}{\numberline {6.3.1}IDL examples}{32}{subsubsection.6.3.1}
+\contentsline {subsection}{\numberline {6.4}Event handling}{32}{subsection.6.4}
+\contentsline {section}{\numberline {7}Algorithms}{34}{section.7}
+\contentsline {subsection}{\numberline {7.1}Writing a Program}{34}{subsection.7.1}
+\contentsline {subsection}{\numberline {7.2}Speed and scaling}{34}{subsection.7.2}
+\contentsline {subsection}{\numberline {7.3}Lists and list matching}{34}{subsection.7.3}
+\contentsline {subsection}{\numberline {7.4}Random number generation}{34}{subsection.7.4}
+\contentsline {subsection}{\numberline {7.5}Interpolation}{36}{subsection.7.5}
+\contentsline {subsection}{\numberline {7.6}Fourier analysis basics and sinc interpolation}{37}{subsection.7.6}
+\contentsline {subsection}{\numberline {7.7}Differentiation and integration}{40}{subsection.7.7}
+\contentsline {subsection}{\numberline {7.8}Differential equations}{40}{subsection.7.8}
+\contentsline {section}{\numberline {8}Fitting}{41}{section.8}
+\contentsline {subsection}{\numberline {8.1}Overview: frequentism vs Bayesian}{41}{subsection.8.1}
+\contentsline {subsection}{\numberline {8.2}General linear fits}{46}{subsection.8.2}
+\contentsline {subsection}{\numberline {8.3}Solving linear equations}{47}{subsection.8.3}
+\contentsline {subsection}{\numberline {8.4}Nonlinear fits}{48}{subsection.8.4}
+\contentsline {subsubsection}{\numberline {8.4.1}A nonlinear fitter without derivatives}{50}{subsubsection.8.4.1}
+\contentsline {subsection}{\numberline {8.5}Parameter uncertainties and confidence limits}{50}{subsection.8.5}
+\contentsline {subsection}{\numberline {8.6}Bayesian analysis}{51}{subsection.8.6}
+\contentsline {subsubsection}{\numberline {8.6.1}The prior}{52}{subsubsection.8.6.1}
+\contentsline {subsubsection}{\numberline {8.6.2}Marginalization}{52}{subsubsection.8.6.2}
+\contentsline {subsubsection}{\numberline {8.6.3}Markov Chain Monte Carlo (MCMC)}{52}{subsubsection.8.6.3}

@@ -19,8 +19,6 @@
 \setlength{\parindent}{0em}
 \setlength{\parskip}{0.5em}
 
-\definecolor{arsenic}{rgb}{0.25, 0.29, 0.31}
-
 \setlist{%
     itemsep=-1ex, topsep=0pt}
 
@@ -47,7 +45,12 @@
 \tableofcontents
 
 \renewcommand{\descriptionlabel}[1]{%
-    \ttfamily\textcolor{arsenic}{#1}}
+    \ttfamily{#1}}
+\setlist[description]{%
+    labelsep=1em,
+    labelwidth=5em,
+    %leftmargin=*
+}
 
 % 1
 \section{Course Overview}
@@ -79,7 +82,7 @@ Computer components and functions:
     \item memory: volatile storage (but relatively fast),
         typically Gbytes per machine.
     \item disk(s)
-        \begin{description}
+        \begin{description}%[style=sameline]
             \item [internal] permament storage, typically TBy per disk
                 (example: \href{https://en.wikipedia.org/wiki/Serial_ATA}
                 {Serial AT Attachment (SATA)}).
@@ -423,292 +426,96 @@ Re-naming in bulk! Append \verb|.old| to extension, or change the extension:
 foreach x (*.txt)
     mv $x $x.old
     mv $x $x:r.dat
-\end{verbatim}
 \textcolor{red}{Is this a script? Or typed at command line?}
 
 \subsubsection{locating files}
-\paragraph{\ttfamily find}
-``descends the directory tree'' beginning at each
-pathname and locates files that meet the
-specified conditions. Searches all subdirectories by default,
-but not upward from where you are unless you specify an absolute pathname.
-Note that pathname must be specified, even for current directory.
+\paragraph{\verb|find|} ``descends the directory tree'' and beginning at each
+pathname (default is current directory) and locates files that meet the
+specified conditions. Searches all subdirectories by default!
+But nothing upward from
+where you are. There’s an option for that? Or just specify pathname as ‘/*’
+\end{verbatim}
+\begin{itemize}
+    \item find ( -name, -type, -mtime, etc.). find will find all files
+        under current directory
+    \item locate: uses pre-built system database of files
+\end{itemize}
 
-Basic syntax: \texttt{cl> find \textit{pathname conditions}}
-\begin{description}[labelwidth=10em,leftmargin=11em]
-    \item [-name \textit{pattern}] Find files whose names match \textit{pattern}
-    \item [-iname \textit{pattern}] Ignore case
-    \item [-type d] directory
-    \item [-type l] symbolic link
-    \item [-type f] plain file
-    \item [-mtime +n|-n|n] Find files that were last modified more than
-        $n$, less than $n$, or exactly $n$ days ago.
-    \item [-exec {[command]} \{\} \;] Run the command on the files found.
-        When the command runs, the argument \{\} substitues the current file.
-        Follow the entire sequence with an escaped semicolon. In some shells,
-        the braces may need to be escaped as well.
-    \item [-size n{[c]}] File containing $n$ blocks, or if $c$ is specified,
-        $n$ characters (c is optional, brackets not included in actual command).
-    \item [-user \textit{user}] Files belonging to user (name or ID)
-    \item [> find . -maxdepth \textit{n}] Specifiy how many
-        directories deep you want to search. $n=1$ is current directory
-        only (\texttt{find} is recursive by default).
-\end{description}
-Examples:
-\begin{description}[leftmargin=*]
-    \item [> find . -name a.txt] Match \texttt{a.txt} exactly, not simply
-        contain it.
-    \item [> find . -name *.tex]
-    \item [> find . -type f -maxdepth 1 -exec mv {} dir1 \;] Move all
-        files to \texttt{dir1}.
-\end{description}
-
-Note that on linux, need to escape special characters, e.g.\ \verb|\*.tex|.
-
-
-\paragraph{\ttfamily locate} uses pre-built system database of files.
-Search database(s) of filenames and print matches. Matches include all
-files that contain pattern unless pattern includes metacharacters, in
-which case locate requires an exact match. *, ?, [, and ] are treated
-specially; / and . are not. Searches are conducted against a database
-of system contents that is updated periodically. To update the
-database, use the \texttt{updatedb} command.
-
-Basic syntax: \texttt{cl> locate [options] \textit{pattern}}
-\begin{description}[labelwidth=15em,leftmargin=15em]
-    \item [-d \textit{path}, --database=\textit{path}]
-        Searches databases in \texttt{\textit{path}}, which must be
-        a colon-separated list.
-    \item [-h, --help] Print a help message and then exit.
-    \item [--version] Print version information and then
-        exit\ldots apparently you still need to specify a pattern to
-        get the version information\ldots ?
-\end{description}
-
-\subsubsection{Display file contents}
-\begin{description}
-    \item [cat]
-    \item [more]
-    \item [less]
-    \item [od] Bytes level
-    \item [head -n file] $n$ = number of lines
-    \item [tail -3 file] Last 3 lines
-    \item [head -15 | tail -1] Last line of first 15 lines
-\end{description}
+file contents:
+\begin{itemize}
+    \item cat
+    \item more
+    \item less
+    \item od
+    \item head
+    \item tail
+\end{itemize}
 You can use `` to put output of a command into another command.
 \textcolor{red}{Must be a typo here.}
 
 \test{Be comfortable\ldots}
 
 \subsection{Unix useful file manipulation tools}
-Unlike the previous commands (\texttt{find}, etc.), the following
-commands involve the file \emph{contents}, not the files themselves.
+\begin{itemize}
+    \item grep: search for
+        specified pattern within files, useful flags, -i (ignore case), -v
+        (search for all lines that do not have the specificed
+        pattern).
+    \item sed:
+        \begin{itemize}
+            \item line-by-line processing using regular expressions
+            \item e.g., remove lines
+                that match specified pattern: sed '/{pattern}/d' {filename}
+            \item e.g., do
+                search and replace:
+                sed 's/{old}/{new}/' {filename}
+        \end{itemize}
+    \item tr: line-by-line
+        processing with simple replacement. Mostly useful to translating
+        special characters, e.g., Windows files ending with <CR> <LF> to Unix
+        files
+    \item sort:
+        \begin{itemize}
+            \item sorting alphabetically and numerically by column
+            \item use -key=column, e.g. sort -key=2 {filename} will sort alphabetically by
+                column 2
+            \item use -n for numerical sort
+        \end{itemize}
+    \item paste/join: pasting files together
+    \item awk:
+        \begin{itemize}
+            \item provides a command-line programming interface, convenient for
+                simple operations (but can handle more complex ones)
+            \item e.g., arithmetic
+                based on columns:
+                \verb|awk '$1>x {print $2, $3, 5*$4, $6/$3}' {filename}|
+            \item can put awk commands in a separate file and use this to execute: awk
+                -f {awkfile} {filename}
+            \item can use awk on variables, e.g.
+                \begin{verbatim}
+                cl> echo $var | awk '{printf("set %s = %s.new\n)",$1,$1}'
+                \end{verbatim}
+        \end{itemize}
+    \item diff: show differences between files
+    \item wc : counts lines, words, characters
+\end{itemize}
 
-\subsubsection{\texttt{grep}}
-Search for specified pattern within files and print the results
-(the contents of each line) to standard output.
-
-Syntax: \texttt{> grep [options] \textit{pattern} [\textit{files}]}
-
-Options:
-\begin{description}
-    \item [-i] Case insensitive
-    \item [-v] Search for all lines that do \emph{not} have specified
-        pattern.
-    \item [-r] Search directories recursively (current directory only
-        by default)
-    \item [-c] Number of occurrances
-    \item [-n] Print line number in front
-    \item [-l] List only the names of the files with matches, not
-        every single line. Scanning per file stops on the first match.
-\end{description}
-Examples:
-\begin{description}
-    \item [ls -l | grep -v .fits] Everything \emph{except} fits.
-    \item [> grep \textit{string} *.txt] Look for \emph{string} in all
-        .txt files.
-    \item [grep -c /bin/tcsh /etc/passwd] List the number of users who
-        use \texttt{tcsh}
-    \item [grep -w not haiku.txt] Print every line that contains `not'
-        to screen.
-    \item [grep -l `\^{}\#include' /usr/include/*] list header files that
-        have at least one \#include directive.
-    \item [> history | grep head] List all commands that used head
-\end{description}
-
-\subsubsection{\texttt{sed}}
-Command line editor, line-by-line processing using regular
-expressions.
-
-\begin{description}
-    \item [sed `/\{pattern\}/d' \{filename\}]
-        remove lines that match specified pattern
-    \item [sed `s/\{old\}/\{new\}/' \{filename\}]
-        search and replace
-\end{description}
-\begin{description}
-    \item [> sed `/holtz/d' filename] Delete the pattern `holtz'
-    \item [> sed `s/hotz/holtz/g' filename] Correct misspelled words
-\end{description}
-\subsubsection{\texttt{tr}}
-line-by-line
-processing with simple replacement. Mostly useful to translating
-special characters, e.g., Windows files ending with <CR> <LF> to Unix
-files.
-
-\subsubsection{\texttt{sort}}
-Sort lines of text files.
-Numerical and then alphabetical by default (i.e.\ no options
-specified), using the characters in the first column.
-
-Syntax: \texttt{> sort [options] \{file\}}
-\begin{description}
-    \item [-key=column] e.g.\ \texttt{sort -key=2 \{filename\}} will sort
-        alphabetically by column 2 (or \texttt{> sort -k2}?).
-    \item [-n] numerical sort (i.e.\ use whole numbers, not just the
-        number in the $nth$ column).
-    \item [> sort \ldots | tail -1] Find out what the biggest/smallest
-        number is.
-\end{description}
-
-\subsubsection{paste/join}
-Pasting files together, merge $n$ files based on line-matching.
-
-\subsubsection{awk}
-Provides a command-line programming interface, convenient for
-simple operations (but can handle more complex ones).
-Pattern matching: searches line by line for those that match the
-specified pattern, then performs the associated actions.
-
-Syntax: \texttt{> awk `condition \{action\}' filename}
-
-No pattern = does action on every line\\
-No action = prints to screen every line that satisfies the pattern.
-
-\begin{verbatim}
-    cl> awk `/search pattern 1 / {actions}
-             /search pattern 2 / {actions}' file
-             [| output for another command]
-\end{verbatim}
-
-\begin{verbatim}
-    cl> awk `{print NR, $0}'
-    cl> ls -l | awk `{print NR, $2}'
-    cl> awk `{print > ``line- '' NR%2}' filename
-    cl> awk `NF != 15 {print NR}' filename
-\end{verbatim}
-where \texttt{NR} = Record Number (line number),
-\texttt{NF} = Number of Field in current record (line). Can think
-of NF as the column number? \verb|$NF| = last field,
-and \verb|$#| = column number (\verb|$0| = all columns).
-By default, the columns are separated by a white space. For the line
-\texttt{12 me 849}, `12' is in column 1, `me' is in column 2, and `849'
-is in column 3.
-
-\begin{verbatim}
-    cl> awk `$2 > 99' filename
-    cl> awk `$2 < 10 {print $4, $5, $6}' filename
-\end{verbatim}
-
-Arithmetic based on columns:
-\begin{verbatim}
-    cl> awk `{print $2, $3, $2*$3}' filename
-    cl> awk `$1 > x {print $2, $3, 5*$4, 6*$3}' filename
-    cl> awk `NR%2 == 0' filename
-        0
-        1
-        0
-        1
-    cl> awk `NR%2 != 0' filename
-        1
-        0
-        1
-        0
-\end{verbatim}
-Last two examples have a condition, but no action, so the output is
-printed to screen. The condition is that each line whose value of
-\verb|NR%2| either is (or isn't) equal to 0 is printed. So every other
-line, starting with the second in example 1 and the first in example
-2. Original file:
-\begin{verbatim}
-        0
-        1
-        1
-        0
-        0
-        1
-        1
-        0
-        0
-\end{verbatim}
-I think.
-
-Use awk on variables:
-\begin{verbatim}
-    cl> echo $var | awk '{printf("set %s = %s.new\n)",$1,$1}'
-\end{verbatim}
-
-Put awk commands in a separate file and use this to execute!
-Syntax:
-
-\texttt{cl> awk [options] \{script\} [var=value] \{files\}}
-\begin{verbatim}
-    cl> awk -f awkfile {filename}
-    cl> awk -t cmd.awk {filename}
-\end{verbatim}
-
-Example of \texttt{awk} programming:
-\begin{verbatim}
-    BEGIN{
-       TOT3 = 0
-      }
-       TOT3 = TOT3 + $3
-      {
-      }
-    END{
-       PRINT TOT3
-     }
-\end{verbatim}
-
-\url{http://www.thegeekstuff.com/2010/01/awk-introduction-tutorial-7-awk-print-examples/}
-
-\subsubsection{\ttfamily diff}
-Show differences between files. Syntax
-
-\texttt{diff [options] [directory options] file1 file2}
-\begin{description}
-    \item [-wb] Ignore whitespace (linux)
-    \item [-B] Ignore whitespace (mac)
-\end{description}
-
-\subsubsection{\ttfamily wc}
-Counts lines, words, characters.
-\begin{description}[labelwidth=8em, leftmargin=10em]
-    \item [wc -l <filename>] prints the line count (note that if the last
-        line does not have \verb|\n|, it will not be counted).
-    \item [wc -c <filename>] prints the byte count
-    \item [wc -m <filename>] prints the character count
-    \item [wc -L <filename>] prints the length of longest line (GNU extension)
-    \item [wc -w <filename>] prints the word count
-\end{description}
-
-\test{Be familiar with Linux commands: wc, grep, sort, diff, and awk.
-Be able to use awk to (at least) do simple arithmetic manipulation of
-files.}
+\test{Be familiar with \ldots}
 
 \subsection{Archiving and compression tools}
 
-\subsubsection{tar}
-Bundles multiple files into a single archive
-\begin{description}
-    \item [tar -cvf \{archivename\} \{file\}|\{directory\}] Put files
-        into archive.
-    \item [tar -xvf \{archivename\}] Extract
-    \item [gzip] compresses files losslessly, creates .gz files
-    \item [compress] another compression, creates .Z files
-    \item [xzip] yet another compression, creates .xz files
-    \item [fpack] tool for compressing FITS files
-\end{description}
+tar :
+
+bundles multiple files into a single archive
+%e.g., put files into archive: tar -cvf {archivename} {file}|{directory}
+%to extract: tar -xvf {archivename} to extract
+gzip : compresses files losslessly, creates .gz files
+
+compress : another compression, creates .Z files
+
+xzip: yet another compression, creates .xz files
+
+fpack: tool for compressing FITS files
 
 \subsection{Unix system information, resources and usage}
 \begin{verbatim}

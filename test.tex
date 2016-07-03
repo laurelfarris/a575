@@ -1,0 +1,30 @@
+\documentclass{article}
+\usepackage[T1]{fontenc}
+\usepackage{lipsum}
+\usepackage{enumitem}
+\usepackage{xcolor}          % if colour is needed
+\setlist[description]{%
+  topsep=30pt,               % space before start / after end of list
+  itemsep=5pt,               % space between items
+  font={\bfseries\sffamily}, % set the label font
+%  font={\bfseries\sffamily\color{red}}, % if colour is needed
+}
+
+% macro to effect changes to the 'text' part of the description env.
+\newcommand{\myitem}[2]{\item[#1] \textcolor{blue}{\emph{#2}}}
+
+\begin{document}
+\lipsum[1]
+\begin{description}
+  \item[First] The first item
+  \item[Second] The second item
+  \item[Third] The third etc \ldots
+% use \myitem{<desc>}{<text>} if you want special formatting in both parts:
+  \myitem{Fourth}{The fourth item}
+  \myitem{Fifth}{The fifth item, etc.\ldots}
+\end{description}
+
+% restore paragraph indentation: add a blank line after \end{description}
+\lipsum[3]
+
+\end{document}
