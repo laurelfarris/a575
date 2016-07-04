@@ -8,13 +8,9 @@
 \usepackage{color}
 \usepackage{mdwlist}
 \usepackage{setspace}
-\usepackage{hyperref}
 
 \definecolor{myGreen}{rgb}{0.12, 0.3, 0.17}
 
-\definecolor{cobalt}{rgb}{0.0, 0.28, 0.67}
-\hypersetup{colorlinks=true, urlcolor=cobalt,}
-\urlstyle{same}
 
 \setlength{\parindent}{0em}
 \setlength{\parskip}{0.5em}
@@ -34,11 +30,24 @@
         \colorbox{hl}{\parbox{0.9\textwidth}{\emph{#1}}}
     \end{center}}
 
+\newenvironment{myglossary}{%
+    \renewcommand{\descriptionlabel}[1]{%
+        \ttfamily\textcolor{red}{#1}}
+    \begin{description}
+}{
+    \end{description}
+}
+
 \newenvironment{wideverbatim}%
 {\vskip\baselineskip\VerbatimEnvironment
 \begin{Sbox}\begin{BVerbatim}}
 {\end{BVerbatim}%
 \end{Sbox}\noindent\centerline{\TheSbox}\vskip\baselineskip}
+
+\usepackage{hyperref}
+\definecolor{cobalt}{rgb}{0.0, 0.28, 0.67}
+\hypersetup{colorlinks=true, urlcolor=cobalt,}
+\urlstyle{same}
 %----------------------------------------------------------------------%
 \begin{document}
 
@@ -46,8 +55,13 @@
 \addtocontents{toc}{\protect\setstretch{0.1}}
 \tableofcontents
 
-\renewcommand{\descriptionlabel}[1]{%
-    \ttfamily\textcolor{arsenic}{#1}}
+%\renewcommand{\descriptionlabel}[1]{%
+%    \ttfamily\textcolor{arsenic}{#1}}
+\begin{myglossary}
+    \item [something] that looks red?
+    \item [something else] that's also red.
+\end{myglossary}
+
 
 % 1
 \section{Course Overview}

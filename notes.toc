@@ -6,7 +6,7 @@
 \contentsline {subsection}{\numberline {2.3}Computing software}{5}{subsection.2.3}
 \contentsline {subsubsection}{\numberline {2.3.1}Operating systems}{5}{subsubsection.2.3.1}
 \contentsline {subsubsection}{\numberline {2.3.2}Operating system interfaces}{5}{subsubsection.2.3.2}
-\contentsline {subsubsection}{\numberline {2.3.3}Applications}{5}{subsubsection.2.3.3}
+\contentsline {subsubsection}{\numberline {2.3.3}Applications}{6}{subsubsection.2.3.3}
 \contentsline {subsection}{\numberline {2.4}Network communication}{6}{subsection.2.4}
 \contentsline {subsection}{\numberline {2.5}NMSU/Astronomy (academic)}{6}{subsection.2.5}
 \contentsline {subsection}{\numberline {2.6}Linux resource usage}{7}{subsection.2.6}
