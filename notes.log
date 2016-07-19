@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.5.24)  3 JUL 2016 20:54
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.5.24)  13 JUL 2016 09:18
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -247,20 +247,9 @@ File: color.cfg 2007/01/18 v1.5 color configuration of teTeX/TeXLive
 )
 Package color Info: Driver file: pdftex.def on input line 142.
 )
-(/usr/local/texlive/2015/texmf-dist/tex/latex/mdwtools/mdwlist.sty
-Package: mdwlist 1996/05/02 1.1 Various list-related things
-)
 (/usr/local/texlive/2015/texmf-dist/tex/latex/setspace/setspace.sty
 Package: setspace 2011/12/19 v6.7a set line spacing
 )
-! Illegal parameter number in definition of \myglossary.
-<to be read again> 
-                   1
-l.39 }
-      
-? q
-OK, entering \batchmode...
-
 (/usr/local/texlive/2015/texmf-dist/tex/latex/hyperref/hyperref.sty
 Package: hyperref 2012/11/06 v6.83m Hypertext links for LaTeX
 
@@ -359,7 +348,6 @@ LaTeX Info: Redefining \pageref on input line 6369.
 
 Package hyperref Message: Driver (autodetected): hpdftex.
 
-
 (/usr/local/texlive/2015/texmf-dist/tex/latex/hyperref/hpdftex.def
 File: hpdftex.def 2012/11/06 v6.83m Hyperref driver for pdfTeX
 \Fld@listcount=\count112
@@ -372,31 +360,32 @@ Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
 )
 \Hy@SectionHShift=\skip47
 )
-Package hyperref Info: Option `colorlinks' set `true' on input line 49.
- (./notes.aux)
+Package hyperref Info: Option `colorlinks' set `true' on input line 46.
+
+(./notes.aux)
 \openout1 = `notes.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 52.
-LaTeX Font Info:    ... okay on input line 52.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 52.
-LaTeX Font Info:    ... okay on input line 52.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 52.
-LaTeX Font Info:    ... okay on input line 52.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 52.
-LaTeX Font Info:    ... okay on input line 52.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 52.
-LaTeX Font Info:    ... okay on input line 52.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 52.
-LaTeX Font Info:    ... okay on input line 52.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 52.
-LaTeX Font Info:    Try loading font information for TS1+cmr on input line 52.
-
-(/usr/local/texlive/2015/texmf-dist/tex/latex/base/ts1cmr.fd
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 49.
+LaTeX Font Info:    ... okay on input line 49.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 49.
+LaTeX Font Info:    ... okay on input line 49.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 49.
+LaTeX Font Info:    ... okay on input line 49.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 49.
+LaTeX Font Info:    ... okay on input line 49.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 49.
+LaTeX Font Info:    ... okay on input line 49.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 49.
+LaTeX Font Info:    ... okay on input line 49.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 49.
+LaTeX Font Info:    Try loading font information for TS1+cmr on input line 49.
+ (/usr/local/texlive/2015/texmf-dist/tex/latex/base/ts1cmr.fd
 File: ts1cmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
-LaTeX Font Info:    ... okay on input line 52.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 52.
-LaTeX Font Info:    ... okay on input line 52.
+LaTeX Font Info:    ... okay on input line 49.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 49.
+LaTeX Font Info:    ... okay on input line 49.
+
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
 *geometry* verbose mode - [ preamble ] result:
@@ -431,7 +420,6 @@ LaTeX Font Info:    ... okay on input line 52.
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-
 (/usr/local/texlive/2015/texmf-dist/tex/context/base/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count114
@@ -445,8 +433,7 @@ LaTeX Font Info:    ... okay on input line 52.
 \MPnumerator=\count118
 \makeMPintoPDFobject=\count119
 \everyMPtoPDFconversion=\toks23
-)
-(/usr/local/texlive/2015/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
+) (/usr/local/texlive/2015/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
 Package: epstopdf-base 2010/02/09 v2.5 Base part for package epstopdf
 
 (/usr/local/texlive/2015/texmf-dist/tex/latex/oberdiek/grfext.sty
@@ -462,7 +449,7 @@ File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
 e
 ))
 \AtBeginShipoutBox=\box30
-Package hyperref Info: Link coloring ON on input line 52.
+Package hyperref Info: Link coloring ON on input line 49.
 
 (/usr/local/texlive/2015/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2012/10/27 v2.43 Cross-referencing by name of section
@@ -472,10 +459,11 @@ Package: gettitlestring 2010/12/03 v1.4 Cleanup title references (HO)
 )
 \c@section@level=\count120
 )
-LaTeX Info: Redefining \ref on input line 52.
-LaTeX Info: Redefining \pageref on input line 52.
-LaTeX Info: Redefining \nameref on input line 52.
- (./notes.out) (./notes.out)
+LaTeX Info: Redefining \ref on input line 49.
+LaTeX Info: Redefining \pageref on input line 49.
+LaTeX Info: Redefining \nameref on input line 49.
+
+(./notes.out) (./notes.out)
 \@outlinefile=\write3
 \openout3 = `notes.out'.
 
@@ -485,159 +473,153 @@ LaTeX Info: Redefining \nameref on input line 52.
 \tf@toc=\write4
 \openout4 = `notes.toc'.
 
- [3]
-Overfull \hbox (14.35286pt too wide) in paragraph at lines 85--85
+
+Overfull \hbox (14.35286pt too wide) in paragraph at lines 82--82
 []\OT1/cmr/bx/n/14.4 Introduction to com-put-ing hard-ware and NMSU/Astronomy
  []
 
+[3] [4] [5]
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 248.
 
-Overfull \hbox (4.7683pt too wide) in paragraph at lines 97--100
-[]\OT1/cmr/m/n/10 permament stor-age, typ-i-cally TBy per disk (ex-am-ple: [][]
-Se-rial AT At-tach-ment (SATA)[][]). 
- []
-
- [4] [5]
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 251.
-
-
-(/usr/local/texlive/2015/texmf-dist/tex/latex/base/omscmr.fd
+ (/usr/local/texlive/2015/texmf-dist/tex/latex/base/omscmr.fd
 File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 251.
- [6] [7] [8]
-LaTeX Font Info:    Font shape `OMS/cmr/bx/n' in size <10> not available
-(Font)              Font shape `OMS/cmsy/b/n' tried instead on input line 393.
-Missing character: There is no â in font cmr10!
-Missing character: There is no € in font cmr10!
-Missing character: There is no ¦ in font cmr10!
-Missing character: There is no â in font cmr10!
-Missing character: There is no † in font cmr10!
-Missing character: There is no ’ in font cmr10!
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 248.
+
+[6] [7] [8]
+LaTeX Font Info:    Try loading font information for OMS+cmtt on input line 390
+.
+LaTeX Font Info:    No file OMScmtt.fd. on input line 390.
+
+
+LaTeX Font Warning: Font shape `OMS/cmtt/m/n' undefined
+(Font)              using `OMS/cmsy/m/n' instead
+(Font)              for symbol `textbraceleft' on input line 390.
+
 Missing character: There is no â in font cmr10!
 Missing character: There is no € in font cmr10!
 Missing character: There is no ¦ in font cmr10!
 LaTeX Font Info:    Font shape `OT1/cmtt/bx/n' in size <10> not available
-(Font)              Font shape `OT1/cmtt/m/n' tried instead on input line 445.
- [9] [10]
-LaTeX Font Info:    Try loading font information for OMS+cmtt on input line 578
-.
-LaTeX Font Info:    No file OMScmtt.fd. on input line 578.
+(Font)              Font shape `OT1/cmtt/m/n' tried instead on input line 442.
+[9] [10]
+LaTeX Font Info:    Try loading font information for OML+cmr on input line 565.
 
-LaTeX Font Warning: Font shape `OMS/cmtt/m/n' undefined
-(Font)              using `OMS/cmsy/m/n' instead
-(Font)              for symbol `textbraceleft' on input line 578.
-
- [11] [12] [13] [14] [15]
-Overfull \hbox (75.64404pt too wide) in paragraph at lines 888--894
+ (/usr/local/texlive/2015/texmf-dist/tex/latex/base/omlcmr.fd
+File: omlcmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
+)
+LaTeX Font Info:    Font shape `OML/cmr/m/n' in size <10> not available
+(Font)              Font shape `OML/cmm/m/it' tried instead on input line 565.
+ [11]
+[12] [13] [14] [15] [16]
+Overfull \hbox (75.64404pt too wide) in paragraph at lines 900--906
 []\OT1/cmr/m/n/10 variables: ref-er-ence us-ing $\OML/cmm/m/it/10 varnamecomman
 dlinearguments \OT1/cmr/m/n/10 :$0 is first word (the com-mand), $1\OML/cmm/m/i
 t/10 thefirstargument; etc:\OT1/cmr/m/n/10 ;$*
  []
 
- [16]
-Overfull \hbox (49.37578pt too wide) in paragraph at lines 938--938
+
+Overfull \hbox (49.37578pt too wide) in paragraph at lines 950--950
 []\OT1/cmtt/m/n/10 set runtime = `ps -q $bsynjob -o cputime | tail -1 | awk -F:
  '{print ($1*3600)+($2*60)+$3}'`[] 
  []
 
- [17]
-Overfull \hbox (62.14668pt too wide) in paragraph at lines 1001--1009
+[17]
+Overfull \hbox (62.14668pt too wide) in paragraph at lines 1013--1021
 \OT1/cmr/m/n/10 yond the stan-dard La-TeX com-mands). You can cre-ate the bib-i
 tem man-u-ally ([]\OT1/cmtt/m/n/10 \bibitem{identifier} reference\OT1/cmr/m/n/1
 0 ),
  []
 
- [18]
-Underfull \hbox (badness 10000) in paragraph at lines 1076--1081
+[18]
+Underfull \hbox (badness 10000) in paragraph at lines 1088--1093
 
  []
 
- [19] [20] [21] [22] [23]
-Overfull \hbox (9.95325pt too wide) in paragraph at lines 1335--1337
+[19] [20] [21] [22] [23]
+Overfull \hbox (9.95325pt too wide) in paragraph at lines 1347--1349
 [][]$\OT1/cmr/m/n/10 https : / / www . gnu . org / software / make / manual / h
 tml[]node / index . html # Top$[][], [][]$http : / / www . rsmas . miami .
  []
 
- [24]
-Overfull \hbox (22.13786pt too wide) in paragraph at lines 1400--1403
+[24]
+Overfull \hbox (22.13786pt too wide) in paragraph at lines 1412--1415
  []\OT1/cmr/bx/n/10 Using pro-grams:[] \OT1/cmr/m/n/10 run a script us-ing []\O
 T1/cmtt/m/n/10 IDL> @scriptname\OT1/cmr/m/n/10 , run a pro-gram us-ing []\OT1/c
 mtt/m/n/10 IDL> .run programname
  []
 
- [25] [26] [27] [28] [29] [30] [31] [32] [33] [34] [35] [36] [37] [38] [39] [40
-] [41] [42] [43] [44] [45] [46]
-Overfull \hbox (3.71312pt too wide) in paragraph at lines 2704--2710
+[25] [26] [27] [28] [29] [30] [31] [32] [33] [34] [35] [36] [37] [38] [39]
+[40] [41] [42] [43] [44] [45] [46]
+Overfull \hbox (3.71312pt too wide) in paragraph at lines 2716--2722
 []\OT1/cmr/m/n/10 A Python im-ple-men-ta-tion of ma-trix in-ver-sion and lin-ea
 r al-ge-bra in gen-eral can be found in [][]scipy.linalg[][].
  []
 
 
-Overfull \hbox (12.6261pt too wide) in paragraph at lines 2726--2726
+Overfull \hbox (12.6261pt too wide) in paragraph at lines 2738--2738
 []    \OT1/cmtt/m/n/10 # loop over parameters, sums over data points (y) are do
 ne with vector arithmetic[] 
  []
 
- [47]
-Overfull \hbox (44.12582pt too wide) in paragraph at lines 2733--2733
+[47]
+Overfull \hbox (44.12582pt too wide) in paragraph at lines 2745--2745
 []    \OT1/cmtt/m/n/10 A = np.vander(x, 2)  # Take a look at the documentation 
 to see what this function does.[] 
  []
 
- [48] [49]
+[48] [49]
 
-Package hyperref Warning: Suppressing link with empty target on input line 2909
+Package hyperref Warning: Suppressing link with empty target on input line 2921
 .
 
- [50] [51] [52]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 3134.
+[50] [51] [52]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 3129.
  [53]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 3134.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 3129.
  (./notes.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 3134.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 3134.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 3129.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 3129.
 
 Package rerunfilecheck Info: File `notes.out' has not changed.
 (rerunfilecheck)             Checksum: 7BD96F8806BEE7F1E39CF6FE01415781;6960.
 
+
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 3134.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 3129.
  ) 
 Here is how much of TeX's memory you used:
- 7291 strings out of 493089
- 107606 string characters out of 6134842
- 199257 words of memory out of 5000000
- 10489 multiletter control sequences out of 15000+600000
- 12346 words of font info for 44 fonts, out of 8000000 for 9000
+ 7267 strings out of 493089
+ 107256 string characters out of 6134842
+ 198831 words of memory out of 5000000
+ 10468 multiletter control sequences out of 15000+600000
+ 11732 words of font info for 42 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 29i,10n,32p,238b,555s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 29i,10n,32p,238b,443s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/local/texlive/2015/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc
-}</usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmbsy10.pfb
-></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb>
+}</usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb>
 </usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb><
-/usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmbxti10.pfb>
-</usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb><
-/usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmitt10.pfb><
-/usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></
-usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb></us
-r/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/
-local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/lo
-cal/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/loca
-l/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/local/
-texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb></usr/local/tex
-live/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texliv
-e/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive
-/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy5.pfb></usr/local/texlive/2
-015/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texlive/201
-5/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/local/texlive/2015
-/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr/local/texlive/2015/
-texmf-dist/fonts/type1/public/cm-super/sfrm1000.pfb>
-Output written on notes.pdf (53 pages, 389103 bytes).
+/usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></
+usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmitt10.pfb></
+usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></u
+sr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb></usr
+/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/l
+ocal/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/loc
+al/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/local
+/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/local/t
+exlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb></usr/local/texl
+ive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texlive
+/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/
+2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy5.pfb></usr/local/texlive/20
+15/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texlive/2015
+/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/local/texlive/2015/
+texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr/local/texlive/2015/t
+exmf-dist/fonts/type1/public/cm-super/sfrm1000.pfb>
+Output written on notes.pdf (53 pages, 372097 bytes).
 PDF statistics:
- 972 PDF objects out of 1000 (max. 8388607)
- 888 compressed objects within 9 object streams
+ 966 PDF objects out of 1000 (max. 8388607)
+ 884 compressed objects within 9 object streams
  197 named destinations out of 1000 (max. 500000)
  777 words of extra memory for PDF output out of 10000 (max. 10000000)
 
