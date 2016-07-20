@@ -25,6 +25,16 @@
     labelsep=1em,
     }
 
+\usepackage{listings}
+\lstset{% general command to set parameter(s)
+    basicstyle=\small, % print whole listing small
+    keywordstyle=\color{black}\bfseries\underbar,% underlined bold black keywords % nothing happens
+    identifierstyle=,
+    commentstyle=\color{white},
+    stringstyle=\ttfamily,
+    showstringspaces=false % no special string spaces
+}
+
 \title{ASTR 575}
 \author{Me}
 \date{Fall 2015}
@@ -594,11 +604,11 @@ Syntax: \texttt{> awk `condition \{action\}' filename}
 No pattern = does action on every line\\
 No action = prints to screen every line that satisfies the pattern.
 
-\begin{verbatim}
+\begin{lstlisting}
     cl> awk `/search pattern 1 / {actions}
              /search pattern 2 / {actions}' file
              [| output for another command]
-\end{verbatim}
+\end{lstlisting}
 
 \begin{verbatim}
     cl> awk `{print NR, $0}'
