@@ -1,4 +1,5 @@
 \documentclass{article}
+\listfiles
 \usepackage[margin=1.25in]{geometry}
 \usepackage{graphicx}
 %\usepackage{enumerate}
@@ -15,12 +16,14 @@
 \definecolor{myGreen}{rgb}{0.12, 0.3, 0.17}
 
 
-\setlist{%
-    itemsep=-1ex, topsep=0pt
-    }
+%\setlist[itemize]{%
+%    itemsep=-1ex, topsep=0pt,
+%    }
+\setitemize{noitemsep}
 \renewcommand{\descriptionlabel}[1]{%
     \ttfamily\textcolor{myGreen}{#1}}
-\setlist[description]{%
+\setdescription{%
+    noitemsep,
     align=right,
     labelsep=1em,
     }
