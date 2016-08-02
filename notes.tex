@@ -821,13 +821,19 @@ Another is convenience, as it is possible to register your private key
 with an "ssh-agent" so that the passphrase is entered only once for a
 session, allowing remote ssh logins for the rest of the session
 without needing a password. Commands:
-\begin{verbatim}
-ssh-keygen
-ssh-agent
-ssh-add.
 
-Keys are created in /.ssh/; public keys are appended to /.ssh/authorized_keys
+\begin{itemize}
+    \item \verb|cl> ssh-keygen|
+    \item \verb|cl> ssh-agent|
+    \item \verb|ssh-add|
+\end{itemize}
+\begin{verbatim}
+cl> eval $(ssh-agent)
+cl> ssh-add
 \end{verbatim}
+
+Keys are created in \verb|/.ssh/|.
+Public keys are appended to \verb|/.ssh/authorized_keys|
 
 \test{Understand how\ldots}
 
