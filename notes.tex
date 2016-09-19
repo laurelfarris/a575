@@ -3,10 +3,11 @@
 \usepackage[margin=1.25in]{geometry}
 \usepackage{graphicx}
 %\usepackage{enumerate}
+\usepackage{framed} % for putting frames around text
 \usepackage{enumitem}
 \usepackage{amsmath}
 \usepackage{mathcomp}
-\usepackage{color}
+\usepackage{xcolor}
 \usepackage{setspace}
 
 \setlength{\parindent}{0em}
@@ -48,11 +49,16 @@
         \colorbox{hl}{\parbox{0.9\textwidth}{\emph{\centering #1}}}
     \end{center}}
 
+\newcommand{\mynotes}[1]{%
+    \textcolor{myGreen}{#1}
+    }
+
 \newenvironment{wideverbatim}%
 {\vskip\baselineskip\VerbatimEnvironment
 \begin{Sbox}\begin{BVerbatim}}
 {\end{BVerbatim}%
 \end{Sbox}\noindent\centerline{\TheSbox}\vskip\baselineskip}
+
 
 \usepackage{hyperref}
 \definecolor{cobalt}{rgb}{0.0, 0.28, 0.67}
@@ -1928,7 +1934,7 @@ def mark() :
 Generate random sequence (numpy.random.normal) with an outlier, and
 identify it from a plot.
 
-% 7. Algorithms
+
 \newpage
 \section{Algorithms}
 \subsection{Writing a Program}
@@ -1959,15 +1965,17 @@ Simple suggestions:
 
 A random distribution of numbers is useful for simulating data sets to test
 analysis routines. Research your random number generator if what you're doing
-is important since crappy ones exist.
+is important since shitty ones exist (for example, see ``diehard tests'').
 
-Computer generated random numbers are repeatable. They generally start with a
-\emph{seed number} (usually the current clock time) if the user doesn't specify
-one. Users should record whichever seed they use in case repeatability is
-desired.
+Computer generated random numbers are repeatable. They generally start with
+a \textit{seed number} (usually the current clock time if the user doesn't
+specify one). Users should record whichever seed they use in case
+repeatability is desired. For example, you make some modification to your
+code, but want to make sure you can still repeat past results under the
+same conditions.
 
-Lowest level random number generators give \emph{uniform deviates},
-random numbers that lie within a specified range.
+Lowest level random number generators give \textit{uniform deviates},
+i.e.\ equal probability of results within a specified range
 (usually 0 to 1 for floats, or 0 to 2$^{32}-1$ or 2$^{64}-1$ for integers).
 
 Python stuff:
@@ -1978,186 +1986,217 @@ Python stuff:
 >>> numby.random.seed
 \end{verbatim}
 
-{\bf Transformation Method}:
-To generate random numbers for some other distribution, such as a
-Gaussian, Poisson, luminosity function, or mass function:
-consider a cumulative distribution of the desired function (whose values range
-between zero and one). Generate a uniform random deviate between 0 and 1; these
+\begin{framed}
+    Exercise: What if you want to generate random numbers for some other distributions,
+    such as a Gaussian, Poisson, luminosity function, or mass function?
+\end{framed}
+
+\subsubsection{Transformation Method}
+Consider a cumulative distribution of the desired function (whose values range
+between 0 and 1). Generate a uniform random deviate between 0 and 1; these
 are your y-values. Solve your function for $x$ in terms of $y$, and calculate
 all the values of $x$ that correspond to your $y$-values (the random numbers).
 This does require that you can integrate your function, then invert
-the integral.  (see NR, figure 7.3.1)
+the integral.\footnote{
+    See
+    \href{http://astronomy.nmsu.edu/holtz/a575/images/NR.html}
+    {NR, figure 7.3.1}.
+}
 
-In-class exercise: generate random deviates for a ``triangular'' distribution:
-$p(x) \propto x$. What does the constant of proportionality need to be in order
-to make the integral equal to 1 (aka: a probability distribution)?
-\begin{align*}
-    \int{p(x) dx} &= \int{Cx dx}\\
-    &= C\int{x dx}\\
-    C &= 2
-\end{align*}
-Use the
-relation to generate random deviates, and plot them with a histogram.
+\begin{framed}
+    In-class exercise: generate random deviates for a ``triangular'' distribution:
+    $p(x) \propto x$. What does the constant of proportionality need to be in order
+    to make the integral equal to 1 (aka: a probability distribution)?
+    \begin{align*}
+        \int{p(x) dx} &= \int{Cx dx}\\
+        &= C\int{x dx}\\
+        C &= 2
+    \end{align*}
+\end{framed}
+
+Use the relation to generate random deviates, and plot them with a histogram.
 \begin{align*}
     y &= 2x \\
     F &= \int \! y \ \mathrm{d}x = x^2\\
     x(F) &= \sqrt{(F)} \\
 \end{align*}
-{\bf Rejection Method:}
-If you can't integrate and invert your function:
-choose a function that you \emph{can} integrate and invert
-that is always higher than your desired distribution.
-This is the comparison function, $c(x)$. As before, choose a random deviate
-and find the corresponding $x$ values. Calculate the ($x$) value of both
-the desired function and comparison function. Choose a uniform deviate between
-0 and $c(x)$. If it is larger than $f(x)$, reject your value and start again.
-This requires two random deviates for each attempt.
-The number of attempts
-before you get a deviate within your desired distribution depends on how
-close your
-comparison function is to your desired function (see NR figure 7.3.2).
 
-Example demonstration: truncated Gaussian distribution. Generate random
-deviates with rejection method.
+\subsubsection{Rejection method}
+If you can't integrate and invert your function, choose a function that you
+\emph{can} integrate and invert that is always higher than your desired
+distribution. This is the comparison function, $c(x)$, and your function is
+$f(x)$. As before, choose a random deviate and find the corresponding $x$
+values. Calculate the $x$ value of both the desired function and comparison
+function. Choose a uniform deviate between 0 and $c(x)$. If it is larger
+than $f(x)$, reject your value and start again. This requires two random
+deviates for each attempt. The number of attempts before you get a deviate
+within your desired distribution depends on how close your comparison
+function is to your desired function (see
+\href{http://astronomy.nmsu.edu/holtz/a575/images/NR.html}
+{NR figure 7.3.2}).
+
+\begin{framed}
+    Example demonstration: truncated Gaussian distribution. Generate random
+    deviates with rejection method.
+\end{framed}
 
 \test{Understand how to use and implement the transformation method for
 getting deviates from any function that is integrable and invertible.}
 
-See NR for several ways to generate deviates in desired functions.
+See NR, chapter 7, for several ways to generate deviates in desired functions.
 
-{\bf Gaussian distribution:}
+\subsubsection{Common distributions}
+
+\paragraph{Gaussian distribution:}
 Applies to many physical quantities, such as the Maxwellian speed distribution,
 and in general as a reasonable approximation for a large mean.
 
 \href{http://docs.scipy.org/doc/numpy/reference/generated/numpy.random.normal.html}
-{\tt >>> numpy.random.normal}
+{\texttt{>>> numpy.random.normal}}
 \begin{equation*}
     P(x,\mu,\sigma) = \frac{1}{\sigma\sqrt{2\pi}}
     e^{-\frac{1}{2}(\frac{x-\mu}{\sigma})^2   }
 \end{equation*}
 
-{\bf Poisson distribution:}
+\paragraph{Poisson distribution:}
 Used for counting statistics.
 
 \href{http://docs.scipy.org/doc/numpy/reference/generated/numpy.random.poisson.html}
-{\tt >>> numpy.random.poisson}
+{\texttt{>>> numpy.random.poisson}}
 \begin{equation*}
     P(x,\mu) = \frac{\mu^xe^{-\mu}}{x!}
 \end{equation*}
 
+\begin{framed}
 In class exercise: simulate some data, e.g.\ a linear relation (x=1-10, y=x)
-with a Gaussian (mean=0, sigma=varius) scatter, and plot it.
+with a Gaussian (mean=0, sigma=various) scatter, and plot it.
 Alternate: CMD from
 isochrones with Poisson scatter in colors and magnitudes.
+\end{framed}
 
 \test{Know how to use canned functions for generating uniform deviates,
 Gaussian deviates, and Poisson deviates.}
 
 \subsection{Interpolation}
-(see NR chapter 3)
+(see NR, chapter 3)
 
 Interpolation can be used if you have a tabulated or measured set of
 data, and want to estimate the values at intermediate locations in your data
-set, such as inverting a function (e.g.\ random deviates as above,
+set. Examples: inverting a function (e.g.\ random deviates as above,
 wavelength calibration, etc.), re-sampling data (images or spectra), etc.
-\begin{itemize}
-    \item {\bf Linear interpolation:}
-        This is the simplest interpolation. To find the
-        value $f(x)$ at some intermediate location
-        $x$ between two points, $x_{i}$ and $x_{i+1}$:
-        \begin{align*}
-            f(x) &= Ay_i + By_{i+1} \\
-            A &= \frac{x_{i+1}-x}{x_{i+1}-x_i} \\
-            B &= \frac{x-x_i}{x_{i+1}-x_i}
-        \end{align*}
-    \item {\bf Polynomial interpolation:} (NR 3.2)
-        The {\it Lagrange formula} gives the value of a polynomial
-        of degree $k$ going through $k+1$ points at some arbitrary position,
-        $x$, as a function of the tabulated data values:
-        \begin{align*}
-            L(x) &= \sum ^k_{j=0} \ y_j \ell_j (x) \\
-            \ell_j(x) &= \prod _{0 \leq m \leq k, m \ne j}
-            \frac{x-x_m}{x_j - x_m}
-        \end{align*}
-        Note that this provides the values of the interpolating polynomial at
-        any location without providing the coefficients of the polynomial itself.
-        The coefficients are determined such that the polynomial fit goes exactly
-        through the tabulated data points (the measured data).
-\end{itemize}
-Be aware that higher order is not necessarily better. A classic example:
-$$ f(x) = \frac{1}{(1+25x^{2})} $$
-Higher order is bad here because\ldots?
 
-There are also issues with even orders because this leads to using more tabulated
-points on one side of the desired value than the other
-(since even order means odd number of data points).
-At high order, the polynomial can go wildly off, especially near data edges.
+\textbf{Key point}: interpolation involves making some assumptions about the
+underlying nature of your data. Your result is only as good as your
+assumptions, and one can certainly imagine pathological cases.
+
+\subsubsection{Linear interpolation}
+This is the simplest interpolation. To find the value $f(x)$ at some
+intermediate location $x$ between two points, $x_{i}$ and $x_{i+1}$:
+\begin{align*}
+    f(x) &= Ay_{i} + By_{i+1} \\
+    A &= \frac{x_{i+1} - x}{x_{i+1} - x_{i}} \\
+    B &= \frac{x - x_{i}}{x_{i+1} - x_{i}}
+\end{align*}
+
+\subsubsection{Polynomial interpolation}
+(NR 3.2)
+The \textit{Lagrange formula} gives the value of a polynomial
+of degree $k$ going through $k+1$ points at some arbitrary position,
+$x$, as a function of the tabulated data values:
+\begin{align*}
+    L(x) &= \sum ^k_{j=0} \ y_{j} \ell_{j} (x) \\
+    \ell_{j}(x) &= \prod_{0 \leq m \leq k, m \ne j}{
+        \left\{ \frac {x - x_{m}} {x_{j} - x_{m}} \right\}
+    }
+\end{align*}
+Note that this provides the values of the interpolating polynomial at
+any location without providing the coefficients of the polynomial itself.
+The coefficients are determined such that the polynomial fit goes exactly
+through the tabulated data points (the measured data).
+
+Be aware that higher order is not necessarily better. A classic example:
+\[
+    f(x) = \frac{1}{( 1 + 25x^{2} )}
+    \]
+\mynotes{Higher order is bad here because\ldots?}
+
+\mynotes{``Smooth'' functions are accurately interpolated by high-order
+polynomials, while those with sharp corners or rapidly changing higher
+derivatives are less accurately approximated by high-order polynomials
+(from NR page 112).}
+
+There are also issues with even orders because this leads to using more
+tabulated points on one side of the desired value than the other (since
+even order means odd number of data points). At high order, the polynomial
+can go wildly off, especially near data edges.
 
 Another problem with piecewise polynomial interpolation, even at low order,
 is that the input data values that are used to interpolate to a desired
 location change as you cross each data point. This leads to abrupt changes
 in derivatives (infinite second derivative) of the interpolated function.
-For some applications, this can cause problems, for example,
-if you are trying to
-fit an observed data set to some tabulated series of models and are
-using derivatives to get the best fit.
+For some applications, this can cause problems; for example, if you are
+trying to fit an observed data set to some tabulated series of models and
+are using derivatives to get the best fit.
 
-{\bf Spline interpolation:}
-This issue can be overcome using spline interpolation, which
-gives interpolated values that go through the data points but also
-provides \emph{continuous second derivatives}. Doing so, however, requires
-the use of non-local interpolation, i.e. the interpolating function
-includes values from all tabulated data points.  Generally, people use
-cubic fits to the second derivatives, leading to \emph{cubic spline
-interpolation}. To do this, specify boundary conditions at the ends of
-the data range. Usually, a \emph{natural spline} is adopted, with zero
-second derivatives at the ends, but it is also possible to specify a
-pair of first derivatives at the ends.
+This issue can be overcome using spline interpolation (next section).
+
+\subsubsection{Spline interpolation}
+Spline interpolation gives interpolated values that go through the data
+points but also provides \emph{continuous second derivatives}. Doing so,
+however, requires the use of non-local interpolation, i.e. the
+interpolating function includes values from all tabulated data points.
+Generally, cubic fits to the second derivatives are used, leading to
+\textit{cubic spline interpolation}. To do this, specify boundary
+conditions at the ends of the data range. Usually, a \textit{natural
+spline} is adopted, with zero second derivatives at the ends, but it is
+also possible to specify a pair of first derivatives at the ends.
 
 Cubic splines are probably the most common form of interpolation,
 though not necessarily the best in all circumstances.
 
 Python implementation:
 \href{http://docs.scipy.org/doc/scipy/reference/generated/scipy.interpolate.interp1d.html#scipy.interpolate.interp1d}
-{\tt scipy.interpolate.interp1d} calculates
+\texttt{scipy.interpolate.interp1d} calculates
 interpolating coefficients for linear and spline interpolation, and can then
 be called to interpolate to desired position(s):
-\begin{verbatim}
+\begin{lstlisting}
 >>> from scipy import interpolate
 >>> intfunc = interpolate.interp1d(xdata,ydata,
         kind=`linear'|`slinear'|`quadratic'|`cubic'|order)
 >>> intfunc(x)  # returns interpolated value(s) at x
-\end{verbatim}
+\end{lstlisting}
 
-Exercise:
-\begin{enumerate}
-    \item Define some function, $f(x)$\\
-        \verb|def f(x):|
-            \ldots Your function here\ldots
-    \item For some given domain, plot your function at high sampling, e.g.:
-        \begin{verbatim}
-        # get a high sampled array of independent variable
-        x = numpy.linspace(xmin,xmax,1000)
-        # plot the relation as a smooth line
-        plt.plot(x,f(c))
-        \end{verbatim}
-    \item For some given domain, sample your function with $N$ points
-        (evenly spaced, or maybe random), e.g.:
-        \begin{verbatim}
-        np.linspace(xmin,xmax,n) # provides n xdata points in your domain
-        plt.plot(xdata,func(data),`o') # plot data points as points
-        \end{verbatim}
-    \item Determine the interpolating polynomial for linear and cubic
-        spline, and overplot the interpolated function.
-        \begin{verbatim}
-        from scipy import interpolate
-        # get the interpolating function (you need to choose which type)
-        intfunc = interpolate.interp1d(xdata,func(xdata),
-            kind = `linear'|`slinear'|`quadratic'|`cubic'|order)
-        # plot interpolated data at high sampling
-        plt.plot(x,intfunc(x))
-        \end{verbatim}
-\end{enumerate}
+\begin{framed}
+    Exercise:
+    \begin{enumerate}
+        \item Define some function, $f(x)$\\
+            \verb|def f(x):|
+                \ldots Your function here\ldots
+        \item For some given domain, plot your function at high sampling, e.g.:
+            \begin{lstlisting}
+            # get a high sampled array of independent variable
+            x = numpy.linspace(xmin,xmax,1000)
+            # plot the relation as a smooth line
+            plt.plot(x,f(c))
+            \end{lstlisting}
+        \item For some given domain, sample your function with $N$ points
+            (evenly spaced, or maybe random), e.g.:
+            \begin{lstlisting}
+            np.linspace(xmin,xmax,n) # provides n xdata points in your domain
+            plt.plot(xdata,func(data),`o') # plot data points as points
+            \end{lstlisting}
+        \item Determine the interpolating polynomial for linear and cubic
+            spline, and overplot the interpolated function.
+            \begin{lstlisting}
+            from scipy import interpolate
+            # get the interpolating function (you need to choose which type)
+            intfunc = interpolate.interp1d(xdata,func(xdata),
+                kind = `linear'|`slinear'|`quadratic'|`cubic'|order)
+            # plot interpolated data at high sampling
+            plt.plot(x,intfunc(x))
+            \end{lstlisting}
+    \end{enumerate}
+\end{framed}
 
 \test{Understand what is meant by piecewise polynomial interpolation and
 spline interpolation and under what circumstances it might be better to use
@@ -2171,33 +2210,37 @@ Consider a function in two representations: values in
 (e.g., temporal frequency or wavenumber). The two are related by Fourier
 transforms:
 \begin{align*}
-    H(f) = \int \! h(x)e^{-2\pi ifx}\ \textrm{d}x\\
-    h(x) = \int\! H(f)e^{-2\pi ifx}\ \textrm{d}f
+    H(f) = \int{\! h(x)e^{  2\pi{ifx} } \textrm{d}x}\\
+    h(x) = \int{\! H(f)e^{ -2\pi{ifx} } \textrm{d}f}
 \end{align*}
 Note that different implementations use different sign conventions,
-for example: \emph{angular} frequency ($\omega = 2\pi f$).
+for example: \emph{angular} frequency ($\omega = 2\pi f$):
+\begin{align*}
+    H(\omega) = \int{\! h(x)e^{  i\omega{x} } \textrm{d}x}\\
+    h(x) = \int{\! H(\omega)e^{ -i\omega{x} } \textrm{d}\omega}
+\end{align*}
 
 The physical interpretation is that a function can be decomposed into the sum
 of a series of sine waves, with different amplitudes and phases at each
 wavelength/frequency. \emph{Because we have amplitude and phase, the Fourier
 transform is, in general, a complex function}.
 
-Fourier transforms can be determined for discrete (as opposed to continuous)
-streams of data using the \emph{discrete} Fourier transform, which replaces the
-integrals with sums. Algorithms have been developed to compute the discrete
-Fourier transform quickly by means of the \emph{Fast Fourier Transform (FFT)};
-generally, this is done for data sets that are \textcolor{red}
-{padded to a length of a power of 2 (???)}.
-However, the FFT algorithm requires equally spaced data points. For
-unequally spaced points, the full discrete Fourier transform is required.
+Fourier transforms can be determined for discrete (as opposed to
+continuous) streams of data using the \textit{discrete} Fourier transform,
+which replaces the integrals with sums. Algorithms have been developed to
+compute the discrete Fourier transform quickly by means of the \textit{Fast
+Fourier Transform (FFT)}. Generally, this is done for data sets that are
+padded to a length of a power of 2. However, the FFT algorithm requires
+equally spaced data points. For unequally spaced points, the full discrete
+Fourier transform is required.
 
 Python implementations:
 \href{http://docs.scipy.org/doc/numpy/reference/routines.fft.html}
-{\tt numpy.fft},
+\texttt{numpy.fft},
 \href{http://docs.scipy.org/doc/scipy/reference/tutorial/fftpack.html}
-{\tt scipy.fftpack}
+\texttt{scipy.fftpack}
 
-\begin{verbatim}
+\begin{lstlisting}
 import matplotlib.pyplot as plt
 import numpy as np
 
@@ -2210,78 +2253,78 @@ plt.plot(x,y)
 f = np.fft.fft(y)
 
 # plot amplitude, try to get frequencies right...
-plt.plot(np.abs(f)) \\
+plt.plot(np.abs(f))
 plt.plot(np.fft.fftfreq(8192), np.abs(f))
 plt.plot(np.fft.fftfreq(8192,100./8192), np.abs(f))
-\end{verbatim}
+\end{lstlisting}
 
 Two particular operations involving pairs of functions are of general
 interest: convolution and cross-correlation.
 
-\begin{itemize}[itemsep=1ex]
-    \item {\bf Convolution}$$ g(x)*h(x) = \int\!g(x')h(x-x')\mathrm{d}x'$$
-        Usually, convolution is seen in the context of
-        \emph{smoothing}, where $h(x)$ is a normalized function (with a sum
-        of unity), centered on zero. Convolution is the process of running
-        this function across an \emph{input function} to produce a smoothed
-        version. Note that the process of convolution is computationally
-        expensive; at each point in a data series, you have to loop over
-        all of the points (or at least those that contribute to the
-        convolution integrat [integrand? integral?]).
-        In some cases, it can be advantageous to consider convolution in
-        the Fourier domain because of the \emph{convolution
-        theorem}, which states that convolving two functions in physical
-        space is equivalent to multiplying the transforms of the functions
-        in Fourier space. Multiplication of two functions is
-        computationally faster than convolution).
+\subsubsection{Convolution}
+The convolution of two functions is defined as:
+\[
+    g(x) * h(x) = \int{\! g(x') h(x-x') \mathrm{d}x'}
+    \]
+Usually, convolution is seen in the context of \textit{smoothing}, where
+$h(x)$ is a normalized function (with a sum of unity), centered on zero.
+Convolution is the process of running this function across an \textit{input
+function} to produce a smoothed version. Note that the process of
+convolution is computationally expensive; at each point in a data series,
+you have to loop over all of the points (or at least those that contribute
+to the convolution integrat [integrand? integral?]). In some cases, it can
+be advantageous to consider convolution in the Fourier domain because of
+the \textit{\textbf{convolution theorem}}, which states that convolving two
+functions in physical space is equivalent to multiplying the transforms of
+the functions in Fourier space. Multiplication of two functions is
+computationally faster than convolution.
 
-        \href{http://docs.scipy.org/doc/numpy/reference/generated/numpy.convolve.html}
-        {\tt numpy.convolve}
+Python:
+\href{http://docs.scipy.org/doc/numpy/reference/generated/numpy.convolve.html}
+\texttt{numpy.convolve}
 
-    \item {\bf Cross-correlation}
-        $$ g(x)\star h(x)=\int\! g(x')h(x+x')\mathrm{d}x'$$
-        Cross-correlation is actually the same as convolution if $h$
-        is a symmetric function, but is usually used quite differently.
-        It is generally considered a function of the \emph{lag}, $x$.
-        Multiply two functions, calculate the sum, then shift one of the
-        functions and do it again. Then look at the sums as a function of
-        the shift.
-        For two similar functions, the cross-correlation will be a maximum
-        when the two functions ``line up'', so
-        \textcolor{red}{this is useful for
-        determining shifts between two functions, e.g.\ spatial shifts of
-        images, or spectral shifts from velocity (but in velocity space,
-        i.e.\ log(wavelength), not linear wavelength space).}
-        Cross-correlation can also be computed in the Fourier domain. It is
-        equivalent to multiplying the Fourier transform of one function by
-        the complex conjugate of the Fourier transform of the other. Note
-        that the height and width of the cross-correlation function has
-        information about the degree to which the two functions are
-        similar. A specific case of cross-correlation is the
-        \emph{autocorrelation function}, which is the cross-correlation of
-        a function with itself.
-\end{itemize}
+\subsubsection{Cross-correlation}
+Cross-correlation is actually the same as convolution if $h$
+is a symmetric function, but is usually used quite differently.
+\[
+    g(x) \star h(x) = \int{\! g(x') h(x+x') \mathrm{d}x'}
+    \]
+It is generally considered a function of the \textit{lag}, $x$. Multiply
+two functions, calculate the sum, then shift one of the functions and do it
+again. Then look at the sums as a function of the shift. For two similar
+functions, the cross-correlation will be a maximum when the two functions
+``line up''. This is useful for determining shifts between two functions,
+e.g.\ spatial shifts of images, or spectral shifts from velocity (but in
+velocity space, i.e.\ log(wavelength), not linear wavelength space).
+Cross-correlation can also be computed in the Fourier domain. It is
+equivalent to multiplying the Fourier transform of one function by the
+complex conjugate of the Fourier transform of the other. Note that the
+height and width of the cross-correlation function has information about
+the degree to which the two functions are similar. A specific case of
+cross-correlation is the \textit{autocorrelation function}, which is the
+cross-correlation of a function with itself.
 
 \test{Understand the basics of Fourier transforms. Understand what
 convolution and cross-correlation are, and understand the convolution
 theorem.}
 
-Back to interpolation$\ldots$ See Bracewell chapter 10 for sinc
-interpolation and the sampling theorem.
+\subsubsection{Sinc interpolation and the sampling theorem}
+(See Bracewell chapter 10).
 
 When we sample a function at finite locations, we are multiplying by a
-\emph{sampling function}, a discrete set of impulses spaced by
-$\Delta{x}$. In the Fourier domain, this is \emph{convolving} by the Fourier
-transform of the sampling function, a discrete set of frequencies
+\textit{sampling function}, a discrete set of impulses spaced by
+$\Delta{x}$. In the Fourier domain, this is \textit{convolving} by the
+Fourier transform of the sampling function, a discrete set of frequencies
 spaced by $1/\Delta{x}$.
 
 An important and useful result for interpolation is called the
-\emph{sampling theorem} which arises in the case of a \emph{band-limited
+\textit{sampling theorem} which arises in the case of a \textit{band-limited
 function}, a function that has no power above some critical frequency
-known as the \emph{Nyquist frequency}. In this case, if the function is
+known as the \textit{Nyquist frequency}. In this case, if the function is
 sampled at sufficient frequency, (twice the Nyquist frequency), it is
-possible to recover the entire function. Figure 10.3 from Bracewell shows
-the idea graphically.
+possible to recover the entire function.
+\href{http://astronomy.nmsu.edu/holtz/a575/images/Bracewell10.3.png}
+{Figure 10.3 from Bracewell} shows the idea graphically.
 
 What to do:
 \begin{enumerate}

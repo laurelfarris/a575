@@ -80,18 +80,26 @@
 \BOOKMARK [2][-]{subsection.7.2}{Speed and scaling}{section.7}% 80
 \BOOKMARK [2][-]{subsection.7.3}{Lists and list matching}{section.7}% 81
 \BOOKMARK [2][-]{subsection.7.4}{Random number generation}{section.7}% 82
-\BOOKMARK [2][-]{subsection.7.5}{Interpolation}{section.7}% 83
-\BOOKMARK [2][-]{subsection.7.6}{Fourier analysis basics and sinc interpolation}{section.7}% 84
-\BOOKMARK [2][-]{subsection.7.7}{Differentiation and integration}{section.7}% 85
-\BOOKMARK [2][-]{subsection.7.8}{Differential equations}{section.7}% 86
-\BOOKMARK [1][-]{section.8}{Fitting}{}% 87
-\BOOKMARK [2][-]{subsection.8.1}{Overview: frequentism vs Bayesian}{section.8}% 88
-\BOOKMARK [2][-]{subsection.8.2}{General linear fits}{section.8}% 89
-\BOOKMARK [2][-]{subsection.8.3}{Solving linear equations}{section.8}% 90
-\BOOKMARK [2][-]{subsection.8.4}{Nonlinear fits}{section.8}% 91
-\BOOKMARK [3][-]{subsubsection.8.4.1}{A nonlinear fitter without derivatives}{subsection.8.4}% 92
-\BOOKMARK [2][-]{subsection.8.5}{Parameter uncertainties and confidence limits}{section.8}% 93
-\BOOKMARK [2][-]{subsection.8.6}{Bayesian analysis}{section.8}% 94
-\BOOKMARK [3][-]{subsubsection.8.6.1}{The prior}{subsection.8.6}% 95
-\BOOKMARK [3][-]{subsubsection.8.6.2}{Marginalization}{subsection.8.6}% 96
-\BOOKMARK [3][-]{subsubsection.8.6.3}{Markov Chain Monte Carlo \(MCMC\)}{subsection.8.6}% 97
+\BOOKMARK [3][-]{subsubsection.7.4.1}{Transformation Method}{subsection.7.4}% 83
+\BOOKMARK [3][-]{subsubsection.7.4.2}{Rejection method}{subsection.7.4}% 84
+\BOOKMARK [3][-]{subsubsection.7.4.3}{Common distributions}{subsection.7.4}% 85
+\BOOKMARK [2][-]{subsection.7.5}{Interpolation}{section.7}% 86
+\BOOKMARK [3][-]{subsubsection.7.5.1}{Linear interpolation}{subsection.7.5}% 87
+\BOOKMARK [3][-]{subsubsection.7.5.2}{Polynomial interpolation}{subsection.7.5}% 88
+\BOOKMARK [3][-]{subsubsection.7.5.3}{Spline interpolation}{subsection.7.5}% 89
+\BOOKMARK [2][-]{subsection.7.6}{Fourier analysis basics and sinc interpolation}{section.7}% 90
+\BOOKMARK [3][-]{subsubsection.7.6.1}{Convolution}{subsection.7.6}% 91
+\BOOKMARK [3][-]{subsubsection.7.6.2}{Cross-correlation}{subsection.7.6}% 92
+\BOOKMARK [2][-]{subsection.7.7}{Differentiation and integration}{section.7}% 93
+\BOOKMARK [2][-]{subsection.7.8}{Differential equations}{section.7}% 94
+\BOOKMARK [1][-]{section.8}{Fitting}{}% 95
+\BOOKMARK [2][-]{subsection.8.1}{Overview: frequentism vs Bayesian}{section.8}% 96
+\BOOKMARK [2][-]{subsection.8.2}{General linear fits}{section.8}% 97
+\BOOKMARK [2][-]{subsection.8.3}{Solving linear equations}{section.8}% 98
+\BOOKMARK [2][-]{subsection.8.4}{Nonlinear fits}{section.8}% 99
+\BOOKMARK [3][-]{subsubsection.8.4.1}{A nonlinear fitter without derivatives}{subsection.8.4}% 100
+\BOOKMARK [2][-]{subsection.8.5}{Parameter uncertainties and confidence limits}{section.8}% 101
+\BOOKMARK [2][-]{subsection.8.6}{Bayesian analysis}{section.8}% 102
+\BOOKMARK [3][-]{subsubsection.8.6.1}{The prior}{subsection.8.6}% 103
+\BOOKMARK [3][-]{subsubsection.8.6.2}{Marginalization}{subsection.8.6}% 104
+\BOOKMARK [3][-]{subsubsection.8.6.3}{Markov Chain Monte Carlo \(MCMC\)}{subsection.8.6}% 105
