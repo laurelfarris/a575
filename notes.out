@@ -90,16 +90,22 @@
 \BOOKMARK [2][-]{subsection.7.6}{Fourier analysis basics and sinc interpolation}{section.7}% 90
 \BOOKMARK [3][-]{subsubsection.7.6.1}{Convolution}{subsection.7.6}% 91
 \BOOKMARK [3][-]{subsubsection.7.6.2}{Cross-correlation}{subsection.7.6}% 92
-\BOOKMARK [2][-]{subsection.7.7}{Differentiation and integration}{section.7}% 93
-\BOOKMARK [2][-]{subsection.7.8}{Differential equations}{section.7}% 94
-\BOOKMARK [1][-]{section.8}{Fitting}{}% 95
-\BOOKMARK [2][-]{subsection.8.1}{Overview: frequentism vs Bayesian}{section.8}% 96
-\BOOKMARK [2][-]{subsection.8.2}{General linear fits}{section.8}% 97
-\BOOKMARK [2][-]{subsection.8.3}{Solving linear equations}{section.8}% 98
-\BOOKMARK [2][-]{subsection.8.4}{Nonlinear fits}{section.8}% 99
-\BOOKMARK [3][-]{subsubsection.8.4.1}{A nonlinear fitter without derivatives}{subsection.8.4}% 100
-\BOOKMARK [2][-]{subsection.8.5}{Parameter uncertainties and confidence limits}{section.8}% 101
-\BOOKMARK [2][-]{subsection.8.6}{Bayesian analysis}{section.8}% 102
-\BOOKMARK [3][-]{subsubsection.8.6.1}{The prior}{subsection.8.6}% 103
-\BOOKMARK [3][-]{subsubsection.8.6.2}{Marginalization}{subsection.8.6}% 104
-\BOOKMARK [3][-]{subsubsection.8.6.3}{Markov Chain Monte Carlo \(MCMC\)}{subsection.8.6}% 105
+\BOOKMARK [3][-]{subsubsection.7.6.3}{Sinc interpolation and the sampling theorem}{subsection.7.6}% 93
+\BOOKMARK [3][-]{subsubsection.7.6.4}{Interpolation and Uncertainties:}{subsection.7.6}% 94
+\BOOKMARK [2][-]{subsection.7.7}{Differentiation and integration}{section.7}% 95
+\BOOKMARK [2][-]{subsection.7.8}{Differential equations}{section.7}% 96
+\BOOKMARK [1][-]{section.8}{Fitting}{}% 97
+\BOOKMARK [2][-]{subsection.8.1}{Overview: frequentism vs Bayesian}{section.8}% 98
+\BOOKMARK [3][-]{subsubsection.8.1.1}{Least squares fitting}{subsection.8.1}% 99
+\BOOKMARK [2][-]{subsection.8.2}{General linear fits}{section.8}% 100
+\BOOKMARK [2][-]{subsection.8.3}{Solving linear equations}{section.8}% 101
+\BOOKMARK [2][-]{subsection.8.4}{Nonlinear fits}{section.8}% 102
+\BOOKMARK [3][-]{subsubsection.8.4.1}{A nonlinear fitter without derivatives}{subsection.8.4}% 103
+\BOOKMARK [2][-]{subsection.8.5}{Parameter uncertainties and confidence limits}{section.8}% 104
+\BOOKMARK [3][-]{subsubsection.8.5.1}{Monte Carlo simulation}{subsection.8.5}% 105
+\BOOKMARK [3][-]{subsubsection.8.5.2}{Bootstrap technique}{subsection.8.5}% 106
+\BOOKMARK [2][-]{subsection.8.6}{Bayesian analysis}{section.8}% 107
+\BOOKMARK [3][-]{subsubsection.8.6.1}{The prior}{subsection.8.6}% 108
+\BOOKMARK [3][-]{subsubsection.8.6.2}{Marginalization}{subsection.8.6}% 109
+\BOOKMARK [3][-]{subsubsection.8.6.3}{Markov Chain Monte Carlo \(MCMC\)}{subsection.8.6}% 110
+\BOOKMARK [3][-]{subsubsection.8.6.4}{Metropolis-Hastings algorithm}{subsection.8.6}% 111

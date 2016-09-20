@@ -16,18 +16,13 @@
 \definecolor{arsenic}{rgb}{0.25, 0.29, 0.31}
 \definecolor{myGreen}{rgb}{0.12, 0.3, 0.17}
 
-
 %\setlist[itemize]{%
 %    itemsep=-1ex, topsep=0pt,
 %    }
-\setitemize{noitemsep}
+%\setitemize{noitemsep}
+\setlist{noitemsep}
 \renewcommand{\descriptionlabel}[1]{%
-    \ttfamily\textcolor{myGreen}{#1}}
-\setdescription{%
-    noitemsep,
-    align=right,
-    labelsep=1em,
-    }
+    \bfseries\textcolor{myGreen}{#1}}
 
 \usepackage{listings}
 \lstset{% general command to set parameter(s)
@@ -2317,63 +2312,80 @@ $\Delta{x}$. In the Fourier domain, this is \textit{convolving} by the
 Fourier transform of the sampling function, a discrete set of frequencies
 spaced by $1/\Delta{x}$.
 
-An important and useful result for interpolation is called the
-\textit{sampling theorem} which arises in the case of a \textit{band-limited
-function}, a function that has no power above some critical frequency
-known as the \textit{Nyquist frequency}. In this case, if the function is
-sampled at sufficient frequency, (twice the Nyquist frequency), it is
-possible to recover the entire function.
+An important and useful result for interpolation is called the \textit{sampling
+theorem} which arises in the case of a \textit{band-limited function}, a
+function that has no power above some critical frequency known as the
+\textit{Nyquist frequency}. In this case, if the function is sampled at
+sufficient frequency, (twice the Nyquist frequency), it is possible to recover
+the entire function.
 \href{http://astronomy.nmsu.edu/holtz/a575/images/Bracewell10.3.png}
 {Figure 10.3 from Bracewell} shows the idea graphically.
 
 What to do:
 \begin{enumerate}
     \item Fourier transform the sampled function.
-    \item Multiply by a box function.
+    \item Multiply by a box function \mynotes{(???)}
     \item Fourier transform back.
 \end{enumerate}
 Alternatively, convolve
 the sampled function with the Fourier transform of a box function,
-which is the sinc function:
-$$ \textrm{sinc}(x) = \frac{\sin(x)}{x} $$
-This leads to \emph{sinc interpolation}, which is the ideal interpolation
-in the case of a band-limited function. As mentioned at the beginning of
-this section (out of place), this is one application of Fouier
-decomposition, which is useful when considering a series of data points.
+\mynotes{(the convolution theorem!)}. This is the \textbf{sinc function}:
+\[
+    \mathrm{sinc}(x) = \frac{\sin(x)}{x}
+    \]
+This leads to \textit{sinc interpolation}, which is the ideal interpolation in
+the case of a band-limited function. As mentioned at the beginning of this
+section, this is one application of Fourier decomposition, which is useful when
+considering a series of data points.
 
 \test{Understand the sampling theorem, and be able to explain it by
 reference to how the Fourier transform of a band-limited function that is
 sufficiently sampled compares to the transform of one that is undersampled.}
 
-\textbf{Interpolation and Uncertainties:}
+\subsubsection{Interpolation and Uncertainties:}
 
 Generally all interpolation schemes can be considered as a sum of data
 values multiplied by a set of interpolation coefficients at each
 point:
-$$ {y(x) = \sum_{i=0}^{n} y_{i}P_{i}(x)} $$
+\[
+    y(x) = \sum_{i=0}^{n}{
+        y_{i}P_{i}(x)}
+    \]
 So far, we have been considering interpolation in perfect data.
-But if there are uncertainties on the data points, there will be
+However, uncertainties on the data points lead to
 uncertainties in the interpolated values.
 These uncertainties can be derived by error propagation (if the errors on
 the individual data points are uncorrelated):
-$$ \sigma(y(x))^{2} = \sum\sigma(y(x_{i}))^{2}P_{i}(x)^{2} $$
-However, the interpolated errors are now themselves correlated,
-so using them
-properly requires the \emph{full covariance matrix}.
-$$ \sigma_{x}^{2}=\sigma_{u}^{2}\left(\frac{\partial{x}}{\partial{u}}\right)^{2} +
-\sigma_{v}^{2}\left(\frac{\partial{x}}{\partial{v}}\right)^{2} +
-2\sigma_{uv}^{2}\frac{\partial{x}}{\partial{u}}\frac{\partial{x}}{\partial{v}} $$
-$$ \sigma_{uv}^{2} = \lim_{n\rightarrow\infty}\frac{1}{N}
-\sum(u_{i}-<u>)(v_{i}-<v>)$$
+\[
+    \sigma(y(x))^{2} = \sum{
+        \sigma(y(x_{i}))^{2} P_{i}(x)^{2}}
+        \]
+The interpolated errors are now themselves correlated, so using them
+properly requires the \textit{full covariance matrix}.
+\[
+    \sigma_{x}^{2} = {
+        \sigma_{u}^{2} \left( \frac{\partial{x}}{\partial{u}} \right) ^{2} +
+        \sigma_{v}^{2} \left( \frac{\partial{x}}{\partial{v}} \right) ^{2} +
+        2\sigma_{uv}^{2}
+        \frac{\partial{x}}{\partial{u}}\frac{\partial{x}}{\partial{v}}}
+    \]
+\[
+    \sigma_{uv}^{2} = \lim_{n\rightarrow\infty}\frac{1}{N}
+    \sum{
+        (u_{i} - <u>)(v_{i} - <v>)}
+    \]
 In the presence of noise (uncertainties), it is often advantageous to
 \emph{model} the data by fitting an underlying function to a tabulated set of
-data points with some merit function criteria for determing what
-function provides the best fit. The fit can then be used to predict
-values at arbitrary location.
+data points with some merit function criteria for determing what function
+provides the best fit. The fit can then be used to predict values at arbitrary
+location.
 
-Be aware of mixing and matching interpolation and fitting: doing fits on
-data sets with uncorrelated errors is substantially easier than doing
-them on data sets with correlated errors.
+Be aware of mixing and matching interpolation and fitting: doing fits on data
+sets with uncorrelated errors is substantially easier than doing them on data
+sets with correlated errors.
+
+\test{Understand what is meant by uncorrelated and correlated errors, and
+how interpolation can lead to the latter.}
 
 \subsection{Differentiation and integration}
 \begin{itemize}
@@ -2389,74 +2401,78 @@ them on data sets with correlated errors.
     \item boundary value problems.
 \end{itemize}
 
-% Section 8
+
 \newpage
 \section{Fitting}
 \subsection{Overview: frequentism vs Bayesian}
-Given a set of observations/data, one often wants to summarize and get at
-underlying physics by fitting some sort of model to the data. The model
-might be an empirical model or it might be motivated by some underlying
-theory. In many cases, the model is parametric: there is some number of
-parameters that specify a particular model out of a given class.
+Given a set of observations/data, the idea is to summarize and get at
+underlying physics by fitting some sort of model to the data. The model could
+be empirical, or it might be motivated by some underlying theory. In many
+cases, the model is \textit{parametric}: there are some number of parameters
+that specify a particular model out of a given class.\mynotes{Class?}
 
-The general scheme for doing this is to define some merit function that is
-used to determine the quality of a particular model fit, and choose the
-parameters that provide the best match, e.g.\ a minimum deviation between
-model and data, or a maximum probability that a given set of parameters
-matches the data.
+The general scheme for doing this is to define some merit function
+\textcolor{red}{\ldots?} that is used to determine the quality of a particular
+model fit, and choose the parameters that provide the best match. For example,
+a minimum deviation between model and data, or a maximum probability that a
+given set of parameters matches the data.
 
-It is also important to understand how reliable
-the derived parameters are.
-The extent to which the model is consistent with your understanding of
-uncertainties on the data is an indication of how good the model fit
-actually is.
+It is important to understand how reliable the derived parameters are. The
+extent to which the model is consistent with your understanding of
+uncertainties on the data is an indication of how good the model fit actually
+is.
 
 There are two different ``schools'' about model fitting: Bayesian and
 frequentism.
-
-\begin{description}[itemsep=0ex]
-    \item [Frequentism] (also called the classical approach).
-        Consider how \emph{frequently} a data set might be observed given
-        some underlying model. {\bf $P(D|M)$} -- \emph{probability of
-        observing a data set given a model}. The model that
-        produces the observed data most frequently is viewed as the correct
-        underlying model, and as such, gives the best parameters, along
+\begin{description}
+    \item [Frequentist approach]
+        (also called the classical approach). Consider how \emph{frequently} a
+        data set $D$ might be observed given some underlying model $M$.
+        \textbf{$P(D|M)$} is the probability of observing said data set. The
+        model that produces the observed data most frequently is viewed as the
+        correct underlying model, and as such, gives the best parameters, along
         with some estimate of their uncertainty.
-    \item [Bayesian]
-        {\bf $P(M|D)$} -- \emph{probability that a model is correct
-        given a data set}.
-        It allows for the possibility that external information may prefer
-        one model over another, and this is incorporated into the analysis
-        as a \emph{prior}. It considers the probability of different models,
-        and hence, the probability distribution functions of parameters.
-        Examples of priors: fitting a Hess diagram with a combination of
-        SSPs, with external constraints on allowed ages; fitting UTR data
-        for low count rates in the presence of readout noise.
+    \item [Bayesian approach]
+        \textbf{$P(M|D)$} is the probability that a model $M$ is correct given
+        a data set $D$. It allows for the possibility that external information
+        may prefer one model over another, and this is incorporated into the
+        analysis as a \textit{prior}. It considers the probability of different
+        models, and hence, the probability distribution functions of
+        parameters. Examples of priors: fitting a Hess diagram with a
+        combination of SSPs, with external constraints on allowed ages; fitting
+        UTR data for low count rates in the presence of readout noise.
 \end{description}
-The frequentist paradigm has been mostly used in astronomy up until fairly
+The frequentist paradigm has been used most often in astronomy up until fairly
 recently, but the Bayesian paradigm has become increasingly widespread. In
 many cases they can give the same result, but with somewhat different
-interpretation. In some cases, results can differ. The basic underpinning of
-Bayesian analysis comes from {\bf Bayes theorem} of probabilities:
-    $$ P(A|B) = \frac{P(B|A)P(A)}{P(B)} $$
+interpretation. In other cases, the results themselves can differ.
+The basic underpinning of
+Bayesian analysis comes from \textbf{Bayes theorem} of probabilities:
+\[
+    P(A|B) = \frac{P(B|A)P(A)}{P(B)}
+    \]
 where $P(A|B)$ is the conditional probability, i.e.\ the probability of $A$ given
 that $B$ has occurred. Imagine there is some joint probability distribution
-function of two variables, $p(x,y)$
-(see \href{http://astronomy.nmsu.edu/holtz/a575/images/ML3.2.png}
-{ML 3.2}; this could be a distribution
-of stars as a function of effective temperature and luminosity). Think about
-slices in each direction to get to the probability at a given point, and we
-have:
-    $$ p(x,y) = p(x|y)p(y) = p(y|x)p(x) $$
-This gives:
-    $$ p(x|y) = \frac{p(y|x)p(x)}{p(y)} $$
-which is Bayes theorem. Bayes theorem also relates the conditional probability
-distribution to the \emph{marginal} probability distribution:
-
+function of two variables, $p(x,y)$.\footnote{
+    See \href{http://astronomy.nmsu.edu/holtz/a575/images/ML3.2.png}
+    {ML 3.2}; this could be a distribution
+    of stars as a function of effective temperature and luminosity.
+}
+Think about slices in each direction to get to the probability at a given
+point, and we have:
+\[
+    p(x,y) = p(x|y)p(y) = p(y|x)p(x)
+    \]
+\[
+    p(x|y) = \frac{p(y|x)p(x)}{p(y)}
+    \]
+The second equation is Bayes theorem. Bayes theorem also relates the
+conditional probability distribution to the \textit{marginal} probability
+distribution:
 \begin{align*}
-    p(x) &= \int \! p(x|y)p(y) \ \mathrm{d}y \\
-    p(y) &= \int \! p(y|x)p(x) \ \mathrm{d}y \\
-    p(x|y) &= \frac{p(y|x)p(x)}{\int \! p(y|x)p(x) \ \mathrm{d}x}
+    p(x) &= \int{\! p(x|y)p(y) \ \mathrm{d}y }\\
+    p(y) &= \int{\! p(y|x)p(x) \ \mathrm{d}y }\\
+    p(x|y) &= \frac{p(y|x)p(x)}{\int{\! p(y|x)p(x) \ \mathrm{d}x} }
 \end{align*}
 This is all fairly standard statistics, but the Bayesian paradigm extends
 this to the idea that the quantity $A$ or $B$ can also represent a hypothesis,
@@ -2464,18 +2480,19 @@ or model, i.e.\ the relative probability of different models.
 
 The context of Bayesian analysis involves the probability of models
 (instead of data), and we have:
-    $$ P(M|D) = \frac{P(D|M)P(M)}{P(D)} $$
-In this case, P(D) is a normalization constant, P(M) is the prior on the
-model, which, in the absense of any additional information, is equivalent
-for all models: a \emph{noninformative prior}. (However, a noninformative
-prior can itself be a prior; a uniform prior is not necessarily invarient
-to a change in variables. For example, a uniform prior in the logarithm
-of a variable is not uniform in the variable iteself).
-In the noninformative case, the Bayesian
-result is the same as the frequentist maximum likelihood. However, in the
-Bayesian analysis we'd want to calculate the full probability distribution
-function for the model parameter, $\mu$. More on that later
-\textcolor{red}{(insert section reference here!)}
+\[
+    P(M|D) = \frac{P(D|M)P(M)}{P(D)}
+    \]
+In this case, P(D) is a normalization constant, P(M) is the prior on the model,
+which, in the absense of any additional information, is equivalent for all
+models, and is referred to as a \textit{noninformative prior}. Despite the
+nomenclature, a noninformative prior can itself be a prior, considering that a
+uniform prior is not necessarily invarient to a change in variables (for
+example, a prior that is uniform in the \emph{logarithm} of a variable is not
+uniform in the variable iteself). Even though the Bayesian result is the same
+as the frequentist maximum likelihood in the noninformative case, we'd want to
+calculate the full probability distribution function for the model parameter,
+$\mu$. More on that later.
 
 In practice, frequentist analysis yields parameters and their
 uncertainties, while Bayesian analysis yields probability distribution
@@ -2489,19 +2506,19 @@ For some more detailed discussion, see
 and a Bayesian analysis. Know Bayes' theorem. Understand the practical
 differences.}
 
-Starting with a frequentist analysis (which often provides a component of
-the Bayesian analysis): given a set of data and some model (with
+Let's start with a frequentist analysis, which often provides a component of
+the Bayesian analysis. Given data set and some model (with
 parameters), consider the probability that the data will be observed if the
-model is correct, and choose the set of parameters that maximizes this
+model is correct. Then choose the set of parameters that maximizes this
 probability.
 
-For example, when fitting a straight line through the data, the best fit is
-determined by the method of \emph{least squares}. This comes from the
-consideration that
-observed data points have some measurement uncertainty,
-$\sigma$ (for now, all points have homoschedastic (equal) uncertainties
-that are distributed according to a Gaussian). The questions to ask are:
-
+\subsubsection{Least squares fitting}
+Consider the example of fitting a straight line to a set of data. The best fit
+is determined by the method of \textit{least squares}. This comes from the
+consideration that observed data points always have some measurement
+uncertainty, $\sigma$.
+For now, all points have \textit{homoschedastic}, or
+\textit{equal} uncertainties that are distributed according to a Gaussian.
 \begin{enumerate}
     \item What is the probability is of observing a given data value from a
         known Gaussian distribution?
@@ -2509,61 +2526,84 @@ that are distributed according to a Gaussian). The questions to ask are:
         series of two independently drawn data values?
 \end{enumerate}
 
-Suppose we are fitting $N$ data points $(x_i,y_i)$, where $i=0,\ldots,N-1$
-to a model
-that has $M$ adjustable parameters $a_j$, where $j=0,\ldots,M-1$.
-The model predicts a functional relationship between the measured
-independent and dependent variables:
-$$ y(x) = y(x|a_0 \ldots a_{M-1}) $$
-where the notation indicates dependence on the parameters explicitly on the
-right-hand side, following the vertical bar.
+\mynotes{
+    Suppose we are fitting $N$ data points $(x_{i},y_{i})$,
+    (where $i=0,\ldots,N-1$) to a model
+    that has $M$ adjustable parameters $a_{j}$, where $j=0,\ldots,M-1$.
+    The model predicts a functional relationship between the measured
+    independent and dependent variables:
+    \[
+        y(x) = y(x|a_{0} \ldots a_{M-1})
+        \]
+    where the notation indicates dependence on the parameters explicitly on the
+    right-hand side, following the vertical bar.
+}
 
-So given some model $y(x_i|a_j)$, the probability of observing a
-series of data points is:{$$
-    P(D|M) \propto \prod^{N-1}_{i=0}\left\{\exp
-    \left[-\frac{1}{2}\left[\frac{y_i-y(x_i|a_j)}
-    {\sigma}\right]^{2}\right]\Delta y \right\}
-$$}where $a_j$ is the $jth$ parameter of the model, and $\Delta y$ is some small
+So given some model $y(x_{i}|a_{j})$, the probability of observing a
+series of data points is:
+\[
+    P(D|M) \propto \prod_{i=0}^{N-1}{
+        \exp  \left\{ -\frac{1}{2} \left[ \frac{y_{i} - y(x_{i}|a_{j})}{\sigma}
+        \right] ^{2} \right\}}
+    \Delta{y}
+    \]
+where $a_{j}$ is the $jth$ parameter of the model, and $\Delta y$ is some small
 range in y.
 
 Maximizing the probability is the same thing as
 maximizing the \emph{logarithm} of the probability, which is the same thing as
 \emph{minimizing} the \emph{negative} of the (natural?) logarithm
 ($-\log{x} = \log{x^{-1}} = \log(1/x)$).
-In other words, minimize:{$$
-    -\log P(D|M) = \sum^{N-1}_{i=0}\left\{\frac{1}{2}\left[
-    \frac{y_i-y(x_i)}{\sigma}\right]^2\right\}
-    -N\log(\Delta y) + const
-$$}
+In other words, minimize:
+\[
+    -\log P(D|M) = \sum^{N-1}_{i=0}{
+        \frac{1}{2} \left[ \frac{y_{i} - y(x_{i})}{\sigma}
+        \right]^2
+    }
+    - N\log \left( \Delta{y} \right) + const
+    \]
 If $\sigma$ is the same for all points, then this is equivalent to minimizing
-$$ \sum^{N-1}_{i=1}\left[y_i-y\left(x_{i}|a_{j}\right)\right]^{2} $$
-which is the least squares fit.
+\[
+    \sum_{i=1}^{N-1}{
+        \left[ y_{i} - y \left( x_{i}|a_{j} \right) \right]^{2} }
+   \]
+$\rightarrow$ least squares.
 
 \test{Understand how least squares minimization can be derived from a maximum
     likelihood consideration in the case of normally-distributed
     uncertainties.}
 
-Consider a simple application, where we have multiple measurements of some
-quantity, so the model is $y(x_{i}) = \mu$, and we want to determine the
-most probable value of $\mu$. To minimize $-\log{P(D|M)}$, take the
-derivative and set it equal to zero. This gives:
+Consider a simple application where we have multiple measurements of some
+quantity. The model is $y(x_{i}) = \mu$, and we want to determine the
+most probable value of $\mu$.
+
+To minimize $-\log{P(D|M)}$, take the derivative and set it equal to zero.
+\textcolor{red}{Why?}
+This gives:
 \begin{align*}
     \frac{\mathrm{d}(-\log P(D|M))}{\mathrm{d}\mu}
-    &= 2\sum^{N-1}_{i=0}(y_i-\mu) = 0 \\[1ex]
-    \mu &= \sum \frac{y_i}{N}
+    &= 2\sum^{N-1}_{i=0}(y_{i}-\mu) = 0 \\[1ex]
+    \mu &= \sum \frac{y_{i}}{N}
 \end{align*}
 which should look familiar ($\mu$ = mean).
-To calculate the uncertainty on the mean,
-use error propagation:
-$$  \sigma(\mu)^2 = \sigma_{y_0}^2
-    \left( \frac{\partial{\mu}}{\partial{y}_0}\right)^2
-    + \sigma_{y_1}^2
-    \left( \frac{\partial{\mu}}{\partial{y}_1}\right)^2
-    + \ldots $$
-$$  \sigma_{\mu}^{2} = \sum\frac{\sigma^{2}}{N^{2}} = \frac{\sigma^{2}}{N}$$
-$$  \sigma_{\mu} = \frac{\sigma}{\sqrt{N}} $$
+To calculate the uncertainty on the mean, use error propagation:
+\[
+    \sigma(\mu)^2 = \sigma_{y_{0}}^2
+    \left( \frac{\partial{\mu}}{\partial{y}_{0}}\right)^2
+    + \sigma_{y_{1}}^2
+    \left( \frac{\partial{\mu}}{\partial{y}_{1}}\right)^2
+    + \ldots
+    \]
+\[
+    \sigma_{\mu}^{2}
+    = \sum{ \frac{\sigma^{2}}{N^{2}}
+    = \frac{\sigma^{2}}{N}}
+    \]
+\[
+    \sigma_{\mu} = \frac{\sigma}{\sqrt{N}}
+    \]
 
-\hrule
+\begin{framed}
 Side note: Error propagation
 \begin{align*}
     x &= f(u,v)\\
@@ -2571,32 +2611,32 @@ Side note: Error propagation
     \sigma_{u}^{2}\left(\frac{\partial{x}}{\partial{u}}\right)^{2} +
     \sigma_{v}^{2}\left(\frac{\partial{x}}{\partial{v}}\right)^{2}
 \end{align*}
-\hrule
+\end{framed}
 
-For \emph{heteroschedastic} (unequal) uncertainties on the data points:
-$$ -\log P(D|M) = \sum_{i=0}^{N-1}\left[
-\frac{(y_i-y(x_i))^{2}}{\sigma_{i}^{2}}\right] + const\
-\textcolor{red}{\equiv \chi^2} $$
-
-Here, we are minimizing a quantity called \textcolor{red}
-{$\chi^{2}$}. An important thing about $\chi^{2}$ is that the probability
+For \textit{heteroschedastic} (unequal) uncertainties on the data points:
+\[
+    -\log P(D|M) = \sum_{i=0}^{N-1}{
+        \left[ \frac{(y_{i}-y(x_{i}))^{2}}{\sigma_{i}^{2}} \right] }
+    + const\ \textcolor{red}{\equiv \chi^{2}}
+    \]
+Here, we are minimizing a quantity called
+$\chi^{2}$. An important thing about $\chi^{2}$ is that the probability
 of a given value of $\chi^{2}$ given $N$ data points and $M$ parameters
-can be calculated \emph{analytically}. This is called the
-{\it $\chi^2$ distribution for $\nu = N-M$ degrees of freedom}.
+can be calculated \textit{analytically}. This is called the
+\textit{$\chi^{2}$ distribution for $\nu = N-M$ degrees of freedom}.
 (See
 \href{http://docs.scipy.org/doc/scipy-0.15.1/reference/generated/scipy.stats.chi2.html}
 {scipy.stats.chi2}. The cumulative density function (cdf), for example,
 needs to be in some range, like 0.05 \- 0.95).
 
 The quality of a fit can be qualitatively judged by the
-\emph{reduced} $\chi^2$, or $\chi^2$ per degree of freedom:
-$$  \chi_{\nu}^{2} = \frac{\chi^{2}}{N-M} = \frac{\chi^{2}}{\nu}
-$$
-which is expected to have a value near unity.
-However, it is the probability of $\chi^2$ that should be calculated, not
-$\chi^{2}$ itself since
-the spread in $\chi_{\nu}^2$ depends on $\nu$ (the standard deviation
-is $\sqrt{2\nu}$).
+\textit{reduced} $\chi^{2}$, or $\chi^{2}$ per degree of freedom:
+\[
+    \chi_{\nu}^{2} = \frac{\chi^{2}}{N-M} = \frac{\chi^{2}}{\nu}
+    \]
+which is expected to have a value near unity. However, it is best to calculate
+the probability of $\chi^{2}$ because the spread in $\chi_{\nu}^{2}$ depends
+on $\nu$ (standard deviation is $\sqrt{2\nu}$).
 
 \textcolor{red}{It is important to recognize that this analysis depends
 on the assumption that the uncertainties are distributed according to
@@ -2605,70 +2645,108 @@ a normal (Gaussian) distribution.}
 $\chi^{2}$ can be used as a method for checking uncertainties, or even
 determining them (at the expense of being able to say whether your
 model is a good representation of the data).
-See \href{http://astronomy.nmsu.edu/holtz/a575/images/ML4.1.png}
-{ML 4.1}.
+\footnote{
+    See \href{http://astronomy.nmsu.edu/holtz/a575/images/ML4.1.png}{ML 4.1}.
+}
 
 \test{Know specifically what $\chi^{2}$ is and how to use it.  Know what reduced
 $\chi^{2}$ is, and understand degrees of freedom.}
 
-As with linear least squares, to minimize $\chi^{2}$, take the derivative
-with respect to the parameters, and set it equal to zero.
+\mynotes{As with linear least squares, to minimize $\chi^{2}$, take the
+derivative with respect to the parameters, and set it equal to zero.}
 For our simple model of measuring a \emph{single quantity}, we have:
-$$ \frac{\mathrm{d}(-\log P(D|M))}{\mathrm{d}\mu} =
-    2\sum\frac{(y_{i}-\mu)}{\sigma_i^2} = 0
-$$
-$$ \sum\frac{y_i}{\sigma_i^2} - \mu\sum\frac{1}{\sigma_i^2} = 0
-$$
-$$ \mu = \frac{\sum\frac{y_i}{\sigma_i^2}}{\sum\frac{1}{\sigma_i^2}}
-$$
+\[
+    \frac{\mathrm{d}(-\log P(D|M))}{\mathrm{d}\mu} =
+    2\sum\frac{(y_{i}-\mu)}{\sigma_{i}^{2}} = 0
+    \]
+\mynotes{Where the hell did $\mu$ come from? Is this equal to
+$y(x_{i})$?}
+\[
+    \sum\frac{y_{i}}{\sigma_{i}^{2}} - \mu\sum\frac{1}{\sigma_{i}^{2}} = 0
+    \]
+\[
+    \mu = \frac{\sum\frac{y_{i}}{\sigma_{i}^{2}}}{\sum\frac{1}{\sigma_{i}^{2}}}
+    \]
 i.e., a weighted mean. Again, you can use error
 propagation to get (work not shown):
-$$ \sigma_{\mu} = \left(\sum\frac{1}{\sigma_i^2}\right)^{-1/2}
-$$
+\[
+    \sigma_{\mu} = \left(\sum\frac{1}{\sigma_{i}^{2}}\right)^{-1/2}
+    \]
 A more complicated example: fitting a straight line to a set of data.
 Here, the model is
-$$
-    y(x_i) = a + bx_i
-$$
-and $\chi^2$ is:
+\[
+    y(x_{i}) = a + bx_{i}
+    \]
+where the parameters are the slope ($b$) and the intercept ($a$),
+and $\chi^{2}$ is:
 \begin{align*}
-    \chi^2 &= \sum_{i=0}^{N}\left[\frac{\left[y_i-(a+bx_i)\right]^2}{\sigma_i^2}\right]\\
-           &= \sum_{i=0}^{N}\left[\frac{\left[y_i-a-bx_i\right]^2}{\sigma_i^2}\right]
+    \chi^{2} &= \sum_{i=0}^{N}\left[\frac{\left[y_{i}-(a+bx_{i})\right]^{2}}{\sigma_{i}^{2}}\right]\\
+           &= \sum_{i=0}^{N}\left[\frac{\left[y_{i}-a-bx_{i}\right]^{2}}{\sigma_{i}^{2}}\right]
 \end{align*}
-Again, we want to minimize $\chi^2$, so we take the derivatives with respect
+Again, we want to minimize $\chi^{2}$, so we take the derivatives with respect
 to each of the parameters and set them to zero:
-$$  \frac{\partial\chi^{2}}{\partial{a}} =
-    -2\sum\frac{(y_i-a-bx_i)}{\sigma_i^2} = 0 $$
-$$  \frac{\partial\chi^{2}}{\partial{b}} =
-    -2\sum\frac{x_i(y_i-a-bx_i)}{\sigma_i^2} = 0 $$
+\[
+    \frac{\partial\chi^{2}}{\partial{a}} =
+    -2\sum\frac{(y_{i}-a-bx_{i})}{\sigma_{i}^{2}} = 0
+    \]
+\[
+\frac{\partial\chi^{2}}{\partial{b}} =
+    -2\sum\frac{x_{i}(y_{i}-a-bx_{i})}{\sigma_{i}^{2}} = 0
+    \]
 
 Separating out the sums, we have:
-$$  \sum\frac{y_i}{\sigma_i^2} -
-   a\sum\frac{1}{\sigma_i^2} -
-    b\sum\frac{x_i}{\sigma_i^2} = 0 $$
-$$  \sum\frac{x_iy_i}{\sigma_i^2} -
-    a\sum\frac{x_i}{\sigma_i^2} -
-    b\sum\frac{x_i^2}{\sigma_i^2} = 0 $$
+\[
+    \sum\frac{y_{i}}{\sigma_{i}^{2}} -
+    a\sum\frac{1}{\sigma_{i}^{2}} -
+    b\sum\frac{x_{i}}{\sigma_{i}^{2}} = 0
+    \]
+\[
+    \sum\frac{x_{i}y_{i}}{\sigma_{i}^{2}} -
+    a\sum\frac{x_{i}}{\sigma_{i}^{2}} -
+    b\sum\frac{x_{i}^{2}}{\sigma_{i}^{2}} = 0
+    \]
 or
-    $$ aS + bS_{x} = S_{y} $$
-    $$ aS_{x} + bS_{xx} = S_{xy} $$
+\[
+     aS + bS_{x} = S_{y}
+    \]
+\[
+     aS_{x} + bS_{xx} = S_{xy}
+    \]
 where the various $S$ are a shorthand for the sums:
-    $$ S = \sum\frac{1}{\sigma_i^2}  $$
-    $$ S_{x} = \sum\frac{x_i}{\sigma_i^2}  $$
-    $$ S_{xy} = \sum\frac{x_iy_i}{\sigma_i^2}  $$
-    $$ S_{xx} = \sum\frac{x_iy_i}{\sigma_i^2}  $$
-    $$ S_{y} = \sum\frac{y_i}{\sigma_i^2}  $$
+\[
+     S = \sum\frac{1}{\sigma_{i}^{2}}
+    \]
+\[
+     S_{x} = \sum\frac{x_{i}}{\sigma_{i}^{2}}
+    \]
+\[
+     S_{xy} = \sum\frac{x_{i}y_{i}}{\sigma_{i}^{2}}
+    \]
+\[
+     S_{xx} = \sum\frac{x_{i}y_{i}}{\sigma_{i}^{2}}
+    \]
+\[
+     S_{y} = \sum\frac{y_{i}}{\sigma_{i}^{2}}
+    \]
 which is a set of two equations with two unknowns. Solving, you get:
-$$ a = \frac{S_{xx}S_{y} - S_{x}S_{xy}}{SS_{xx} - S_{x}^{2}}  $$
-$$ b = \frac{SS_{xy} - S_{x}S_{y}}{SS_{xx} - S_{x}^{2}}  $$
-
+\[
+    a = \frac{S_{xx}S_{y} - S_{x}S_{xy}}{SS_{xx} - S_{x}^{2}}
+    \]
+\[
+    b = \frac{SS_{xy} - S_{x}S_{y}}{SS_{xx} - S_{x}^{2}}
+    \]
 \test{Know how to derive the least squares solution for a fit to a straight
 line.}
+\mynotes{To ``derive the solution'' means to solve for the parameters\ldots?}
 
 We also want the uncertainties in the parameters.
 Again, use propagation of errors to get (work not shown):
-$$ \sigma_a^2 = \frac{S_{xx}}{SS_{xx}-S_x^2}   $$
-$$ \sigma_b^2 = \frac{S}{SS_{xx}-S_x^2}   $$
+\[
+ \sigma_a^{2} = \frac{S_{xx}}{SS_{xx}-S_x^{2}}
+    \]
+\[
+ \sigma_b^{2} = \frac{S}{SS_{xx}-S_x^{2}}
+    \]
 
 Finally, we will want to calculate the probability of getting
 $ \chi^{2}$ for our fit,
@@ -2679,54 +2757,72 @@ in an effort to understand
     \item if our model is a poor model
 \end{enumerate}
 
-Let's do it. Simulate a data set, fit a line, and output parameters, parameter
-uncertainties, $\chi^2$, and probability of $\chi^2$.
+\begin{framed}
+Simulate a data set, fit a line, and output parameters, parameter
+uncertainties, $\chi^{2}$, and probability of $\chi^{2}$.
+\end{framed}
 
 \subsection{General linear fits}
 We can generalize the least squares idea to any model that is some linear
 combination of terms that are a function of the independent variable,
 e.g.
-$$ y = a_0 + a_1f_1(x) + a_2f_2(x) + a_3f_3(x) + \ldots
-$$
-such a model is called a \emph{linear} model because it is linear
+\[
+     y = a_{0} + a_{1}f_{1}(x) + a_{2}f_{2}(x) + a_{3}f_{3}(x) + \ldots
+    \]
+such a model is called a \textit{linear} model because it is linear
 in the \emph{parameters}, $a_{i}$ but not necessarily linear in the independent
 variable, $x$. The model could be a polynomial of arbitrary order, but
 could also include trigonometric functions, etc. We write the model
 in simple form:
-$$  y(x) = \sum_{k=0}^{M-1}a_kX_k(x)
-$$
-where there are $M$ parameters, $N$ data points, and $N>M$.
-The $\chi^2$ \textcolor{red}{merit function (???)} can be written as:
-$$ \chi^2 = \sum_{i=0}^{N-1} \left[
-    \frac{(y_i - \sum_{k=0}^{M-1} a_{k}X_{k}(x_{i}))^{2}}
+\[
+    y(x) = \sum_{k=0}^{M-1}{
+        a_{k}X_{k}(x)}
+    \]
+\mynotes{Is $X$ supposed to be $f$?
+\[
+    y(x) = \sum_{k=0}^{M-1}{
+        a_{k}f_{k}(x)}
+    \]
+}
+where there are $M$ parameters, $N$ data points, and we require $N > M$.
+The $\chi^{2}$ merit function can be written as:
+\[
+     \chi^{2} = \sum_{i=0}^{N-1} \left[
+    \frac{(y_{i} - \sum_{k=0}^{M-1} a_{k}X_{k}(x_{i}))^{2}}
     {\sigma_{i}^{2}} \right]
-$$
-Minimizing $\chi^2$ leads to the set of $M$ equations:
-$$ 0 = \sum_{i=1}^{N-1}\frac{1}{\sigma_i^2}
+    \]
+Minimizing $\chi^{2}$ leads to the set of $M$ equations:
+\[
+     0 = \sum_{i=1}^{N-1}\frac{1}{\sigma_i^{2}}
     \left[y_{i} - \sum_{j=0}^{M-1}a_{j}X_{j}(x_{i})\right]X_{k}(x_{i})
-$$
+    \]
 where $k=0,\ldots,M-1$.
 
 Separating the terms and interchanging the order of the sums gives:
-$$  \sum_{i=0}^{N-1}\frac{y_{i}X_{k}(x_{i})}{\sigma_{i}^{2}} =
+\[
+    \sum_{i=0}^{N-1}\frac{y_{i}X_{k}(x_{i})}{\sigma_{i}^{2}} =
     \sum_{j=0}^{M-1}\sum_{i=0}^{N-1}\frac{a_{j}X_{j}(x_{i})X_{k}(x_{i})}{\sigma_{i}^{2}}
-$$
+    \]
 Define:
-$$ \alpha_{jk} = \sum_{i=0}^{N-1}\frac{X_{j}(x_{i})X_{k}(x_{i})}{\sigma_{i}^{2}}
-$$
-$$ \beta_{j} = \sum_{i=0}^{N-1}\frac{X_{j}(x_{i})y_{i}}{\sigma_{i}^{2}}
-$$
+\[
+     \alpha_{jk} = \sum_{i=0}^{N-1}\frac{X_{j}(x_{i})X_{k}(x_{i})}{\sigma_{i}^{2}}
+    \]
+\[
+     \beta_{j} = \sum_{i=0}^{N-1}\frac{X_{j}(x_{i})y_{i}}{\sigma_{i}^{2}}
+    \]
 then we have the set of equations:
-$$ \alpha_{jk}\alpha_{j} = \beta_{k} $$
+\[
+    \alpha_{jk}\alpha_{j} = \beta_{k}
+    \]
 for $k=0,\ldots,M-1$.
 
 \test{Know the equations for a general linear least squares
 problem, and how they are derived.}
 
-Sometimes these equations are cast in terms of the \emph{design matrix},
+Sometimes these equations are cast in terms of the \textbf{design matrix},
 $A$, which consists of $N$ measurements of $M$ terms:
-$$ A_{ij} = \frac{X_j(x_i)}{\sigma_i}
-$$
+\[ A_{ij} = \frac{X_j(x_i)}{\sigma_i}
+    \]
 with $N$ rows and $M$ columns. Along with the definition:
 $$ b_i = \frac{y_i}{\sigma_i} $$
 we have:
@@ -2737,7 +2833,7 @@ This is just another notation for the same thing, introduced here in
 case you run across this language or formalism.
 
 For a given data set, $\alpha$ and $\beta$ can be calculated either
-by doing the sums or by setting up the disign matrix and using matrix
+by doing the sums or by setting up the design matrix and using matrix
 arithmetic. Then solve the set of equations for $\alpha_k$.
 
 Note that this formulation applies to problems with multiple
@@ -2749,17 +2845,18 @@ the same.
 
 This is just a linear algebra problem, and there are well-developed techniques
 (see NR chapter 2). For the most simple case, invert the matrix $\alpha$ to get
-$$ \alpha_k = \alpha_{jk}^{-1}\beta_k
-$$
-A simple algorithm for inverting a matrix is called a \emph{Gauss-Jordan
+\[
+    \alpha_{k} = \alpha_{jk}^{-1}\beta_{k}
+    \]
+A simple algorithm for inverting a matrix is called a \textit{Gauss-Jordan
 elimination}. In particular, NR recommends the use of singular value
 decomposition for solving all but the simplest least squares problems; this is
 especially important if your problem is nearly singular, i.e.\ where two or
 more of the equations may not be totally independent of each other: fully
 singular problems should be recognized and redefined, but it is possible to
 have non-singular problems encounter singularity under some conditions
-depending on how the data are sampled. See NR 15.4.2 and chapter 2 (in these
-notes?).
+depending on how the data are sampled. See NR 15.4.2 and chapter 2.
+\mynotes{(In these notes?)}
 
 As an aside, note that it is possible to solve a linear set of equations
 significantly faster than inverting the matrix through various types of
@@ -2769,11 +2866,12 @@ encounter that only require the solution of the equations and not the
 inverse matrix. However, for the least squares problem, we often
 do want the inverse matrix $C = \alpha^{-1}$, because its elements
 have meaning. Propagation of errors gives:
-$$ \sigma^{2}(a_{k}) = C_{jj}
-$$
+\[
+    \sigma^{2}(a_{k}) = C_{jj}
+    \]
 i.e., the diagonal elements of the inverse matrix. The off-diagonal
 elements give the covariances between the parameters, and the inverse
-matrix, $C$, is called the \emph{covariance matrix}.
+matrix, $C$, is called the \textbf{covariance matrix}.
 
 A Python implementation of matrix inversion and linear algebra in general
 can be found in
@@ -2781,7 +2879,7 @@ can be found in
 {scipy.linalg}.
 Here is the summed matrix implementation for a straight line
 (but the functional form only comes in through the derivative function.):
-\begin{verbatim}
+\begin{lstlisting}
     def deriv(x) :
         # if x is numpy array, then we can return vectors of derivatives
         try :
@@ -2797,14 +2895,14 @@ Here is the summed matrix implementation for a straight line
             alpha[k,j] = np.sum(deriv(x)[k]*deriv(x)[j]/sigma**2)
     c=np.linalg.inv(alpha)
     print np.dot(c,beta)
-\end{verbatim}
+\end{lstlisting}
 Here is the design matrix approach to the sums:
-\begin{verbatim}
+\begin{lstlisting}
     A = np.vander(x, 2)  # Take a look at the documentation to see what this function does.
     ATA = np.dot(A.T, A / yerr[:, None]**2)
     w = np.linalg.solve(ATA, np.dot(A.T, y / yerr**2))
     V = np.linalg.inv(ATA)
-\end{verbatim}
+\end{lstlisting}
 Linear least squares is also implemented in \texttt{astropy} in the
 \href{http://astropy.readthedocs.org/en/v1.0.6/modeling/index.html}
 {modeling module} using the
@@ -2812,14 +2910,14 @@ Linear least squares is also implemented in \texttt{astropy} in the
 {LinearLSQFitter} class (which uses {\tt numpy.linalg});
 {\tt astropy} has a number of standard models to use,
 or you can provide your own custom model.
-\begin{verbatim}
+\begin{lstlisting}
     from astropy.modeling import models, fitting
     fit_p = fitting.LinearLSQLSQFitter()
     p_init = models.Polynomial1D(degree=degree)
     pfit = fit_p(p_init, x, data)
-\end{verbatim}
+\end{lstlisting}
 
-{\tt astropy} has a number of common models, but you can also define your own
+\texttt{astropy} has a number of common models, but you can also define your own
 model using
 \href{http://astronomy.nmsu.edu/holtz/a575/ay575notes/astropy.readthedocs.org/en/v1.0.6/api/astropy.modeling.custom_model.html#astropy.modeling.custom_model}
 {models.custom\_model}, by supplying a function that returns
@@ -2846,7 +2944,7 @@ following are not?
     \item $y = a_{0}(1 + a_{1}x)$
     \item $y = a_{0}\sin(x - a_{1})$
     \item $y = a_{0}\sin^{2}x$
-    \item $y = a_{0}e^{(-(x-a_{1})^{2}/a_{2}^{2})}$
+    \item $y = a_{0}e^{ \left( -\left(x - a_{1} \right) ^{2}/a_{2}^{2} \right)}$
 \end{itemize}
 
 \subsection{Nonlinear fits}
@@ -2855,93 +2953,113 @@ space, with a single minimum, and linear least squares can be used to
 determine the location of the minimum. In the non-linear case, however, the
 $\chi^{2}$ surface can be considerably more complex, and there is a
 (good) possibility that there are multiple minima, so one needs to be
-concerned about finding the global minimum and not just a local minimum.
+concerned about finding the \emph{global} minimum and not just a local minimum.
 Because of the complexity of the surface, the best fit is found by an
 iterative approach.
 
-A conceptually simple approach would be a \emph{grid search}, where one simply
-tries all combinations of parameters and finds the one with the lowest
+A conceptually simple approach would be a \textit{grid search}, which involves
+simply trying all combinations of parameters and finding the one with the lowest
 $\chi^{2}$. Obviously, this is extremely computationally inefficient,
-especially for problems with more than a few parameters. One is also forced
-to decide on a step size in the grid, although you might imagine a
+especially for problems with more than a few parameters.
+In addition, you have to
+decide on a step size in the grid, although you might imagine a
 successively refined grid as you proceed. But in general, this method is
-not recommended, apart from occaisionally trying it to try to ensure that
+not recommended, apart from occasionally trying it to try to ensure that
 your more efficient solution is not landing in a local minimum.
 
-Better approaches attempt to use the $ \chi^{2}_{}$ values to find the
-minimum more efficiently. They can generally be split into two classes:
-those that use the derivative of the function and those that don't. If you
-can calculate derivatives of $ \chi^{2}_{}$ with respect to your
-parameters, then this provides information about how far you can move in
-parameter space towards the minimum. If you can't calculate derivates, you
-can evaluate $ \chi^{2}_{}$ at several different locations, and use these
-values to try to work your way towards the minimum.
+
+Better approaches attempt to use the $ \chi^{2}$ values to find the
+minimum more efficiently.
+\textcolor{red}{what is the difference between this and the method
+discussed in the previous paragraph?}
+They can generally be split into two classes:
+those that use the derivative of the function and those that don't.
+\mynotes{(Or rather, those in which it is \emph{possible} to calculate
+the derivative, and those in which it is not\ldots)}
+If you can calculate derivatives of $\chi^{2}$ with respect to your parameters,
+then this provides information about how far you can move in parameter space
+toward the minimum. If you can't calculate derivates, you can evaluate $
+\chi^{2}$ at several different locations, and use these values to try to
+work your way toward the minimum.
 
 With derivatives, the approach has a fairly close parallel to the linear
-least squares problem. Around the final minimum, the $ \chi^{2}_{}$ surface
+least squares problem. Around the final minimum, the $\chi^{2}$ surface
 can be approximated as a parabola, and it is possible to correct the
 solution to the minimum solution if one can arrive at a set of parameters
-near to the final minimum. This is acheived via the set of equations:
-$$
-    \sum_{i=0}^{M-1}\alpha_{kl}\delta a_{1} = \beta_{k}
-$$
+near to the final minimum. This is achieved via the set of equations:
+\[
+    \sum_{i=0}^{M-1}{
+        \alpha_{kl}\delta a_{1}}
+    = \beta_{k}
+    \]
 where
-$$
-    \beta_{k} = -\frac{1}{2}\frac{\partial\chi^{2}}{\partial a_{k}} =
-    \sum_{i=0}^{N-1}\frac{(y_{i}-y(x_{i}|a))}{\sigma_{i}^{2}}
-    \frac{\partial(y(x_{i}|a))}{\partial a_{k}}
-$$
-$$
-    \alpha_{kl} =
-    \frac{1}{2}\frac{\partial^2\chi^2}{\partial a_k\partial a_l} =
-    \sum_{i=0}^{N-1}\left[
-        \frac{1}{\sigma_i^2}\frac{\partial y(x_i|a)}{\partial a_k}
-        \frac{\partial y(x_i|a)}{\partial a_l} -
-        (y_i-y(x_i|a))
-        \frac{\partial^2y(x_i|a)}{\partial{a_k}\partial{a_l}}
-    \right]
-$$
-The matrix $\alpha_{kl}$ is known as the \emph{curvature matrix}. In most
+\[
+    \beta_{k}
+    = -\frac{1}{2}\frac{\partial\chi^{2}}{\partial a_{k}}
+    = \sum_{i=0}^{N-1}{
+        \frac{(y_{i}-y(x_{i}|a))}{\sigma_{i}^{2}}
+        \frac{\partial(y(x_{i}|a))}{\partial a_{k}}}
+    \]
+\[
+    \alpha_{k\ell}
+    = \frac{1}{2}\frac{\partial^{2}\chi^{2}}{\partial a_{k}\partial a_{\ell}}
+    = \sum_{i=0}^{N-1}{
+        \left[ \frac{1}{\sigma_{i}^{2}}\frac{\partial y(x_{i}|a)}{\partial a_{k}}
+        \frac{\partial y(x_{i}|a)}{\partial a_{\ell}}
+        - \left( y_{i} - y \left( x_{i}|a \right)  \right)
+        \frac{\partial^{2}y \left( x_{i}|a \right) }{\partial{a_{k}}\partial{a_{\ell}}}
+        \right]}
+    \]
+The matrix $\alpha_{k\ell}$ is known as the \textit{curvature matrix}. In most
 cases, it is advisable to drop the second derivative term in this matrix
 (see NR 15.5.1 for a partial explanation). The standard approach uses:
-$$
-    \alpha_{kl} = \sum_{i=0}^{N-1}\left[\frac{1}{\sigma_i^2}
-    \frac{\partial{y}(x_i|a)}{\partial{a_k}}
-    \frac{\partial{y}(x_i|a)}{\partial{a_l}} \right]
-$$
-To implement this, you choose a starting guess of parameters, solve
-for the corrections  $\delta a_l$ to be applied to a current set of
-parameters, and iterates until one arrives at a solution that does not
-change significantly.
+\[
+    \alpha_{k\ell}
+    = \sum_{i=0}^{N-1}{
+        \left[ \frac{1}{\sigma_{i}^{2}}
+        \frac{\partial{y}(x_{i}|a)}{\partial{a_{k}}}
+        \frac{\partial{y}(x_{i}|a)}{\partial{a_{\ell}}} \right]}
+    \]
+To implement this, choose a starting guess of parameters, solve
+for the corrections $\delta a_{l}$ to be applied to a current set of
+parameters, and iterate until you arrive at a solution that does not
+change significantly. \mynotes{I assume there is a quantitative way
+to determine what ``significant'' means\ldots}
 
 Far from the solution, this method can be significantly off in
 providing a good correction, and, in fact, can even move parameters
 away from the correct solution. In this case, it may be advisable to
-simply head in the the steepest downhill direction in $ \chi^{2}_{}$
-space, which is known as the method of steepest descent. Note that
+simply head in the steepest downhill direction in $\chi^{2}$
+space, which is known as the \textit{method of steepest descent}. Note that
 while this sounds like a reasonable thing to do in all cases, it can
 be very inefficient in finding the final solution
 (see, e.g.\ \href{http://astronomy.nmsu.edu/holtz/a575/images/NR10.8.1.png}
 {NR Figure 10.8.1}).
 
-A common algorithm switches between the method of steepest descent and
-the parabolic approximation and is known as the Levenberg-Marquardt
-method. This is done by using a modified curvature matrix:
-$$ \sum_{i=0}^{M-1} \alpha_{kl}'\delta{a_1} = \beta_{k} $$
+A common algorithm is the \textit{Levenberg-Marquardt} method This method
+switches between the method of steepest descent and the parabolic approximation
+by using a modified curvature matrix:
+\[
+    \sum_{i=0}^{M-1} \alpha_{kl}'\delta{a_1} = \beta_{k}
+    \]
 where
-$$ \alpha_{jj}' = \alpha_{jj}(1+\lambda) $$
-$$ \alpha_{jk}' = \alpha_{jk}\ (\textrm{for}\ j \neq k) $$
+\begin{align*}
+    \alpha_{jj}' &= \alpha_{jj}(1+\lambda)\\
+    \alpha_{jk}' &= \alpha_{jk}\ (\textrm{for}\ j \neq k)
+\end{align*}
 
-When $\lambda$ is large, this gives a \emph{steepest descent} method.
-When $\lambda$ is small, this gives a \emph{parabolic} method.
+When $\lambda$ is large, this gives a steepest descent method.
+When $\lambda$ is small, this gives a parabolic method.
+
 This leads to the following recipe:
 \begin{enumerate}
     \item Choose a starting guess of parameter vector ($a$) and
-        calculate $\chi^2(a)$.
+        calculate $\chi^{2}(a)$.
     \item Calculate the correction using model $\lambda$,
-        e.g.\ $\lambda$ = 0.001 and evaluate $\chi^2$ at the new point.
-    \item If $\chi^2(a + \delta a) > \chi^2(a)$, increase $\lambda$ and try again.
-    \item If $\chi^2(a + \delta a) < \chi^2(a)$, decrease $\lambda$,
+        e.g.\ $\lambda$ = 0.001 and evaluate $\chi^{2}$ at the new point.
+    \item If $\chi^{2}(a + \delta a) > \chi^{2}(a)$, increase $\lambda$
+        and try again.
+    \item If $\chi^{2}(a + \delta a) < \chi^{2}(a)$, decrease $\lambda$,
         update $a$, and start the next step.
     \item Stop when the convergence criteria are met.
     \item Invert the curvature matrix to get parameter uncertainties.
@@ -2951,7 +3069,7 @@ Two key issues in nonlinear least squares is finding a good starting
 guess and a good convergence criterion. You may want to consider
 multiple starting guesses to verify that you're not converging to a
 local minimum. For convergence, you can look at the amplitude of the
-change in parameters or the amplitude in the change of $ \chi^{2}_{}$.
+change in parameters or the amplitude in the change of $ \chi^{2}$.
 
 This method is implemented in \texttt{astropy} in the
 \href{http://astropy.readthedocs.org/en/v1.0.6/modeling/index.html}
@@ -2963,25 +3081,22 @@ fitter described above.
 There are certainly other approaches to non-linear least squares, but
 this provides an introduction.
 
-
 \subsubsection{A nonlinear fitter without derivatives}
-A common minimization method that does not use derivatives is the
-``downhill simple'' or \emph{Nelder-Mead} algorithm.
-For this technique, $\chi^{2}$ is initially evaluated at $M+1$ points
-(where $M$ is the number of parameters).
-This makes an $M$-dimensional figure, called a \emph{simplex}.
-The largest value is found, and a trial evalaution is made at
-a value reflected through the volume of the simplex. If this is
-smaller than the next-highest value of the original simplex, a value
-twice the distance is chosen and tested; if not, then a value half the
-distance is tested, until a better value is found. This point replaces
-the initial point, and the simplex has moved a step; if a better value
-can't be found, the entire simplex is contracted around the best
-point, and the process tries again. The process in then repeated until
-a convergence criterion is met. See
+A common minimization method that does not use derivatives is the ``downhill
+simple'' or \textit{Nelder-Mead} algorithm. For this technique, $\chi^{2}$ is
+initially evaluated at $M+1$ points (where $M$ is the number of parameters).
+This makes an $M$-dimensional figure, called a \textit{simplex}. The largest
+value is found, and a trial evaluation is made at a value reflected through the
+volume of the simplex. If this is smaller than the next-highest value of the
+original simplex, a value twice the distance is chosen and tested; if not, then
+a value half the distance is tested, until a better value is found. This point
+replaces the initial point, and the simplex has moved a step; if a better value
+can't be found, the entire simplex is contracted around the best point, and the
+process tries again. The process in then repeated until a convergence criterion
+is met. See
 \href{}
 {NR Figure 10.5.1} and section 10.5.
-The simplex works its way down the $ \chi^{2}_{}$ surface, expanding
+The simplex works its way down the $ \chi^{2}$ surface, expanding
 when it can take larger steps, and contracting when it needs to take
 smaller steps. Because of this behavior, it is also known as the
 ``amoeba'' algorithm.
@@ -2995,49 +3110,53 @@ smaller steps. Because of this behavior, it is also known as the
 \test{Understand the concepts of how a nonlinear least squares fit is
 performed, and the issues with global vs local minima,
 starting guesses, and convergence criteria. Know how to
-computationally imiplement a nonlinear least squares solution.}
+computationally implement a nonlinear least squares solution.}
 
 \subsection{Parameter uncertainties and confidence limits}
 Fitting provides us with a set of best-fit parameters, but because of
 uncertainties and a limited number of data points, these will not necessarily
 be the \emph{true} parameters. Generally, we want to understand how different
-the derived parameters might be from the true parameters.
-
-The covariance matrix gives information about the uncertainties on the derived
-parameters. Well-understood uncertainties that are
-distributed strictly according to a Gaussian can be used to provide
-\emph{confidence levels} on your parameters (see NR 15.6.5).
+the derived parameters might be from the true parameters. The covariance matrix
+gives information about the uncertainties on the derived parameters.
+Well-understood uncertainties that are distributed strictly according to a
+Gaussian can be used to provide \textit{confidence levels} on your parameters
+(see NR 15.6.5).
 
 However, if the parameter uncertainties are \emph{not} well-understood,
 numerical techniques can be used to derive parameter uncertainties.
 
 \textcolor{red}{What does it mean for parameters to be ``well understood''?}
 
+\subsubsection{Monte Carlo simulation}
 A straightforward technique if you have a good understanding of your
-\emph{measurement} uncertainties is the \textbf{Monte Carlo simulation}. In this
-case, you simulate your data set multiple times, derive parameters for each
-simulated data set, and look at the range of fit parameters as compared with
-the input parameters.  To be completely representative of your uncertainties,
-you would need to draw the simulated data set from the true distribution, but
-you don't know what that is (it's what you're trying to derive).  So we take
-the best-fit from the actual data as representative of the true distribution,
-and hope that the difference between the derived parameters from the
-simulated sets and the input parameters is representative of the difference
-between the actual data set and the true parameters.
+\emph{measurement} uncertainties is the \textbf{Monte Carlo simulation}:
+\begin{itemize}
+    \item simulate your data set multiple times
+    \item derive parameters for each simulated data set
+    \item look at the range of fit parameters as compared with
+        the input parameters.
+\end{itemize}
+To be completely representative of your uncertainties, you would need to draw
+the simulated data set from the true distribution, but you don't know what that
+is (it's what you're trying to derive). So we take the best-fit from the actual
+data as representative of the true distribution, and hope that the difference
+between the derived parameters from the simulated sets and the input parameters
+is representative of the difference between the actual data set and the true
+parameters.
 
-If you don't have a solid understanding of your \emph{data} uncertainties, then
-Monte Carlo will not give an accurate representation of your parameter
-uncertainties. In this case, you can use multiple samples of your own data to
-get some estimate of the parameter uncertainties. A common technique is the
-\textbf{bootstrap} technique: if you have $N$ data points, you can make
-multiple simulations using the same data, draw $N$ data points from the
-original set \textbf{with replacement} (i.e.\ the same data point can be drawn
-more than once), derive parameters from multiple simulations, and look at the
-distribution of these parameters.
+\subsubsection{Bootstrap technique}
+If you don't have a solid understanding of your parameter uncertainties
+\emph{or} your data uncertainties, then Monte Carlo will not give an accurate
+representation of your parameter uncertainties. In this case, you can use
+multiple samples of your own data to get some estimate of the parameter
+uncertainties. A common technique is the \textbf{bootstrap} technique: if you
+have $N$ data points, you can make multiple simulations using the same data,
+draw $N$ data points from the original set \textbf{with replacement} (i.e.\ the
+same data point can be drawn more than once), derive parameters from multiple
+simulations, and look at the distribution of these parameters.
 
-\textcolor{blue}{Falls into the broader class of \textit{resampling methods
-(wikipedia)}.
-}
+\mynotes{Falls into the broader class of \textit{resampling methods}
+    (wikipedia).}
 
 However, you may need to be careful about the interpretation of the confidence
 intervals determined by any of these techniques, which are based on a
@@ -3058,34 +3177,38 @@ Review material above, also see astroML, NR and
 \url{http://arxiv.org/abs/1411.5018}
 
 As discussed above, there are several differences between Bayesian analysis
-and frequentist. First, Bayesian calculates the probability of model
+and frequentist.
+
+First, Bayesian analysis calculates the probability of model
 parameters given data, rather than the probability of data given a model:
-$$ {P(M|D)} = \frac{P(D|M)P(M)}{P(D)} $$
+\[
+    {P(M|D)} = \frac{P(D|M)P(M)}{P(D)}
+    \]
 Practically, this allows for the possibility of specifying an explicit
 prior on the model parameters. The Bayesian analysis may give the same
 result as the frequentist analysis for some choices of the prior, but
 it makes the prior explicit, rather than hidden.
 
-Second, the Bayesian analysis produces a joint probability
-distribution function of the model parameters. The frequentist
-analysis produces a most probable set of parameters and a set of
-confidence intervals.
+Second, the Bayesian analysis produces a joint probability distribution
+function of the model parameters. The frequentist analysis produces a most
+probable set of parameters and a set of confidence intervals.
 
-The Bayesian analysis is computationally more challenging because you
-actually have to compute the probability for different model
-parameters. This is essentially performing a grid search of the full
-parameter space, which can be computationally intractable for large
-numbers of parameters. Fortunately, computational techniques have been
-developed to search through the full parameter space concentrating
-only on the regions with non-negligible probability.
-\textbf{Markov Chain Monte Carlo} is foremost among such techniques
-(see section \ref{mcmc}).
+The Bayesian analysis is computationally more challenging because you actually
+have to compute the probability for different model parameters. This is
+essentially performing a grid search of the full parameter space, which can be
+computationally intractable for large numbers of parameters. Fortunately,
+computational techniques have been developed to search through the full
+parameter space concentrating only on the regions with non-negligible
+probability. \textbf{Markov Chain Monte Carlo} is foremost among such
+techniques (see section \ref{mcmc}).
 
 \subsubsection{The prior}
+\textcolor{red}{This was all mentioned at the beginning of this section,
+so it can probably be taken out.}
 Priors in Bayesian analysis reflect external knowledge about parameters that
 exist independent of the data being analyzed. If there is no external
-knowledge, then you want to use a \emph{noninformative} prior.  Often, this is
-just a statement that all parameter values are equally likely.  In many cases,
+knowledge, then you want to use a \textit{noninformative} prior. Often, this is
+just a statement that all parameter values are equally likely. In many cases,
 this makes a Bayesian analysis equivalent to a frequentist analysis. However,
 be aware that model parameters could be expressed with a transformation of
 variables: a flat distribution in one variable may not be a flat distribution
@@ -3093,19 +3216,20 @@ under a variable transformation (going from $x$ to $\log{x}$, for example), and
 this could lead to different results. Also, keep in mind that a prior that
 appears to be unbiased may not be so, e.g., consider the fitting parameters for
 a straight line, in particular the
-\href{http://astronomy.nmsu.edu/holtz/a575/images/slope.png} {slope}.
+\href{http://astronomy.nmsu.edu/holtz/a575/images/slope.png}
+{slope}.
 
 \subsubsection{Marginalization} For many problems, only some of the parameters
 are of interest, while others fall into the category of so-called
-\textbf{nuisance parameters}, which may be important for specifying an accurate
+\textit{nuisance parameters}, which may be important for specifying an accurate
 model (which is fundamentally important), but not for the scientific question
 you are trying to answer. In such cases, Bayesian analysis uses the concept of
-\textbf{marginalization}: integrating over the dimensions of the nuisance
+\textit{marginalization}: integrating over the dimensions of the nuisance
 parameters to provide probability distribution functions of only the
 parameter(s) of interest. This concept is used to give probability distribution
 functions of individual parameters, without regard to the values of other
-parameters.  However, parameter values may be correlated with each other, and
-marginalization hides such correlations.  Marginalization is also used to
+parameters. However, parameter values may be correlated with each other, and
+marginalization hides such correlations. Marginalization is also used to
 derive the probability distribution of some desired quantity given measurements
 of other quantities if there is some relation between the measured and desired
 quantity. An example is in determining ages of stars given a set of
@@ -3122,12 +3246,20 @@ Observational constraints would modify this probability distribution.
 \subsubsection{Markov Chain Monte Carlo (MCMC)}\label{mcmc} Calculating
 marginal probability distributions is basically a big integration problem. If
 the problem has many parameters, the multi-dimensional integral can be very
-intensive to calculate.  One technique for multi-dimensional integration is
-Monte Carlo integration. Choose a (large) number of points at random within
-some specified volume (limits in multiple dimensions), sample the value of your
-function at these points, and estimate the integral as
-$${ \int\!f\mathrm{d}V = V<f> }$$ where
-$${ <f> = \frac{1}{N}\sum{f(x_i)} }$$
+intensive to calculate. Monte Carlo is one technique that can be used for
+multi-dimensional integration. Choose a (large) number of points at random
+within some specified volume (limits in multiple dimensions), sample the value
+of your function at these points, and estimate the integral as
+\[
+    \int{\! f \mathrm{d}V = V\langle f \rangle }
+    \]
+\[
+    \int{ f \mathrm{d}V = V\langle f \rangle }
+    \]
+where
+\[
+    \langle f \rangle = \frac{1}{N}\sum{ f \left( x_{i} \right) }
+    \]
 We could use this to calculate marginal probability distribution functions, but
 it is likely to be very inefficient if the probability is small over most of
 the volume being integrated over. Also, for most Bayesian problems, we do not
@@ -3141,35 +3273,38 @@ calculate the integral by summing up the number of points. This is achieved by
 a \textbf{Markov Chain Monte Carlo} analysis. Here, unlike Monte Carlo, the
 points we choose are not statistically independent, but are chosen such that
 they sample the (unnormalized) probability distribution function in proportion
-to its value. This is acheived by setting up a Markov Chain, a process where
+to its value. This is achieved by setting up a \textit{Markov Chain}, a process where
 the value of a sampled point depends only on the value of the previous point.
-To get the Markov Chain to sample the (unnormalized) PDF, the transistion
+To get the Markov Chain to sample the (unnormalized) PDF, the transition
 probability has to satisfy:
-
-$${ \pi(x_{1})p(x_{2}|x_{1}) = \pi(x_{2})p(x_{1}|x_{2})  }$$
-
+\[
+    \pi \left( x_{1} \right) p \left( x_{2}|x_{1} \right) =
+    \pi \left( x_{2} \right) p \left( x_{1}|x_{2} \right)
+    \]
 where $p$ is a transition probability to go from one point to another.
 
 To do the integral, sum the number of points in the chain at the different
 parameter values.
 
-There are multiple schemes to generate such a transition probability.  A common
+\subsubsection{Metropolis-Hastings algorithm}
+There are multiple schemes to generate such a transition probability. A common
 one is called the \textbf{Metropolis-Hastings} algorithm: from a given point,
 generate a candidate step from some proposal distribution, $q(x2|x1)$, that is
 broad enough to move around in the probability distribution $q(x2|x1)$ in steps
 that are not too large or too small. If the candidate step falls at a larger
 value of the probability function, accept it, and start again. If it falls at a
 smaller value, accept it with probability proportional to
-
-$${ \pi(x_c)q(x_1|x_{2c}) \pi(x_1)q(x_{2c}|x_1)  }$$
-
+\[
+    \pi \left( x_{c} \right) q \left( x_{1} | x_{2c} \right)
+    \pi \left( x_{1} \right) q \left( x_{2c} | x_{1} \right)
+    \]
 For a symmetric Gaussian proposal definition, note that the $q$ values
 cancel out.
 
-Note also that you need to choose a starting point. If this is far from the
+Now you need to choose a starting point. If this is far from the
 maximum of the probability distribution, it may take some time to get to the
 equilibrium distribution. This leads to the requirement of a \textbf{burn-in}
-period for MCMC algorithms.  In practice, you have to be careful about choosing
+period for MCMC algorithms. In practice, you have to be careful about choosing
 an appropriate proposal distribution, and an appropriate burn-in period.
 
 Implementation: see \href{http://dan.iel.fm/emcee/current/}
@@ -3181,7 +3316,7 @@ Implementation: see \href{http://dan.iel.fm/emcee/current/}
 Note that \texttt{emcee} uses an algorithm that is different from
 Metropolis-Hastings, that is designed to function more efficiently in a case
 where the PDF may be very narrow, leading to very low acceptance probabilities
-with M-H. Partly this is accomplished by using a number of \textbf{walkers},
+with M-H. Partly this is accomplished by using a number of \textit{walkers},
 i.e.\ multiple different Markov chains, but these are not totally independent;
 knowledge from other walkers are used (somehow) to help explore the parameter
 space more efficiently. Since the walkers are not independent, the chain from a
