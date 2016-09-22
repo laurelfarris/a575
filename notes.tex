@@ -45,7 +45,7 @@
     \end{center}}
 
 \newcommand{\mynotes}[1]{%
-    \textcolor{myGreen}{#1}
+    \fontfamily{phv}\selectfont\textcolor{myGreen}{#1}
     }
 
 \newenvironment{wideverbatim}%
@@ -2624,6 +2624,7 @@ $\chi^{2}$. An important thing about $\chi^{2}$ is that the probability
 of a given value of $\chi^{2}$ given $N$ data points and $M$ parameters
 can be calculated \textit{analytically}. This is called the
 \textit{$\chi^{2}$ distribution for $\nu = N-M$ degrees of freedom}.
+\mynotes{Parameters give dimensionality of problem.}
 (See
 \href{http://docs.scipy.org/doc/scipy-0.15.1/reference/generated/scipy.stats.chi2.html}
 {scipy.stats.chi2}. The cumulative density function (cdf), for example,

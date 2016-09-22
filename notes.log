@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.5.24)  20 SEP 2016 15:59
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.5.24)  20 SEP 2016 19:15
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -596,49 +596,93 @@ T1/cmtt/m/n/10 IDL> @scriptname\OT1/cmr/m/n/10 , run a pro-gram us-ing []\OT1/c
 mtt/m/n/10 IDL> .run programname
  []
 
-[26] [27] [28] [29] [30] [31] [32] [33] [34] [35] [36] [37] [38] [39]
-Overfull \hbox (37.53142pt too wide) in paragraph at lines 2180--2181
+[26] [27] [28] [29] [30] [31] [32] [33] [34] [35] [36] [37] [38]
+LaTeX Font Info:    Try loading font information for OT1+phv on input line 2116
+.
+
+(/usr/local/texlive/2015/texmf-dist/tex/latex/psnfss/ot1phv.fd
+File: ot1phv.fd 2001/06/04 scalable font definitions for OT1/phv.
+)
+LaTeX Font Info:    Font shape `OT1/phv/m/it' in size <10> not available
+(Font)              Font shape `OT1/phv/m/sl' tried instead on input line 2140.
+
+LaTeX Font Info:    Try loading font information for OML+phv on input line 2158
+.
+
+(/usr/local/texlive/2015/texmf-dist/tex/latex/psnfss/omlphv.fd
+File: omlphv.fd 
+)
+LaTeX Font Info:    Font shape `OML/phv/m/n' in size <9> not available
+(Font)              Font shape `OML/cmm/m/it' tried instead on input line 2158.
+
+LaTeX Font Info:    Try loading font information for OMS+phv on input line 2160
+.
+
+(/usr/local/texlive/2015/texmf-dist/tex/latex/psnfss/omsphv.fd
+File: omsphv.fd 
+)
+LaTeX Font Info:    Font shape `OMS/phv/m/n' in size <9> not available
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 2160.
+
+ [39]
+Overfull \hbox (25.98424pt too wide) in paragraph at lines 2180--2181
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
 
-Overfull \hbox (4.23131pt too wide) in paragraph at lines 2181--2182
-[][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
- []
-
-
-Overfull \hbox (31.9814pt too wide) in paragraph at lines 2187--2188
+Overfull \hbox (20.58418pt too wide) in paragraph at lines 2187--2188
 [][][][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
-[40] [41] [42] [43] [44] [45] [46] [47] [48] [49]
-Overfull \hbox (3.71312pt too wide) in paragraph at lines 2876--2882
-[]\OT1/cmr/m/n/10 A Python im-ple-men-ta-tion of ma-trix in-ver-sion and lin-ea
+[40]
+LaTeX Font Info:    Try loading font information for TS1+phv on input line 2244
+.
+ (/usr/local/texlive/2015/texmf-dist/tex/latex/psnfss/ts1phv.fd
+File: ts1phv.fd 2001/06/04 scalable font definitions for TS1/phv.
+)
+LaTeX Font Info:    Font shape `OT1/phv/bx/it' in size <10> not available
+(Font)              Font shape `OT1/phv/b/it' tried instead on input line 2272.
+
+LaTeX Font Info:    Font shape `OT1/phv/b/it' in size <10> not available
+(Font)              Font shape `OT1/phv/b/sl' tried instead on input line 2272.
+
+ [41]
+LaTeX Font Info:    Font shape `OT1/phv/bx/n' in size <10> not available
+(Font)              Font shape `OT1/phv/b/n' tried instead on input line 2332.
+
+[42] [43] [44] [45] [46] [47] [48] [49] [50]
+Overfull \hbox (4.57433pt too wide) in paragraph at lines 2877--2883
+[]\OT1/phv/m/n/10 A Python im-ple-men-ta-tion of ma-trix in-ver-sion and lin-ea
 r al-ge-bra in gen-eral can be found in [][]scipy.linalg[][].
  []
 
-[50]
-Overfull \hbox (38.13155pt too wide) in paragraph at lines 2891--2892
+
+Overfull \hbox (25.38466pt too wide) in paragraph at lines 2892--2893
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
 
-Overfull \hbox (71.43166pt too wide) in paragraph at lines 2901--2902
+Overfull \hbox (57.78499pt too wide) in paragraph at lines 2902--2903
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
 ][][][][][] 
  []
 
 [51] [52]
+Overfull \hbox (4.29446pt too wide) in paragraph at lines 3040--3043
+[]\OT1/phv/m/n/10 A com-mon al-go-rithm is the \OT1/phv/m/sl/10 Levenberg-Marqu
+ardt \OT1/phv/m/n/10 method This method switches be-tween the method
+ []
 
-Package hyperref Warning: Suppressing link with empty target on input line 3098
+
+Package hyperref Warning: Suppressing link with empty target on input line 3099
 .
 
 [53] [54] [55] [56]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 3330.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 3331.
  [57]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 3330.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 3331.
  (./notes.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 3330.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 3331.
 
 
  *File List*
@@ -711,56 +755,63 @@ gettitlestring.sty    2010/12/03 v1.4 Cleanup title references (HO)
    notes.out
   omscmr.fd    2014/09/29 v2.5h Standard LaTeX font definitions
   omlcmr.fd    2014/09/29 v2.5h Standard LaTeX font definitions
+  ot1phv.fd    2001/06/04 scalable font definitions for OT1/phv.
+  omlphv.fd    
+  omsphv.fd    
+  ts1phv.fd    2001/06/04 scalable font definitions for TS1/phv.
  ***********
 
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 3330.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 3331.
 
 Package rerunfilecheck Info: File `notes.out' has not changed.
 (rerunfilecheck)             Checksum: A0AF060C370C72EBC1FFB8F12D180870;8127.
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 3330.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 3331.
  ) 
 Here is how much of TeX's memory you used:
- 9006 strings out of 493089
- 131369 string characters out of 6134842
- 244252 words of memory out of 5000000
- 12094 multiletter control sequences out of 15000+600000
- 13595 words of font info for 48 fonts, out of 8000000 for 9000
+ 9133 strings out of 493089
+ 133256 string characters out of 6134842
+ 244259 words of memory out of 5000000
+ 12199 multiletter control sequences out of 15000+600000
+ 23894 words of font info for 61 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 29i,11n,35p,269b,1654s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/usr/local/texlive/2015/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc
-}</usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmbsy10.pfb
-></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb>
-</usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb><
-/usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmbxti10.pfb>
-</usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb><
-/usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmitt10.pfb><
-/usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></
-usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb></us
-r/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/
-local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi9.pfb></usr/lo
-cal/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/loca
-l/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/local/
-texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/local/te
-xlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb></usr/local/texli
-ve/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/local/texlive/
-2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texlive/201
-5/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive/2015/t
-exmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/local/texlive/2015/texm
-f-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2015/texmf
--dist/fonts/type1/public/amsfonts/cm/cmsy5.pfb></usr/local/texlive/2015/texmf-d
-ist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texlive/2015/texmf-dis
-t/fonts/type1/public/amsfonts/cm/cmsy9.pfb></usr/local/texlive/2015/texmf-dist/
-fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/local/texlive/2015/texmf-dist/f
-onts/type1/public/amsfonts/cm/cmtt10.pfb></usr/local/texlive/2015/texmf-dist/fo
-nts/type1/public/cm-super/sfrm0900.pfb></usr/local/texlive/2015/texmf-dist/font
-s/type1/public/cm-super/sfrm1000.pfb>
-Output written on notes.pdf (57 pages, 464941 bytes).
+ 29i,11n,35p,269b,1143s stack positions out of 5000i,500n,10000p,200000b,80000s
+{/usr/local/texlive/2015/texmf-dist/fonts/enc/dvips/base/8r.enc}{/usr/local/t
+exlive/2015/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc}</usr/local/te
+xlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmbsy10.pfb></usr/local/te
+xlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/local/tex
+live/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/local/texl
+ive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmbxti10.pfb></usr/local/tex
+live/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texl
+ive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmitt10.pfb></usr/local/texl
+ive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texli
+ve/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb></usr/local/texlive
+/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/local/texlive/2
+015/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi9.pfb></usr/local/texlive/201
+5/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2015/
+texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/local/texlive/2015/te
+xmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/local/texlive/2015/texm
+f-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb></usr/local/texlive/2015/texmf-d
+ist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/local/texlive/2015/texmf-dist
+/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texlive/2015/texmf-dist/fo
+nts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive/2015/texmf-dist/fonts
+/type1/public/amsfonts/cm/cmr9.pfb></usr/local/texlive/2015/texmf-dist/fonts/ty
+pe1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2015/texmf-dist/fonts/typ
+e1/public/amsfonts/cm/cmsy5.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1
+/public/amsfonts/cm/cmsy7.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/p
+ublic/amsfonts/cm/cmsy9.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/pub
+lic/amsfonts/cm/cmti10.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/publ
+ic/amsfonts/cm/cmtt10.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/publi
+c/cm-super/sfrm1000.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/urw/hel
+vetic/uhvb8a.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/urw/helvetic/u
+hvbo8a.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.
+pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/urw/helvetic/uhvro8a.pfb>
+Output written on notes.pdf (57 pages, 485321 bytes).
 PDF statistics:
- 1186 PDF objects out of 1200 (max. 8388607)
- 1090 compressed objects within 11 object streams
+ 1199 PDF objects out of 1200 (max. 8388607)
+ 1100 compressed objects within 11 object streams
  286 named destinations out of 1000 (max. 500000)
  889 words of extra memory for PDF output out of 10000 (max. 10000000)
 
