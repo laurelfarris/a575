@@ -1,97 +1,111 @@
-\BOOKMARK [1][-]{section.1}{Course Overview}{}
-\BOOKMARK [1][-]{section.2}{Introduction to computing hardware and NMSU/Astronomy computing}{}
-\BOOKMARK [2][-]{subsection.2.1}{Hardware}{section.2}
-\BOOKMARK [2][-]{subsection.2.2}{Bits, bytes, and whatever}{section.2}
-\BOOKMARK [2][-]{subsection.2.3}{Computing software}{section.2}
-\BOOKMARK [3][-]{subsubsection.2.3.1}{Operating systems}{subsection.2.3}
-\BOOKMARK [3][-]{subsubsection.2.3.2}{Operating system interfaces}{subsection.2.3}
-\BOOKMARK [3][-]{subsubsection.2.3.3}{Applications}{subsection.2.3}
-\BOOKMARK [2][-]{subsection.2.4}{Network communication}{section.2}
-\BOOKMARK [2][-]{subsection.2.5}{NMSU/Astronomy \(academic\)}{section.2}
-\BOOKMARK [2][-]{subsection.2.6}{Linux resource usage}{section.2}
-\BOOKMARK [1][-]{section.3}{Working in a Unix environment}{}
-\BOOKMARK [2][-]{subsection.3.1}{Linux help}{section.3}
-\BOOKMARK [2][-]{subsection.3.2}{Basics: directories}{section.3}
-\BOOKMARK [2][-]{subsection.3.3}{Basics: files}{section.3}
-\BOOKMARK [3][-]{subsubsection.3.3.1}{Displaying files}{subsection.3.3}
-\BOOKMARK [3][-]{subsubsection.3.3.2}{Creating files}{subsection.3.3}
-\BOOKMARK [3][-]{subsubsection.3.3.3}{permissions}{subsection.3.3}
-\BOOKMARK [3][-]{subsubsection.3.3.4}{advanced file types}{subsection.3.3}
-\BOOKMARK [3][-]{subsubsection.3.3.5}{file types}{subsection.3.3}
-\BOOKMARK [3][-]{subsubsection.3.3.6}{locating files}{subsection.3.3}
-\BOOKMARK [3][-]{subsubsection.3.3.7}{Display file contents}{subsection.3.3}
-\BOOKMARK [2][-]{subsection.3.4}{Unix useful file manipulation tools}{section.3}
-\BOOKMARK [3][-]{subsubsection.3.4.1}{grep}{subsection.3.4}
-\BOOKMARK [3][-]{subsubsection.3.4.2}{sed}{subsection.3.4}
-\BOOKMARK [3][-]{subsubsection.3.4.3}{tr}{subsection.3.4}
-\BOOKMARK [3][-]{subsubsection.3.4.4}{sort}{subsection.3.4}
-\BOOKMARK [3][-]{subsubsection.3.4.5}{paste/join}{subsection.3.4}
-\BOOKMARK [3][-]{subsubsection.3.4.6}{awk}{subsection.3.4}
-\BOOKMARK [3][-]{subsubsection.3.4.7}{diff}{subsection.3.4}
-\BOOKMARK [3][-]{subsubsection.3.4.8}{wc}{subsection.3.4}
-\BOOKMARK [2][-]{subsection.3.5}{Archiving and compression tools}{section.3}
-\BOOKMARK [3][-]{subsubsection.3.5.1}{tar}{subsection.3.5}
-\BOOKMARK [2][-]{subsection.3.6}{Unix system information, resources and usage}{section.3}
-\BOOKMARK [2][-]{subsection.3.7}{Unix job control}{section.3}
-\BOOKMARK [2][-]{subsection.3.8}{Intermachine communication}{section.3}
-\BOOKMARK [2][-]{subsection.3.9}{Unix environment}{section.3}
-\BOOKMARK [2][-]{subsection.3.10}{Editors}{section.3}
-\BOOKMARK [2][-]{subsection.3.11}{Unix shells and shell scripting}{section.3}
-\BOOKMARK [3][-]{subsubsection.3.11.1}{Example}{subsection.3.11}
-\BOOKMARK [2][-]{subsection.3.12}{Remote \046 virtual desktops}{section.3}
-\BOOKMARK [1][-]{section.4}{Presentation/communication}{}
-\BOOKMARK [2][-]{subsection.4.1}{Text processing: LaTeX}{section.4}
-\BOOKMARK [3][-]{subsubsection.4.1.1}{Introduction to makefiles}{subsection.4.1}
-\BOOKMARK [2][-]{subsection.4.2}{HTML}{section.4}
-\BOOKMARK [2][-]{subsection.4.3}{Collaboration}{section.4}
-\BOOKMARK [1][-]{section.5}{Programming}{}
-\BOOKMARK [2][-]{subsection.5.1}{Overarching concepts}{section.5}
-\BOOKMARK [2][-]{subsection.5.2}{Philosophy}{section.5}
-\BOOKMARK [2][-]{subsection.5.3}{Languages}{section.5}
-\BOOKMARK [3][-]{subsubsection.5.3.1}{Getting started}{subsection.5.3}
-\BOOKMARK [3][-]{subsubsection.5.3.2}{Getting started with Fortran}{subsection.5.3}
-\BOOKMARK [3][-]{subsubsection.5.3.3}{Getting started with C}{subsection.5.3}
-\BOOKMARK [3][-]{subsubsection.5.3.4}{Introduction to makefiles}{subsection.5.3}
-\BOOKMARK [3][-]{subsubsection.5.3.5}{Getting started with Python}{subsection.5.3}
-\BOOKMARK [3][-]{subsubsection.5.3.6}{Getting started with IDL}{subsection.5.3}
-\BOOKMARK [3][-]{subsubsection.5.3.7}{Simple makefile}{subsection.5.3}
-\BOOKMARK [2][-]{subsection.5.4}{Basic Programming}{section.5}
-\BOOKMARK [3][-]{subsubsection.5.4.1}{Program construction}{subsection.5.4}
-\BOOKMARK [3][-]{subsubsection.5.4.2}{Variables}{subsection.5.4}
-\BOOKMARK [3][-]{subsubsection.5.4.3}{Operators}{subsection.5.4}
-\BOOKMARK [3][-]{subsubsection.5.4.4}{Control statements}{subsection.5.4}
-\BOOKMARK [3][-]{subsubsection.5.4.5}{Input and output \(I/O\)}{subsection.5.4}
-\BOOKMARK [3][-]{subsubsection.5.4.6}{Program organization: subroutines and functions}{subsection.5.4}
-\BOOKMARK [3][-]{subsubsection.5.4.7}{Objects and object-oriented programming}{subsection.5.4}
-\BOOKMARK [2][-]{subsection.5.5}{Error handling and code testing}{section.5}
-\BOOKMARK [2][-]{subsection.5.6}{Debugging code}{section.5}
-\BOOKMARK [2][-]{subsection.5.7}{Coding practices}{section.5}
-\BOOKMARK [2][-]{subsection.5.8}{More advanced coding}{section.5}
-\BOOKMARK [2][-]{subsection.5.9}{Case study/review}{section.5}
-\BOOKMARK [1][-]{section.6}{Plotting}{}
-\BOOKMARK [2][-]{subsection.6.1}{Basic Plots}{section.6}
-\BOOKMARK [3][-]{subsubsection.6.1.1}{Python}{subsection.6.1}
-\BOOKMARK [2][-]{subsection.6.2}{``Image'' plots}{section.6}
-\BOOKMARK [2][-]{subsection.6.3}{Other plots}{section.6}
-\BOOKMARK [3][-]{subsubsection.6.3.1}{IDL examples}{subsection.6.3}
-\BOOKMARK [2][-]{subsection.6.4}{Event handling}{section.6}
-\BOOKMARK [1][-]{section.7}{Algorithms}{}
-\BOOKMARK [2][-]{subsection.7.1}{Writing a Program}{section.7}
-\BOOKMARK [2][-]{subsection.7.2}{Speed and scaling}{section.7}
-\BOOKMARK [2][-]{subsection.7.3}{Lists and list matching}{section.7}
-\BOOKMARK [2][-]{subsection.7.4}{Random number generation}{section.7}
-\BOOKMARK [2][-]{subsection.7.5}{Interpolation}{section.7}
-\BOOKMARK [2][-]{subsection.7.6}{Fourier analysis basics and sinc interpolation}{section.7}
-\BOOKMARK [2][-]{subsection.7.7}{Differentiation and integration}{section.7}
-\BOOKMARK [2][-]{subsection.7.8}{Differential equations}{section.7}
-\BOOKMARK [1][-]{section.8}{Fitting}{}
-\BOOKMARK [2][-]{subsection.8.1}{Overview: frequentism vs Bayesian}{section.8}
-\BOOKMARK [2][-]{subsection.8.2}{General linear fits}{section.8}
-\BOOKMARK [2][-]{subsection.8.3}{Solving linear equations}{section.8}
-\BOOKMARK [2][-]{subsection.8.4}{Nonlinear fits}{section.8}
-\BOOKMARK [3][-]{subsubsection.8.4.1}{A nonlinear fitter without derivatives}{subsection.8.4}
-\BOOKMARK [2][-]{subsection.8.5}{Parameter uncertainties and confidence limits}{section.8}
-\BOOKMARK [2][-]{subsection.8.6}{Bayesian analysis}{section.8}
-\BOOKMARK [3][-]{subsubsection.8.6.1}{The prior}{subsection.8.6}
-\BOOKMARK [3][-]{subsubsection.8.6.2}{Marginalization}{subsection.8.6}
-\BOOKMARK [3][-]{subsubsection.8.6.3}{Markov Chain Monte Carlo \(MCMC\)}{subsection.8.6}
+\BOOKMARK [1][-]{section.1}{Course Overview}{}% 1
+\BOOKMARK [1][-]{section.2}{Introduction to computing hardware and NMSU/Astronomy computing}{}% 2
+\BOOKMARK [2][-]{subsection.2.1}{Hardware}{section.2}% 3
+\BOOKMARK [2][-]{subsection.2.2}{Bits, bytes, and whatever}{section.2}% 4
+\BOOKMARK [2][-]{subsection.2.3}{Computing software}{section.2}% 5
+\BOOKMARK [3][-]{subsubsection.2.3.1}{Operating systems}{subsection.2.3}% 6
+\BOOKMARK [3][-]{subsubsection.2.3.2}{Operating system interfaces}{subsection.2.3}% 7
+\BOOKMARK [3][-]{subsubsection.2.3.3}{Applications}{subsection.2.3}% 8
+\BOOKMARK [2][-]{subsection.2.4}{Network communication}{section.2}% 9
+\BOOKMARK [2][-]{subsection.2.5}{NMSU/Astronomy \(academic\)}{section.2}% 10
+\BOOKMARK [2][-]{subsection.2.6}{Linux resource usage}{section.2}% 11
+\BOOKMARK [1][-]{section.3}{Working in a Unix environment}{}% 12
+\BOOKMARK [2][-]{subsection.3.1}{Linux help}{section.3}% 13
+\BOOKMARK [2][-]{subsection.3.2}{Basics: directories}{section.3}% 14
+\BOOKMARK [2][-]{subsection.3.3}{Basics: files}{section.3}% 15
+\BOOKMARK [3][-]{subsubsection.3.3.1}{Displaying files}{subsection.3.3}% 16
+\BOOKMARK [3][-]{subsubsection.3.3.2}{Creating files}{subsection.3.3}% 17
+\BOOKMARK [3][-]{subsubsection.3.3.3}{permissions}{subsection.3.3}% 18
+\BOOKMARK [3][-]{subsubsection.3.3.4}{advanced file types}{subsection.3.3}% 19
+\BOOKMARK [3][-]{subsubsection.3.3.5}{file types}{subsection.3.3}% 20
+\BOOKMARK [3][-]{subsubsection.3.3.6}{locating files}{subsection.3.3}% 21
+\BOOKMARK [3][-]{subsubsection.3.3.7}{Display file contents}{subsection.3.3}% 22
+\BOOKMARK [2][-]{subsection.3.4}{Unix useful file manipulation tools}{section.3}% 23
+\BOOKMARK [3][-]{subsubsection.3.4.1}{grep}{subsection.3.4}% 24
+\BOOKMARK [3][-]{subsubsection.3.4.2}{sed}{subsection.3.4}% 25
+\BOOKMARK [3][-]{subsubsection.3.4.3}{tr}{subsection.3.4}% 26
+\BOOKMARK [3][-]{subsubsection.3.4.4}{sort}{subsection.3.4}% 27
+\BOOKMARK [3][-]{subsubsection.3.4.5}{paste/join}{subsection.3.4}% 28
+\BOOKMARK [3][-]{subsubsection.3.4.6}{awk}{subsection.3.4}% 29
+\BOOKMARK [3][-]{subsubsection.3.4.7}{diff}{subsection.3.4}% 30
+\BOOKMARK [3][-]{subsubsection.3.4.8}{wc}{subsection.3.4}% 31
+\BOOKMARK [2][-]{subsection.3.5}{Archiving and compression tools}{section.3}% 32
+\BOOKMARK [3][-]{subsubsection.3.5.1}{tar}{subsection.3.5}% 33
+\BOOKMARK [2][-]{subsection.3.6}{Unix system information, resources and usage}{section.3}% 34
+\BOOKMARK [2][-]{subsection.3.7}{Unix job control}{section.3}% 35
+\BOOKMARK [2][-]{subsection.3.8}{Intermachine communication}{section.3}% 36
+\BOOKMARK [2][-]{subsection.3.9}{Unix environment}{section.3}% 37
+\BOOKMARK [2][-]{subsection.3.10}{Editors}{section.3}% 38
+\BOOKMARK [2][-]{subsection.3.11}{Unix shells and shell scripting}{section.3}% 39
+\BOOKMARK [3][-]{subsubsection.3.11.1}{Example}{subsection.3.11}% 40
+\BOOKMARK [2][-]{subsection.3.12}{Remote \046 virtual desktops}{section.3}% 41
+\BOOKMARK [1][-]{section.4}{Presentation/communication}{}% 42
+\BOOKMARK [2][-]{subsection.4.1}{Text processing: LaTeX}{section.4}% 43
+\BOOKMARK [3][-]{subsubsection.4.1.1}{Introduction to makefiles}{subsection.4.1}% 44
+\BOOKMARK [2][-]{subsection.4.2}{HTML}{section.4}% 45
+\BOOKMARK [2][-]{subsection.4.3}{Collaboration}{section.4}% 46
+\BOOKMARK [1][-]{section.5}{Programming}{}% 47
+\BOOKMARK [2][-]{subsection.5.1}{Overarching concepts}{section.5}% 48
+\BOOKMARK [2][-]{subsection.5.2}{Philosophy}{section.5}% 49
+\BOOKMARK [2][-]{subsection.5.3}{Languages}{section.5}% 50
+\BOOKMARK [3][-]{subsubsection.5.3.1}{Getting started}{subsection.5.3}% 51
+\BOOKMARK [3][-]{subsubsection.5.3.2}{Getting started with Fortran}{subsection.5.3}% 52
+\BOOKMARK [3][-]{subsubsection.5.3.3}{Getting started with C}{subsection.5.3}% 53
+\BOOKMARK [3][-]{subsubsection.5.3.4}{Introduction to makefiles}{subsection.5.3}% 54
+\BOOKMARK [3][-]{subsubsection.5.3.5}{Getting started with Python}{subsection.5.3}% 55
+\BOOKMARK [3][-]{subsubsection.5.3.6}{Getting started with IDL}{subsection.5.3}% 56
+\BOOKMARK [3][-]{subsubsection.5.3.7}{Simple makefile}{subsection.5.3}% 57
+\BOOKMARK [2][-]{subsection.5.4}{Basic Programming}{section.5}% 58
+\BOOKMARK [3][-]{subsubsection.5.4.1}{Program construction}{subsection.5.4}% 59
+\BOOKMARK [3][-]{subsubsection.5.4.2}{Variables}{subsection.5.4}% 60
+\BOOKMARK [3][-]{subsubsection.5.4.3}{Operators}{subsection.5.4}% 61
+\BOOKMARK [3][-]{subsubsection.5.4.4}{Control statements}{subsection.5.4}% 62
+\BOOKMARK [3][-]{subsubsection.5.4.5}{Input and output \(I/O\)}{subsection.5.4}% 63
+\BOOKMARK [3][-]{subsubsection.5.4.6}{Program organization: subroutines and functions}{subsection.5.4}% 64
+\BOOKMARK [3][-]{subsubsection.5.4.7}{Objects and object-oriented programming}{subsection.5.4}% 65
+\BOOKMARK [2][-]{subsection.5.5}{Error handling and code testing}{section.5}% 66
+\BOOKMARK [2][-]{subsection.5.6}{Debugging code}{section.5}% 67
+\BOOKMARK [2][-]{subsection.5.7}{Coding practices}{section.5}% 68
+\BOOKMARK [2][-]{subsection.5.8}{More advanced coding}{section.5}% 69
+\BOOKMARK [2][-]{subsection.5.9}{Case study/review}{section.5}% 70
+\BOOKMARK [1][-]{section.6}{Plotting}{}% 71
+\BOOKMARK [2][-]{subsection.6.1}{Basic Plots}{section.6}% 72
+\BOOKMARK [3][-]{subsubsection.6.1.1}{Python}{subsection.6.1}% 73
+\BOOKMARK [2][-]{subsection.6.2}{``Image'' plots}{section.6}% 74
+\BOOKMARK [2][-]{subsection.6.3}{Other plots}{section.6}% 75
+\BOOKMARK [3][-]{subsubsection.6.3.1}{IDL examples}{subsection.6.3}% 76
+\BOOKMARK [2][-]{subsection.6.4}{Event handling}{section.6}% 77
+\BOOKMARK [1][-]{section.7}{Algorithms}{}% 78
+\BOOKMARK [2][-]{subsection.7.1}{Writing a Program}{section.7}% 79
+\BOOKMARK [2][-]{subsection.7.2}{Speed and scaling}{section.7}% 80
+\BOOKMARK [2][-]{subsection.7.3}{Lists and list matching}{section.7}% 81
+\BOOKMARK [2][-]{subsection.7.4}{Random number generation}{section.7}% 82
+\BOOKMARK [3][-]{subsubsection.7.4.1}{Transformation Method}{subsection.7.4}% 83
+\BOOKMARK [3][-]{subsubsection.7.4.2}{Rejection method}{subsection.7.4}% 84
+\BOOKMARK [3][-]{subsubsection.7.4.3}{Common distributions}{subsection.7.4}% 85
+\BOOKMARK [2][-]{subsection.7.5}{Interpolation}{section.7}% 86
+\BOOKMARK [3][-]{subsubsection.7.5.1}{Linear interpolation}{subsection.7.5}% 87
+\BOOKMARK [3][-]{subsubsection.7.5.2}{Polynomial interpolation}{subsection.7.5}% 88
+\BOOKMARK [3][-]{subsubsection.7.5.3}{Spline interpolation}{subsection.7.5}% 89
+\BOOKMARK [2][-]{subsection.7.6}{Fourier analysis basics and sinc interpolation}{section.7}% 90
+\BOOKMARK [3][-]{subsubsection.7.6.1}{Convolution}{subsection.7.6}% 91
+\BOOKMARK [3][-]{subsubsection.7.6.2}{Cross-correlation}{subsection.7.6}% 92
+\BOOKMARK [3][-]{subsubsection.7.6.3}{Sinc interpolation and the sampling theorem}{subsection.7.6}% 93
+\BOOKMARK [3][-]{subsubsection.7.6.4}{Interpolation and Uncertainties:}{subsection.7.6}% 94
+\BOOKMARK [2][-]{subsection.7.7}{Differentiation and integration}{section.7}% 95
+\BOOKMARK [2][-]{subsection.7.8}{Differential equations}{section.7}% 96
+\BOOKMARK [1][-]{section.8}{Fitting}{}% 97
+\BOOKMARK [2][-]{subsection.8.1}{Overview: frequentism vs Bayesian}{section.8}% 98
+\BOOKMARK [3][-]{subsubsection.8.1.1}{Least squares fitting}{subsection.8.1}% 99
+\BOOKMARK [2][-]{subsection.8.2}{General linear fits}{section.8}% 100
+\BOOKMARK [2][-]{subsection.8.3}{Solving linear equations}{section.8}% 101
+\BOOKMARK [2][-]{subsection.8.4}{Nonlinear fits}{section.8}% 102
+\BOOKMARK [3][-]{subsubsection.8.4.1}{A nonlinear fitter without derivatives}{subsection.8.4}% 103
+\BOOKMARK [2][-]{subsection.8.5}{Parameter uncertainties and confidence limits}{section.8}% 104
+\BOOKMARK [3][-]{subsubsection.8.5.1}{Monte Carlo simulation}{subsection.8.5}% 105
+\BOOKMARK [3][-]{subsubsection.8.5.2}{Bootstrap technique}{subsection.8.5}% 106
+\BOOKMARK [2][-]{subsection.8.6}{Bayesian analysis}{section.8}% 107
+\BOOKMARK [3][-]{subsubsection.8.6.1}{The prior}{subsection.8.6}% 108
+\BOOKMARK [3][-]{subsubsection.8.6.2}{Marginalization}{subsection.8.6}% 109
+\BOOKMARK [3][-]{subsubsection.8.6.3}{Markov Chain Monte Carlo \(MCMC\)}{subsection.8.6}% 110
+\BOOKMARK [3][-]{subsubsection.8.6.4}{Metropolis-Hastings algorithm}{subsection.8.6}% 111
