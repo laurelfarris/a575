@@ -20,7 +20,7 @@
 %    itemsep=-1ex, topsep=0pt,
 %    }
 %\setitemize{noitemsep}
-\setlist{noitemsep}
+\setlist{noitemsep, topsep=0ex}
 \renewcommand{\descriptionlabel}[1]{%
     \bfseries\textcolor{myGreen}{#1}}
 
@@ -45,8 +45,12 @@
     \end{center}}
 
 \newcommand{\mynotes}[1]{%
-    \fontfamily{phv}\selectfont\textcolor{myGreen}{#1}
+    \textcolor{myGreen}{\fontfamily{phv}\selectfont #1}
     }
+\newcommand{\mydate}[1]{
+    \rule{\textwidth}{0.4pt}
+
+    {\vspace{-1ex}\small\hfill\textit{#1}}}
 
 \newenvironment{wideverbatim}%
 {\vskip\baselineskip\VerbatimEnvironment
@@ -2361,7 +2365,7 @@ the individual data points are uncorrelated):
         \sigma(y(x_{i}))^{2} P_{i}(x)^{2}}
         \]
 The interpolated errors are now themselves correlated, so using them
-properly requires the \textit{full covariance matrix}.
+properly requires the \textbf{full covariance matrix}.
 \[
     \sigma_{x}^{2} = {
         \sigma_{u}^{2} \left( \frac{\partial{x}}{\partial{u}} \right) ^{2} +
@@ -2483,16 +2487,8 @@ The context of Bayesian analysis involves the probability of models
 \[
     P(M|D) = \frac{P(D|M)P(M)}{P(D)}
     \]
-In this case, P(D) is a normalization constant, P(M) is the prior on the model,
-which, in the absense of any additional information, is equivalent for all
-models, and is referred to as a \textit{noninformative prior}. Despite the
-nomenclature, a noninformative prior can itself be a prior, considering that a
-uniform prior is not necessarily invarient to a change in variables (for
-example, a prior that is uniform in the \emph{logarithm} of a variable is not
-uniform in the variable iteself). Even though the Bayesian result is the same
-as the frequentist maximum likelihood in the noninformative case, we'd want to
-calculate the full probability distribution function for the model parameter,
-$\mu$. More on that later.
+In this case, P(D) is a normalization constant, P(M) is the
+\textit{prior} on the model (see \S\ref{prior} for more details).
 
 In practice, frequentist analysis yields parameters and their
 uncertainties, while Bayesian analysis yields probability distribution
@@ -3125,18 +3121,65 @@ Gaussian can be used to provide \textit{confidence levels} on your parameters
 
 However, if the parameter uncertainties are \emph{not} well-understood,
 numerical techniques can be used to derive parameter uncertainties.
+\mynotes{What does it mean for parameters to be ``well understood''?}
 
-\textcolor{red}{What does it mean for parameters to be ``well understood''?}
+\subsection{Bayesian analysis}
+Review material above, also see astroML, NR and
+\url{http://arxiv.org/abs/1411.5018}
+
+As discussed above, there are several differences between Bayesian analysis
+and frequentist.
+\begin{itemize}
+    \item Bayesian analysis calculates the probability of model parameters
+        given data, rather than the probability of data given a model:
+        \[
+            {P(M|D)} = \frac{P(D|M)P(M)}{P(D)}
+            \]
+        Practically, this allows for the possibility of specifying an explicit
+        prior on the model parameters. The Bayesian analysis may give the same
+        result as the frequentist analysis for some choices of the prior, but
+        it makes the prior explicit, rather than hidden.
+    \item Second, the Bayesian analysis produces a joint probability
+        distribution function of the model parameters. The frequentist analysis
+        produces a most probable set of parameters and a set of confidence
+        intervals.
+\end{itemize}
+
+The Bayesian analysis is computationally more challenging because you actually
+have to compute the probability for different model parameters. This is
+essentially performing a grid search of the full parameter space, which can be
+computationally intractable for large numbers of parameters. Fortunately,
+computational techniques have been developed to search through the full
+parameter space concentrating only on the regions with non-negligible
+probability. \textbf{Markov Chain Monte Carlo} is foremost among such
+techniques (see section \ref{mcmc}).
+
+\subsubsection{The prior}\label{prior}
+Priors in Bayesian analysis reflect external knowledge about parameters that
+exist independent of the data being analyzed.
+In the absense of any additional information, the prior is equivalent for all
+models, and is referred to as a \textit{noninformative prior}. Often, having a
+noninformative prior is just a statement that all parameter values are equally
+likely, which in many cases, makes a Bayesian analysis equivalent to a
+frequentist analysis. However, a noninformative prior can itself be a prior.
+Model parameters could be expressed with a transformation of variables, and a
+uniform prior is not necessarily invarient to a change in variables. For
+example, a flat distribution in one variable may not be a flat distribution
+under a variable transformation (going from $x$ to $\log{x}$, for example)
+
+Also, keep in mind that a prior that appears to be unbiased may not be so,
+e.g., consider the fitting parameters for a straight line, in particular the
+\href{http://astronomy.nmsu.edu/holtz/a575/images/slope.png}
+{slope}.
+We'd want to
+calculate the full probability distribution function for the model parameter,
+$\mu$.
 
 \subsubsection{Monte Carlo simulation}
 A straightforward technique if you have a good understanding of your
-\emph{measurement} uncertainties is the \textbf{Monte Carlo simulation}:
-\begin{itemize}
-    \item simulate your data set multiple times
-    \item derive parameters for each simulated data set
-    \item look at the range of fit parameters as compared with
-        the input parameters.
-\end{itemize}
+\emph{measurement} uncertainties is the
+\textbf{Monte Carlo simulation}\footnote{NR page 397}.
+
 To be completely representative of your uncertainties, you would need to draw
 the simulated data set from the true distribution, but you don't know what that
 is (it's what you're trying to derive). So we take the best-fit from the actual
@@ -3145,9 +3188,60 @@ between the derived parameters from the simulated sets and the input parameters
 is representative of the difference between the actual data set and the true
 parameters.
 
+\begin{itemize}
+    \item simulate your data set multiple times
+    \item derive parameters for each simulated data set
+    \item look at the range of fit parameters as compared with
+        the input parameters.
+\end{itemize}
+
+Calculating
+marginal probability distributions is basically a big integration problem. If
+the problem has many parameters, the multi-dimensional integral can be very
+intensive to calculate. Monte Carlo is one technique that can be used for
+multi-dimensional integration.
+
+Choose a (large) number of points at random
+within some specified volume (limits in multiple dimensions), sample the value
+of your function at these points, and estimate the integral as
+%\begin{align*}
+\[
+    \int{ \! f \mathrm{d}V = V\langle f \rangle }
+    \]
+\[
+    \int{ f \mathrm{d}V = V\langle f \rangle }; \quad \mathrm{where}\;
+    \langle f \rangle = \frac{1}{N}\sum{ f \left( x_{i} \right) }
+    \]
+%\end{align*}
+We could use this to calculate marginal probability distribution functions, but
+it is likely to be very inefficient if the probability is small over most of
+the volume being integrated over. Also, for most Bayesian problems, we do not
+have a proper probability density function because of an unknown normalizing
+constant; all we have is the relative probability at different points in
+parameter space.
+
+\subsubsection{Markov Chain Monte Carlo (MCMC)}\label{mcmc}
+To overcome these problems, we would instead like to place points in a volume
+proportional to the probability distribution at that point; we can then
+calculate the integral by summing up the number of points. This is achieved by
+a \textbf{Markov Chain Monte Carlo}\footnote{NR page 824} analysis. Here,
+unlike Monte Carlo, the points we choose are not statistically independent, but
+are chosen such that they sample the (unnormalized) probability distribution
+function in proportion to its value. This is achieved by setting up a
+\textit{Markov Chain}, a process where the value of a sampled point depends
+only on the value of the previous point. To get the Markov Chain to sample the
+(unnormalized) PDF, the transition probability has to satisfy:
+\[
+    \pi \left( x_{1} \right) p \left( x_{2}|x_{1} \right) =
+    \pi \left( x_{2} \right) p \left( x_{1}|x_{2} \right)
+    \]
+where $p$ is a transition probability to go from one point to another.
+To do the integral, sum the number of points in the chain at the different
+parameter values.
+
 \subsubsection{Bootstrap technique}
-If you don't have a solid understanding of your parameter uncertainties
-\emph{or} your data uncertainties, then Monte Carlo will not give an accurate
+If you don't have a solid understanding of your \emph{data} uncertainties
+either, then Monte Carlo will not give an accurate
 representation of your parameter uncertainties. In this case, you can use
 multiple samples of your own data to get some estimate of the parameter
 uncertainties. A common technique is the \textbf{bootstrap} technique: if you
@@ -3173,53 +3267,6 @@ this data set.
 fitting via the covariance matrix, Monte Carlo simulation, and the
 bootstrap method, and how these techniques work.}
 
-\subsection{Bayesian analysis}
-Review material above, also see astroML, NR and
-\url{http://arxiv.org/abs/1411.5018}
-
-As discussed above, there are several differences between Bayesian analysis
-and frequentist.
-
-First, Bayesian analysis calculates the probability of model
-parameters given data, rather than the probability of data given a model:
-\[
-    {P(M|D)} = \frac{P(D|M)P(M)}{P(D)}
-    \]
-Practically, this allows for the possibility of specifying an explicit
-prior on the model parameters. The Bayesian analysis may give the same
-result as the frequentist analysis for some choices of the prior, but
-it makes the prior explicit, rather than hidden.
-
-Second, the Bayesian analysis produces a joint probability distribution
-function of the model parameters. The frequentist analysis produces a most
-probable set of parameters and a set of confidence intervals.
-
-The Bayesian analysis is computationally more challenging because you actually
-have to compute the probability for different model parameters. This is
-essentially performing a grid search of the full parameter space, which can be
-computationally intractable for large numbers of parameters. Fortunately,
-computational techniques have been developed to search through the full
-parameter space concentrating only on the regions with non-negligible
-probability. \textbf{Markov Chain Monte Carlo} is foremost among such
-techniques (see section \ref{mcmc}).
-
-\subsubsection{The prior}
-\textcolor{red}{This was all mentioned at the beginning of this section,
-so it can probably be taken out.}
-Priors in Bayesian analysis reflect external knowledge about parameters that
-exist independent of the data being analyzed. If there is no external
-knowledge, then you want to use a \textit{noninformative} prior. Often, this is
-just a statement that all parameter values are equally likely. In many cases,
-this makes a Bayesian analysis equivalent to a frequentist analysis. However,
-be aware that model parameters could be expressed with a transformation of
-variables: a flat distribution in one variable may not be a flat distribution
-under a variable transformation (going from $x$ to $\log{x}$, for example), and
-this could lead to different results. Also, keep in mind that a prior that
-appears to be unbiased may not be so, e.g., consider the fitting parameters for
-a straight line, in particular the
-\href{http://astronomy.nmsu.edu/holtz/a575/images/slope.png}
-{slope}.
-
 \subsubsection{Marginalization} For many problems, only some of the parameters
 are of interest, while others fall into the category of so-called
 \textit{nuisance parameters}, which may be important for specifying an accurate
@@ -3244,48 +3291,6 @@ Observational constraints would modify this probability distribution.
 
 \test{Understand what marginalization means, and why/when it can be used.}
 
-\subsubsection{Markov Chain Monte Carlo (MCMC)}\label{mcmc} Calculating
-marginal probability distributions is basically a big integration problem. If
-the problem has many parameters, the multi-dimensional integral can be very
-intensive to calculate. Monte Carlo is one technique that can be used for
-multi-dimensional integration. Choose a (large) number of points at random
-within some specified volume (limits in multiple dimensions), sample the value
-of your function at these points, and estimate the integral as
-\[
-    \int{\! f \mathrm{d}V = V\langle f \rangle }
-    \]
-\[
-    \int{ f \mathrm{d}V = V\langle f \rangle }
-    \]
-where
-\[
-    \langle f \rangle = \frac{1}{N}\sum{ f \left( x_{i} \right) }
-    \]
-We could use this to calculate marginal probability distribution functions, but
-it is likely to be very inefficient if the probability is small over most of
-the volume being integrated over. Also, for most Bayesian problems, we do not
-have a proper probability density function because of an unknown normalizing
-constant; all we have is the relative probability at different points in
-parameter space.
-
-To overcome these problems, we would instead like to place points in a volume
-proportional to the probability distribution at that point; we can then
-calculate the integral by summing up the number of points. This is achieved by
-a \textbf{Markov Chain Monte Carlo} analysis. Here, unlike Monte Carlo, the
-points we choose are not statistically independent, but are chosen such that
-they sample the (unnormalized) probability distribution function in proportion
-to its value. This is achieved by setting up a \textit{Markov Chain}, a process where
-the value of a sampled point depends only on the value of the previous point.
-To get the Markov Chain to sample the (unnormalized) PDF, the transition
-probability has to satisfy:
-\[
-    \pi \left( x_{1} \right) p \left( x_{2}|x_{1} \right) =
-    \pi \left( x_{2} \right) p \left( x_{1}|x_{2} \right)
-    \]
-where $p$ is a transition probability to go from one point to another.
-
-To do the integral, sum the number of points in the chain at the different
-parameter values.
 
 \subsubsection{Metropolis-Hastings algorithm}
 There are multiple schemes to generate such a transition probability. A common
